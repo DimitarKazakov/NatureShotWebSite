@@ -1,0 +1,25 @@
+﻿@using NatureShot.Common
+@model NatureShot.Web.ViewModels.Home.IndexViewModel
+@{ this.ViewData["Title"] = "Home Page";
+    this.ViewData["Action"] = "Index"; }
+
+@*<div class="text-center">
+        <h1 class="display-4">Welcome to @GlobalConstants.SystemName!</h1>
+        <div class="col-md-4 offset-md-4">
+            <p class="text-center">We have:</p>
+            <ul class="list-group">
+                <li class="list-group-item">@Model.PhotosCount Photos</li>
+                <li class="list-group-item">And @Model.AllPostsCount Posts</li>
+            </ul>
+        </div>
+    </div>*@
+
+<header class="masthead" id="masterHeader">
+    <div class="container d-flex h-100 align-items-center">
+        <div class="mx-auto text-center">
+            <h1 class="mx-auto my-0 text-uppercase">Nature Shot</h1>
+            <h2 class="text-white-50 mx-auto mt-2 mb-5">A free, responsive, social platform for photographers.</h2>
+            <a class="btn btn-primary js-scroll-trigger" href="#about">Get Started</a>
+        </div>
+    </div>
+</header>

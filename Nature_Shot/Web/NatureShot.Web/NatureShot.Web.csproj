@@ -1,0 +1,87 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <UserSecretsId>aspnet-NatureShot-BBB373B5-EF3F-4DBB-B8AA-7152CEC275BF</UserSecretsId>
+    <LangVersion>latest</LangVersion>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <CodeAnalysisRuleSet>..\..\Rules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <AdditionalFiles Include="..\..\stylecop.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.4" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="3.1.9" />
+    <PackageReference Include="BuildBundlerMinifier" Version="3.2.449" />
+    <PackageReference Include="Microsoft.Web.LibraryManager.Build" Version="2.1.113" />
+    <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="3.1.9" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="3.1.9" />
+    <PackageReference Include="StyleCop.Analyzers" Version="1.2.0-beta.205" PrivateAssets="all">
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="LumenWorksCsvReader" Version="4.0.0" />
+    <PackageReference Include="CloudinaryDotNet" Version="1.13.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\NatureShot.Common\NatureShot.Common.csproj" />
+    <ProjectReference Include="..\..\Data\NatureShot.Data.Models\NatureShot.Data.Models.csproj" />
+    <ProjectReference Include="..\..\Data\NatureShot.Data\NatureShot.Data.csproj" />
+    <ProjectReference Include="..\..\Services\NatureShot.Services.Data\NatureShot.Services.Data.csproj" />
+    <ProjectReference Include="..\..\Services\NatureShot.Services.Mapping\NatureShot.Services.Mapping.csproj" />
+    <ProjectReference Include="..\..\Services\NatureShot.Services.Messaging\NatureShot.Services.Messaging.csproj" />
+    <ProjectReference Include="..\..\Services\NatureShot.Services\NatureShot.Services.csproj" />
+    <ProjectReference Include="..\NatureShot.Web.Infrastructure\NatureShot.Web.Infrastructure.csproj" />
+    <ProjectReference Include="..\NatureShot.Web.ViewModels\NatureShot.Web.ViewModels.csproj" />
+    <ProjectReference Include="..\..\Data\NatureShot.Scraping\NatureShot.Scraping.csproj">
+      <GlobalPropertiesToRemove></GlobalPropertiesToRemove>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="wwwroot\images\" />
+    <Folder Include="Views\Posts\" />
+    <Folder Include="Views\Images\" />
+    <Folder Include="ViewModels\" />
+    <Folder Include="ViewModels\Images\" />
+    <Folder Include="CloudinaryHelper\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Update="wwwroot\images\archway-in-a-pod.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="wwwroot\images\homepage.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="wwwroot\favicon.ico">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="wwwroot\images\bg-masthead.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="wwwroot\images\bg-signup.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="wwwroot\images\demo-image-01.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="wwwroot\images\demo-image-02.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="wwwroot\images\ipad.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="wwwroot\images\pexels-photo-417074.jpeg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="wwwroot\images\photo-1464822759023-fed622ff2c3b.jpeg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="wwwroot\images\photo-1420593248178-d88870618ca0.jpeg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+</Project>
