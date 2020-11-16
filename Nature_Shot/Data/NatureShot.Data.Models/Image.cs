@@ -12,6 +12,9 @@
             this.Id = Guid.NewGuid().ToString();
         }
 
+        [Required]
+        public string ImageUrl { get; set; }
+
         public string AddedByUserId { get; set; }
 
         public virtual ApplicationUser AddedByUser { get; set; }

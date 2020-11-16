@@ -53,4 +53,15 @@
         cameraInput.value = cameraName;
     }
 
+    // file input
+
+    const fileInput = document.querySelector('#fileInput');
+    const fileInputLabel = document.querySelector('#fileLabel');
+    fileInput.addEventListener('change', putIntoFileInput);
+
+    function putIntoFileInput() {
+        let fileName = fileInput.value.split('\\');
+        fileInputLabel.textContent = fileName[fileName.length - 1];
+    }
+
 })(jQuery);
