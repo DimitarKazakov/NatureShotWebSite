@@ -25,5 +25,6 @@
 
   <ItemGroup>
     <Folder Include="Home\" />
+    <Folder Include="Images\" />
   </ItemGroup>
 </Project>
