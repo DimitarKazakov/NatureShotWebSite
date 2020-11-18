@@ -51,6 +51,7 @@
                 options =>
                     {
                         options.Filters.Add(new AutoValidateAntiforgeryTokenAttribute());
+
                     }).AddRazorRuntimeCompilation();
             services.AddRazorPages();
 
@@ -92,7 +93,7 @@
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-                app.UseDatabaseErrorPage();
+
             }
             else
             {

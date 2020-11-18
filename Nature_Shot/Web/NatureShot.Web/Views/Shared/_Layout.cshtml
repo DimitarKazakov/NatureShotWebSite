@@ -46,17 +46,15 @@
         {
 <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
     <div class="container">
-        <a class="navbar-brand js-scroll-trigger" asp-controller="Home" asp-action="Index"><i class="fas fa-tree"></i> Nature Shot</a>
+        <a class="navbar-brand js-scroll-trigger" asp-area="" asp-controller="Home" asp-action="Index"><i class="fas fa-tree"></i> Nature Shot</a>
         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
             Menu
             <i class="fas fa-bars"></i>
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ml-auto">
-                @*<partial name="_LoginPartial" />*@
-                <li class="nav-item"><a class="nav-link js-scroll-trigger" asp-controller="Posts" asp-action="Photos">Projects</a></li>
-                <li class="nav-item"><a class="nav-link js-scroll-trigger">Login</a></li>
-                <li class="nav-item"><a class="nav-link js-scroll-trigger">Register</a></li>
+                <li class="nav-item"><a class="nav-link js-scroll-trigger" asp-area="" asp-controller="Posts" asp-action="Photos">Projects</a></li>
+                <partial name="_LoginPartial" />
             </ul>
         </div>
     </div>
@@ -65,7 +63,7 @@ else
 {
 <nav class="navbar navbar-expand-lg navbar-light fixed-top border-bottom border-primary" id="mainNav">
     <div class="container">
-        <a class="navbar-brand js-scroll-trigger text-dark" asp-controller="Home" asp-action="Index"><i class="fas fa-tree text-primary"></i> Nature Shot</a>
+        <a class="navbar-brand js-scroll-trigger text-dark" asp-area="" asp-controller="Home" asp-action="Index"><i class="fas fa-tree text-primary"></i> Nature Shot</a>
         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
             Menu
             <i class="fas fa-bars"></i>
@@ -73,17 +71,16 @@ else
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ml-auto" id="navHover">
                 <hr class="d-none d-lg-block mb-0 ml-0" />
-                @*<partial name="_LoginPartial" />*@
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle text-dark" href="#" id="navbarDropdown2" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <span class="line">User Shares</span>
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown2">
-                        <a class="dropdown-item" asp-controller="Posts" asp-action="NormalPosts"><span class="line">Posts</span></a>
-                        <a class="dropdown-item" asp-controller="Posts" asp-action="Photos"><span class="line">Photos</span></a>
+                        <a class="dropdown-item" asp-area="" asp-controller="Posts" asp-action="NormalPosts"><span class="line">Posts</span></a>
+                        <a class="dropdown-item" asp-area="" asp-controller="Posts" asp-action="Photos"><span class="line">Photos</span></a>
                     </div>
                 </li>
-                <li class="nav-item"><a class="nav-link js-scroll-trigger text-dark" asp-controller="Home" asp-action="Index"><span class="line">Logout</span></a></li>
+                <partial name="_LoginPartial" />
 
             </ul>
             <div class="line"></div>
