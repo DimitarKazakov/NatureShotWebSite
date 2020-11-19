@@ -79,6 +79,7 @@
             // Application services
             services.AddTransient<IEmailSender, NullMessageSender>();
             services.AddTransient<ISettingsService, SettingsService>();
+            services.AddTransient<IImagesService, ImagesService>();
 
             // Cloudinary Configuration
             Account account = new Account(

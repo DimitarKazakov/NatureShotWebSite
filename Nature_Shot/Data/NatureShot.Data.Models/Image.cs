@@ -21,8 +21,6 @@
         [Required]
         public virtual ApplicationUser AddedByUser { get; set; }
 
-        [Required]
-        [MaxLength(6)]
         public string Extension { get; set; }
 
         public int ImageTypeId { get; set; }

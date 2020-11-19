@@ -8,7 +8,7 @@
         <div class="text-center">
 
             <!--USER NAME-->
-            <h4>Dimitur Kazakov(25 symbols max)</h4>
+            <h4>@this.User.Identity.Name</h4>
 
             <div asp-validation-summary="All" class="text-danger"></div>
             <br>
@@ -27,7 +27,7 @@
             <!--TAGS INPUT-->
             <label asp-for="Tags" class="text-black-50 mb-1"><u>Type some <span class="text-dark text-uppercase">#tags</span> here:</u></label>
             <div class="input-group-lg input-group">
-                <input asp-for="Tags" id="tagInput" type="text" class="form-control col-12 mt-2 border border-primary rounded-left" aria-label="Text input with dropdown button">
+                <textarea asp-for="Tags" id="tagInput" type="text" class="form-control col-12 mt-2 border border-primary rounded-left" aria-label="Text input with dropdown button" rows="1"></textarea>
                 <div class="input-group-append col-12">
                     <select id="tagSelect" data-live-search="true" data-live-search-placeholder="Search Location" class="form-control selectpicker border border-primary rounded" multiple data-selected-text-format="count > 1" data-size="6">
                         <option>No Camera...</option>

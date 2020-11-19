@@ -14,7 +14,7 @@
 
         }
 
-        public static async Task<string> UploadImageAsync(Cloudinary cloudinary, IFormFile imageFile)
+        public static async Task<ImageUploadResult> UploadImageAsync(Cloudinary cloudinary, IFormFile imageFile)
         {
             var result = "";
             byte[] destinationImage;
@@ -34,10 +34,8 @@
 
                 var uploadResult = await cloudinary.UploadAsync(uploadParams);
 
-                result = uploadResult.Url.AbsoluteUri;
+                return uploadResult;
             }
-
-            return result;
         }
     }
 }

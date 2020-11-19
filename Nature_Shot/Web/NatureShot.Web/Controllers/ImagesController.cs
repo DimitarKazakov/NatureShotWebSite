@@ -7,6 +7,7 @@
     using CloudinaryDotNet;
     using CloudinaryDotNet.Actions;
     using Microsoft.AspNetCore.Http;
+    using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Mvc;
     using NatureShot.Data;
     using NatureShot.Data.Common.Repositories;
@@ -20,10 +21,14 @@
     public class ImagesController : Controller
     {
         private readonly Cloudinary cloudinary;
+        private readonly IImagesService imagesService;
+        private readonly UserManager<ApplicationUser> userManager;
 
-        public ImagesController(Cloudinary cloudinary)
+        public ImagesController(Cloudinary cloudinary, IImagesService imagesService, UserManager<ApplicationUser> userManager)
         {
             this.cloudinary = cloudinary;
+            this.imagesService = imagesService;
+            this.userManager = userManager;
         }
 
         public IActionResult AddImage()
@@ -34,8 +39,15 @@
         [HttpPost]
         public async Task<IActionResult> AddImage(ImagePostInputModel input)
         {
+            if (!this.ModelState.IsValid)
+            {
+                return this.RedirectToAction("AddImage");
+            }
+
             // image-path: http://res.cloudinary.com/drw0gj3qi/image/upload/v1605470739/a7dwxdo8bnmqnrxe5lju.jpg
-            var imageUrl = await CloudinaryExtension.UploadImageAsync(this.cloudinary, input.Image);
+            var imageInfo = await CloudinaryExtension.UploadImageAsync(this.cloudinary, input.Image);
+            await this.imagesService.CreateImagePostAsync(input, this.userManager.GetUserId(this.User), imageInfo);
+
             return this.Redirect("/");
         }
     }

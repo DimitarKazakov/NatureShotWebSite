@@ -363,9 +363,7 @@ namespace NatureShot.Data.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Extension")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(6)")
-                        .HasMaxLength(6);
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("ImageTypeId")
                         .HasColumnType("int");
