@@ -3,6 +3,7 @@
     using System;
     using System.Linq;
     using System.Threading.Tasks;
+
     using NatureShot.Data.Models;
 
     public class CameraSeeder : ISeeder

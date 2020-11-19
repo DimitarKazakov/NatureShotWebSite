@@ -52,6 +52,13 @@ namespace NatureShot.Web.Areas.Identity.Pages.Account
             public string Email { get; set; }
 
             [Required]
+            [MinLength(6, ErrorMessage = "Username should be at least 6 characters long.")]
+            [MaxLength(25, ErrorMessage = "Username should be less than 25 characters")]
+            [RegularExpression(@"^[a-zA-Z0-9_\-.]{6,25}$", ErrorMessage = "Username field can contain only letters, numbers and _-.")]
+            [Display(Name = "Username")]
+            public string Username { get; set; }
+
+            [Required]
             [StringLength(100, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 6)]
             [DataType(DataType.Password)]
             [Display(Name = "Password")]
@@ -75,7 +82,7 @@ namespace NatureShot.Web.Areas.Identity.Pages.Account
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = Input.Email, Email = Input.Email };
+                var user = new ApplicationUser { UserName = Input.Username, Email = Input.Email };
                 var result = await _userManager.CreateAsync(user, Input.Password);
                 if (result.Succeeded)
                 {

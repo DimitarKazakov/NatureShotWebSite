@@ -26,11 +26,11 @@
             var seeders = new List<ISeeder>
                           {
                               new RolesSeeder(),
-                              new SettingsSeeder(),
                               new PostTypesSeeder(),
                               new TagSeeder(),
                               new ImageTypeSeeder(),
                               new CameraSeeder(),
+                              new LocationSeeder(),
                           };
 
             foreach (var seeder in seeders)

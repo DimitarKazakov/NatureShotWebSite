@@ -13,30 +13,6 @@ namespace NatureShot.Scraping
     {
         public static async Task Main()
         {
-            var db = new ApplicationDbContext();
-
-            //var allTownInBulgaria = new List<string>();
-            //await GetTowns(allTownInBulgaria);
-
-            //var allMountainsWithPeaksInBulgaria = new List<string>();
-            //await GetMountains(allMountainsWithPeaksInBulgaria);
-
-            //var allRiversInBulgaria = new List<string>();
-            //await GetRivers(allRiversInBulgaria);
-
-            //var allCavesInBulgaria = new List<string>();
-            //GetCaves(allCavesInBulgaria);
-
-            //var allLakesInBulgaria = new List<string>();
-            //GetLakes(allLakesInBulgaria);
-
-            var country = new Country
-            {
-                Name = "Bulgaria",
-
-            };
-            db.Countries.Add(country);
-            db.SaveChanges();
 
         }
 
@@ -106,6 +82,7 @@ namespace NatureShot.Scraping
             allCavesInBulgaria.Add("Venetsa");
             allCavesInBulgaria.Add("Yagodinska");
         }
+
         public static async Task GetTowns(List<string> allTownInBulgaria)
         {
             var url = new Url("https://en.wikipedia.org/wiki/List_of_cities_and_towns_in_Bulgaria");

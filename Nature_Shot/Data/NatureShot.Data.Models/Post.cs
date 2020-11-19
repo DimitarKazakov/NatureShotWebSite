@@ -14,9 +14,10 @@
             this.PostReacts = new HashSet<PostReact>();
         }
 
-
+        [Required]
         public string AddedByUserId { get; set; }
 
+        [Required]
         public virtual ApplicationUser AddedByUser { get; set; }
 
         public int Likes { get; set; }
@@ -31,11 +32,11 @@
 
         public virtual PostType Type { get; set; }
 
-        public int LocationId { get; set; }
+        public int? LocationId { get; set; }
 
         public virtual Location Location { get; set; }
 
-        public int CameraId { get; set; }
+        public int? CameraId { get; set; }
 
         public virtual Camera Camera { get; set; }
 

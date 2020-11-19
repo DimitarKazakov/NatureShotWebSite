@@ -3,6 +3,7 @@
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
+
     using NatureShot.Data.Common.Models;
 
     public class Country : BaseDeletableModel<int>

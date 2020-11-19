@@ -6,7 +6,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\NatureShot.Data\NatureShot.Data.csproj" />
     <ProjectReference Include="..\NatureShot.Data.Models\NatureShot.Data.Models.csproj" />
   </ItemGroup>
   <ItemGroup>

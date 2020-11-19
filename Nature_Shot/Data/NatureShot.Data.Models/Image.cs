@@ -15,8 +15,10 @@
         [Required]
         public string ImageUrl { get; set; }
 
+        [Required]
         public string AddedByUserId { get; set; }
 
+        [Required]
         public virtual ApplicationUser AddedByUser { get; set; }
 
         [Required]

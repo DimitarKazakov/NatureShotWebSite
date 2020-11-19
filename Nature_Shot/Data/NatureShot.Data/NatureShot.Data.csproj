@@ -43,6 +43,7 @@
     <ProjectReference Include="..\..\NatureShot.Common\NatureShot.Common.csproj" />
     <ProjectReference Include="..\NatureShot.Data.Common\NatureShot.Data.Common.csproj" />
     <ProjectReference Include="..\NatureShot.Data.Models\NatureShot.Data.Models.csproj" />
+    <ProjectReference Include="..\NatureShot.Scraping\NatureShot.Scraping.csproj" />
   </ItemGroup>
 
 </Project>

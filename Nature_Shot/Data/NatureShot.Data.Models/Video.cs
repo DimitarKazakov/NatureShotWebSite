@@ -2,6 +2,7 @@
 {
     using System;
     using System.ComponentModel.DataAnnotations;
+
     using NatureShot.Data.Common.Models;
 
     public class Video : BaseDeletableModel<string>
@@ -11,8 +12,10 @@
             this.Id = Guid.NewGuid().ToString();
         }
 
+        [Required]
         public string AddedByUserId { get; set; }
 
+        [Required]
         public virtual ApplicationUser AddedByUser { get; set; }
 
         [Required]

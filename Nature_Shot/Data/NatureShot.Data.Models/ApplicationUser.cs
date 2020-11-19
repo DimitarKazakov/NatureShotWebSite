@@ -15,6 +15,11 @@ namespace NatureShot.Data.Models
             this.Roles = new HashSet<IdentityUserRole<string>>();
             this.Claims = new HashSet<IdentityUserClaim<string>>();
             this.Logins = new HashSet<IdentityUserLogin<string>>();
+            this.Comments = new HashSet<Comment>();
+            this.Images = new HashSet<Image>();
+            this.Posts = new HashSet<Post>();
+            this.PostReacts = new HashSet<PostReact>();
+            this.Videos = new HashSet<Video>();
         }
 
         // Audit info
@@ -32,5 +37,15 @@ namespace NatureShot.Data.Models
         public virtual ICollection<IdentityUserClaim<string>> Claims { get; set; }
 
         public virtual ICollection<IdentityUserLogin<string>> Logins { get; set; }
+
+        public virtual ICollection<Comment> Comments { get; set; }
+
+        public virtual ICollection<Image> Images { get; set; }
+
+        public virtual ICollection<Post> Posts { get; set; }
+
+        public virtual ICollection<PostReact> PostReacts { get; set; }
+
+        public virtual ICollection<Video> Videos { get; set; }
     }
 }

@@ -14,6 +14,7 @@ namespace NatureShot.Data.Models
         [Required]
         public string UserId { get; set; }
 
+        [Required]
         public virtual ApplicationUser User { get; set; }
 
         public int PostId { get; set; }

@@ -12,6 +12,8 @@
             this.Posts = new HashSet<Post>();
         }
 
+        [Required]
+        [MaxLength(60)]
         public string Model { get; set; }
 
         public virtual ICollection<Post> Posts { get; set; }
