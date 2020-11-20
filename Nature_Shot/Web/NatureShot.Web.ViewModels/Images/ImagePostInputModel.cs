@@ -1,5 +1,6 @@
 ﻿namespace NatureShot.Web.ViewModels.Images
 {
+    using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
 
     using Microsoft.AspNetCore.Http;
@@ -36,5 +37,7 @@
         [MinLength(4)]
         [MaxLength(60, ErrorMessage = "Camera model cannot be bigger than 60 characters.")]
         public string Camera { get; set; }
+
+        public IEnumerable<KeyValuePair<string, string>> LocationsDropDown { get; set; }
     }
 }

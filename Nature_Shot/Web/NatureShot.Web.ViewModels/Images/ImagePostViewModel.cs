@@ -18,9 +18,9 @@
 
         public string Camera { get; set; }
 
-        public string Likes { get; set; }
+        public int Likes { get; set; }
 
-        public string Dislikes { get; set; }
+        public int Dislikes { get; set; }
 
         public string Type { get; set; }
     }

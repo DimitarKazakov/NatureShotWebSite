@@ -1,5 +1,8 @@
 ﻿@model NatureShot.Web.ViewModels.Images.ImagePostInputModel
-@{ this.ViewData["Title"] = "Share Image";}
+@{
+    this.ViewData["Title"] = "Share Image";
+    var locationItems = Model.LocationsDropDown.Select(x => new SelectListItem(x.Value, x.Key));
+}
 
 
 <div class="row align-items-center no-gutters mb-4 mb-lg-5 offset-lg-3">
@@ -61,16 +64,16 @@
                 <input asp-for="Country" id="countryInput" type="text" class="form-control col-6 mt-2 border border-primary rounded-right" aria-label="Text input with dropdown button">
             </div>
             <div class="border border-primary rounded">
-                <select id="locationDropDown" data-live-search="true" data-live-search-placeholder="Search Location" class="form-control selectpicker" data-size="6">
-                    <option>No Camera...</option>
-                    <option>Plovdiv/Bulgaria</option>
-                    <option>Burgas/Bulgaria</option>
-                    <option>Varna/Bulgaria</option>
-                    <option>Sofia/Bulgaria</option>
-                    <option>Pazarzdik/Bulgaria</option>
-                    <option>Peshtera/Bulgaria</option>
-                    <option>Stara Zagora/Bulgaria</option>
-                    <option>Rila/Bulgaria</option>
+                <select asp-items="locationItems" id="locationDropDown" data-live-search="true" data-live-search-placeholder="Search Location" class="form-control selectpicker" data-size="6">
+                    @*<option>No Camera...</option>
+                        <option>Plovdiv/Bulgaria</option>
+                        <option>Burgas/Bulgaria</option>
+                        <option>Varna/Bulgaria</option>
+                        <option>Sofia/Bulgaria</option>
+                        <option>Pazarzdik/Bulgaria</option>
+                        <option>Peshtera/Bulgaria</option>
+                        <option>Stara Zagora/Bulgaria</option>
+                        <option>Rila/Bulgaria</option>*@
                 </select>
             </div>
             <span asp-validation-for="Location" class="text-danger"></span>

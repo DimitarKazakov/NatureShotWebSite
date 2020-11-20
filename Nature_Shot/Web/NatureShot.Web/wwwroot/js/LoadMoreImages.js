@@ -1,7 +1,8 @@
 ﻿(function ($) {
     "use strict";
 
-    document.querySelector('.loadMore').addEventListener('click', LoadMore);
+    const btnLoad = document.querySelector('.loadMore');
+    btnLoad.addEventListener('click', LoadMore);
 
     function LoadMore() {
         console.log("clicked");
@@ -59,7 +60,9 @@
             }
         }
 
-        xhr.open("GET", "/api/ImagePosts/3");
+        const pageNumber = parseInt(btnLoad.getAttribute("value"), 10);
+        xhr.open("GET", "/api/ImagePosts/" + pageNumber);
+        btnLoad.setAttribute("value", pageNumber + 1);
         xhr.send();
     }
 

@@ -11,13 +11,17 @@
 
     public class PostsController : Controller
     {
-        public PostsController()
+        private readonly IPostsService postsService;
+
+        public PostsController(IPostsService postsService)
         {
+            this.postsService = postsService;
         }
 
         public IActionResult Photos()
         {
-            return this.View();
+            var viewModel = this.postsService.GetImagePosts(0);
+            return this.View(viewModel);
         }
 
         //[HttpPost]

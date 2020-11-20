@@ -1,13 +1,15 @@
-﻿<div class="row align-items-center no-gutters mb-4 mb-lg-5">
+﻿@model NatureShot.Web.ViewModels.Images.ImagePostViewModel
+
+<div class="row align-items-center no-gutters mb-4 mb-lg-5">
     <div class="col-xl-8 col-lg-7">
 
-        <partial name="_ImageTagPartial" />
+        <partial name="_ImageTagPartial" model="@Model" />
 
     </div>
     <div class="col-xl-4 col-lg-5">
         <div class="featured-text text-center text-lg-left">
 
-            <partial name="_ContentTagPartial" />
+            <partial name="_ContentTagPartial" model="@Model" />
 
         </div>
     </div>

@@ -1,4 +1,5 @@
-﻿<!--Search-->
+﻿@model List<NatureShot.Web.ViewModels.Images.ImagePostViewModel>
+<!--Search-->
 <div class="input-group input-group-lg md-form form-sm form-1 pl-0 mb-5 border-primary">
     <div class="input-group-prepend">
         <span class="input-group-text bg-primary border-primary" id="basic-text1">
@@ -33,15 +34,35 @@
 
 
 <!--IMAGES-->
+@for (int i = 0; i < Model.Count; i++)
+{
+    var image = Model[i];
+    if (i % 2 == 0)
+    {
 
-<partial name="_HorizontalLeftImagePartial" />
+        if (image.Type == "horizontal")
+        {
+            <partial name="_HorizontalLeftImagePartial" model="image" />
+        }
+        else
+        {
+            <partial name="_SmallHorizontalLeftImagePartial" model="image" />
+        }
 
-<partial name="_HorizontalRightImagePartial" />
+    }
+    else
+    {
 
-<partial name="_SmallHorizontalLeftImagePartial" />
-
-<partial name="_SmallHorizontalRightImagePartial" />
-
+        if (image.Type == "horizontal")
+        {
+            <partial name="_HorizontalRightImagePartial" model="image" />
+        }
+        else
+        {
+            <partial name="_SmallHorizontalRightImagePartial" model="image" />
+        }
+    }
+}
 
 <div id="imagesDiv">
 
@@ -84,7 +105,7 @@
                 <!--Linkedin-->
                 <a type="button" href="https://insagram.com" class="btn-floating btn-sm text-dark btn-ins"><i class="fab fa-instagram"></i></a>
 
-                <button type="button" class="btn btn-outline-dark btn-rounded btn-md ml-4" data-dismiss="modal">Load More</button>
+                <button type="button" class="btn btn-outline-dark btn-rounded btn-md ml-4" data-dismiss="modal">Close</button>
 
             </div>
         </div>
@@ -93,9 +114,13 @@
     </div>
 </div>
 
-<button class="btn btn-primary loadMore">Load More</button>
+<div class="justify-content-center">
+    <button class="btn btn-primary loadMore" value="1">Load More</button>
+</div>
+
+
 @section Scripts{
 
     <script src="~/js/ModalPhoto.js"></script>
-    <script src="~/js/LoadMoreImg.js"></script>
+    <script src="~/js/LoadMoreImages.js"></script>
 }

@@ -2,60 +2,26 @@
 {
     using System;
     using System.Collections.Generic;
-
+    using System.Linq;
     using Microsoft.AspNetCore.Mvc;
+    using NatureShot.Services.Data;
     using NatureShot.Web.ViewModels.Images;
 
     [Route("api/[controller]")]
     [ApiController]
     public class ImagePostsController : ControllerBase
     {
-        public ImagePostsController()
+        private readonly IPostsService postsService;
+
+        public ImagePostsController(IPostsService postsService)
         {
+            this.postsService = postsService;
         }
 
-        [HttpGet("{id}")]
-        public ICollection<ImagePostViewModel> LoadMoreImages(int id)
+        [HttpGet("{page}")]
+        public ICollection<ImagePostViewModel> LoadMoreImages(int page)
         {
-            var imageList = new List<ImagePostViewModel>()
-            {
-                new ImagePostViewModel
-                {
-                    Username = "Dimitur Dinkov",
-                    ImageUrl = "http://res.cloudinary.com/drw0gj3qi/image/upload/v1605470739/a7dwxdo8bnmqnrxe5lju.jpg",
-                    Camera = "IPhone 5",
-                    Caption = "Very good and beautiful place",
-                    Likes = "12",
-                    Dislikes = "3",
-                    Location = "Sofia/Bulgaria",
-                    Tags = "#wow #sunny #amazing",
-                    Type = "horizontal",
-                },
-                new ImagePostViewModel
-                {
-                    Username = "Dimitur Kazakov",
-                    ImageUrl = "http://res.cloudinary.com/drw0gj3qi/image/upload/v1605470739/a7dwxdo8bnmqnrxe5lju.jpg",
-                    Camera = "IPhone 6",
-                    Caption = "Very good and beautiful place and peaceful",
-                    Likes = "123",
-                    Dislikes = "32",
-                    Location = "Plovdiv/Bulgaria",
-                    Tags = "#wow #rainy #amazing",
-                    Type = "horizontal",
-                },
-                new ImagePostViewModel
-                {
-                    Username = "Ivan Dinkov",
-                    ImageUrl = "http://res.cloudinary.com/drw0gj3qi/image/upload/v1605470739/a7dwxdo8bnmqnrxe5lju.jpg",
-                    Camera = "IPhone XS",
-                    Caption = "Very good and beautiful place and rich of green place",
-                    Likes = "1212",
-                    Dislikes = "3123",
-                    Location = "Varna/Bulgaria",
-                    Tags = "#wow #sunny #amazing #beautiful",
-                    Type = "horizontal",
-                },
-            };
+            var imageList = this.postsService.GetImagePosts(page).ToList();
 
             return imageList;
         }

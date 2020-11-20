@@ -2,12 +2,12 @@
 {
     using System;
     using System.Threading.Tasks;
-    using CloudinaryDotNet.Actions;
 
-    using NatureShot.Web.ViewModels.Images;
+    using CloudinaryDotNet.Actions;
+    using NatureShot.Data.Models;
 
     public interface IImagesService
     {
-        Task CreateImagePostAsync(ImagePostInputModel input, string userId, ImageUploadResult image);
+        Task<Image> CreateImage(string userId, ImageUploadResult imageInput);
     }
 }

@@ -6,6 +6,7 @@
 
     using CloudinaryDotNet;
     using CloudinaryDotNet.Actions;
+    using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Mvc;
@@ -21,32 +22,44 @@
     public class ImagesController : Controller
     {
         private readonly Cloudinary cloudinary;
-        private readonly IImagesService imagesService;
+        private readonly IPostsService postsService;
         private readonly UserManager<ApplicationUser> userManager;
+        private readonly ILocationsService locationsService;
 
-        public ImagesController(Cloudinary cloudinary, IImagesService imagesService, UserManager<ApplicationUser> userManager)
+        public ImagesController(Cloudinary cloudinary,
+                                IPostsService postsService,
+                                UserManager<ApplicationUser> userManager,
+                                ILocationsService locationsService)
         {
             this.cloudinary = cloudinary;
-            this.imagesService = imagesService;
+            this.postsService = postsService;
             this.userManager = userManager;
+            this.locationsService = locationsService;
         }
 
+        [Authorize]
         public IActionResult AddImage()
         {
-            return this.View();
+            var viewModel = new ImagePostInputModel();
+            viewModel.LocationsDropDown = this.locationsService.GetAllLocationsAsKeyValuePair();
+
+            return this.View(viewModel);
         }
 
+        [Authorize]
         [HttpPost]
         public async Task<IActionResult> AddImage(ImagePostInputModel input)
         {
             if (!this.ModelState.IsValid)
             {
-                return this.RedirectToAction("AddImage");
+                input.LocationsDropDown = this.locationsService.GetAllLocationsAsKeyValuePair();
+
+                return this.View(input);
             }
 
-            // image-path: http://res.cloudinary.com/drw0gj3qi/image/upload/v1605470739/a7dwxdo8bnmqnrxe5lju.jpg
             var imageInfo = await CloudinaryExtension.UploadImageAsync(this.cloudinary, input.Image);
-            await this.imagesService.CreateImagePostAsync(input, this.userManager.GetUserId(this.User), imageInfo);
+            var user = await this.userManager.GetUserAsync(this.User);
+            await this.postsService.CreateImagePostAsync(input, user.Id, imageInfo);
 
             return this.Redirect("/");
         }

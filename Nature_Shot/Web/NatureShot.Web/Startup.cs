@@ -79,14 +79,19 @@
             // Application services
             services.AddTransient<IEmailSender, NullMessageSender>();
             services.AddTransient<ISettingsService, SettingsService>();
+
+            services.AddTransient<IPostsService, PostsService>();
+            services.AddTransient<ICameraService, CameraService>();
             services.AddTransient<IImagesService, ImagesService>();
+            services.AddTransient<ICountriesService, CountriesService>();
+            services.AddTransient<ILocationsService, LocationsService>();
+            services.AddTransient<ITagsService, TagsService>();
 
             // Cloudinary Configuration
             Account account = new Account(
                     this.configuration["Cloudinary:AppName"],
                     this.configuration["Cloudinary:AppKey"],
                     this.configuration["Cloudinary:AppSecret"]);
-
 
             Cloudinary cloudinary = new Cloudinary(account);
             services.AddSingleton(cloudinary);
