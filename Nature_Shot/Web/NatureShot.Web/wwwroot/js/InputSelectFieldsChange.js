@@ -9,12 +9,29 @@
     locationDropDown.addEventListener('change', putInfoInInput)
 
     function putInfoInInput(e) {
-        let locationName = e.target.value.split('/');
-        const town = locationName[0];
-        const country = locationName[1];
+        let currentSelection = e.target.selectedIndex;
+        let currentSelectionName = e.target.options[currentSelection].textContent;
 
-        townInput.value = town;
-        countryInput.value = country;
+        let locationName = currentSelectionName.split('/');
+        if (locationName.length > 2) {
+            let town = locationName[0];
+
+            for (let i = 1; i < locationName.length - 1; i++) {
+                town += '/' + locationName[i];
+            }
+
+            const country = locationName[locationName.length - 1];
+
+            townInput.value = town;
+            countryInput.value = country;
+        }
+        else {
+            const town = locationName[0];
+            const country = locationName[1];
+
+            townInput.value = town;
+            countryInput.value = country;
+        }
     }
 
     // tags input
@@ -23,10 +40,13 @@
     selectTag.addEventListener('change', putIntoTagInput);
     const inputTag = document.querySelector('#tagInput');
 
-    function putIntoTagInput() {
+    function putIntoTagInput(e) {
+
+        let currentSelection = e.target.selectedIndex;
+        let currentSelectionName = e.target.options[currentSelection].textContent;
 
         for (let option of selectTag.options) {
-            let optionValue = option.value;
+            let optionValue = option.textContent;
             if (option.selected) {
                 if (!inputTag.value.includes(optionValue)) {
                     inputTag.value += ' ' + optionValue;
@@ -48,9 +68,10 @@
     cameraDropDown.addEventListener('change', putIntoCameraInput);
 
     function putIntoCameraInput(e) {
-        let cameraName = e.target.value;
+        let currentSelection = e.target.selectedIndex;
+        let currentSelectionName = e.target.options[currentSelection].textContent;
 
-        cameraInput.value = cameraName;
+        cameraInput.value = currentSelectionName;
     }
 
     // file input

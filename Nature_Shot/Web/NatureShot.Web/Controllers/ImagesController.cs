@@ -22,19 +22,25 @@
     public class ImagesController : Controller
     {
         private readonly Cloudinary cloudinary;
-        private readonly IPostsService postsService;
         private readonly UserManager<ApplicationUser> userManager;
+        private readonly IPostsService postsService;
         private readonly ILocationsService locationsService;
+        private readonly ICameraService cameraService;
+        private readonly ITagsService tagsService;
 
         public ImagesController(Cloudinary cloudinary,
-                                IPostsService postsService,
                                 UserManager<ApplicationUser> userManager,
-                                ILocationsService locationsService)
+                                IPostsService postsService,
+                                ILocationsService locationsService,
+                                ICameraService cameraService,
+                                ITagsService tagsService)
         {
             this.cloudinary = cloudinary;
             this.postsService = postsService;
             this.userManager = userManager;
             this.locationsService = locationsService;
+            this.cameraService = cameraService;
+            this.tagsService = tagsService;
         }
 
         [Authorize]
@@ -42,6 +48,8 @@
         {
             var viewModel = new ImagePostInputModel();
             viewModel.LocationsDropDown = this.locationsService.GetAllLocationsAsKeyValuePair();
+            viewModel.CamerasDropDown = this.cameraService.GetAllCamerasAsKeyValuePair();
+            viewModel.TagsDropDown = this.tagsService.GetAllTagsAsKeyValuePair();
 
             return this.View(viewModel);
         }

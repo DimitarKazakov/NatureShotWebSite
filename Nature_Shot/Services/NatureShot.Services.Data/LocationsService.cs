@@ -24,7 +24,9 @@
                                           {
                                               x.Id,
                                               x.Name,
-                                          }).ToList().Select(x => new KeyValuePair<string, string>(x.Id.ToString(), x.Name));
+                                          })
+                                          .Distinct()
+                                          .ToList().Select(x => new KeyValuePair<string, string>(x.Id.ToString(), x.Name));
         }
 
         public async Task<Location> GetLocation(string locationName, Country country)

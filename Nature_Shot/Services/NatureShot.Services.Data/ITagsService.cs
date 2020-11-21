@@ -9,5 +9,8 @@
     public interface ITagsService
     {
         Task<List<Tag>> GetTagsForPost(string tagsInput);
+
+        IEnumerable<KeyValuePair<string, string>> GetAllTagsAsKeyValuePair();
+
     }
 }

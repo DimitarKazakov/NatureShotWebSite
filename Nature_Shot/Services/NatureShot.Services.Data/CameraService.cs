@@ -1,6 +1,7 @@
 ﻿namespace NatureShot.Services.Data
 {
     using System;
+    using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
 
@@ -32,6 +33,18 @@
             }
 
             return camera;
+        }
+
+        public IEnumerable<KeyValuePair<string, string>> GetAllCamerasAsKeyValuePair()
+        {
+            return this.cameraRepository.AllAsNoTracking()
+                                      .Select(x => new
+                                      {
+                                          x.Id,
+                                          x.Model,
+                                      })
+                                      .Distinct()
+                                      .ToList().Select(x => new KeyValuePair<string, string>(x.Id.ToString(), x.Model));
         }
     }
 }

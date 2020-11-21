@@ -39,5 +39,9 @@
         public string Camera { get; set; }
 
         public IEnumerable<KeyValuePair<string, string>> LocationsDropDown { get; set; }
+
+        public IEnumerable<KeyValuePair<string, string>> CamerasDropDown { get; set; }
+
+        public IEnumerable<KeyValuePair<string, string>> TagsDropDown { get; set; }
     }
 }

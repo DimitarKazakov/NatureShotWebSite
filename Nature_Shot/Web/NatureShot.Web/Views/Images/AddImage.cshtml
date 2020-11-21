@@ -2,6 +2,8 @@
 @{
     this.ViewData["Title"] = "Share Image";
     var locationItems = Model.LocationsDropDown.Select(x => new SelectListItem(x.Value, x.Key));
+    var cameraItems = Model.CamerasDropDown.Select(x => new SelectListItem(x.Value, x.Key));
+    var tagItems = Model.TagsDropDown.Select(x => new SelectListItem(x.Value, x.Key));
 }
 
 
@@ -32,16 +34,16 @@
             <div class="input-group-lg input-group">
                 <textarea asp-for="Tags" id="tagInput" type="text" class="form-control col-12 mt-2 border border-primary rounded-left" aria-label="Text input with dropdown button" rows="1"></textarea>
                 <div class="input-group-append col-12">
-                    <select id="tagSelect" data-live-search="true" data-live-search-placeholder="Search Location" class="form-control selectpicker border border-primary rounded" multiple data-selected-text-format="count > 1" data-size="6">
-                        <option>No Camera...</option>
-                        <option>#day</option>
-                        <option>#hot</option>
-                        <option>#beautiful</option>
-                        <option>#wow</option>
-                        <option>#love</option>
-                        <option>#moon</option>
-                        <option>#sun</option>
-                        <option>#night</option>
+                    <select asp-items="tagItems" id="tagSelect" data-live-search="true" data-live-search-placeholder="Search Location" class="form-control selectpicker border border-primary rounded" multiple data-selected-text-format="count > 1" data-size="6">
+                        @*<option>No Camera...</option>
+                            <option>#day</option>
+                            <option>#hot</option>
+                            <option>#beautiful</option>
+                            <option>#wow</option>
+                            <option>#love</option>
+                            <option>#moon</option>
+                            <option>#sun</option>
+                            <option>#night</option>*@
                     </select>
                 </div>
             </div>
@@ -88,16 +90,16 @@
             <div class="input-group-lg input-group">
                 <input asp-for="Camera" id="cameraInput" type="text" class="form-control col-6 mt-2 border border-primary rounded-left" aria-label="Text input with dropdown button">
                 <div class="input-group-append col-6">
-                    <select id="cameraSelect" data-live-search="true" data-live-search-placeholder="Search Location" class="form-control selectpicker border border-primary rounded" data-size="6">
-                        <option selected>No Camera...</option>
-                        <option>Plovdiv/Bulgaria</option>
-                        <option>Orange</option>
-                        <option>Lychee</option>
-                        <option>Pineapple</option>
-                        <option>Apple</option>
-                        <option>Banana</option>
-                        <option>Grapes</option>
-                        <option>Water Melon</option>
+                    <select asp-items="cameraItems" id="cameraSelect" data-live-search="true" data-live-search-placeholder="Search Location" class="form-control selectpicker border border-primary rounded" data-size="6">
+                        @*<option selected>No Camera...</option>
+                            <option>Plovdiv/Bulgaria</option>
+                            <option>Orange</option>
+                            <option>Lychee</option>
+                            <option>Pineapple</option>
+                            <option>Apple</option>
+                            <option>Banana</option>
+                            <option>Grapes</option>
+                            <option>Water Melon</option>*@
                     </select>
                 </div>
             </div>
@@ -110,7 +112,7 @@
     </form>
 </div>
 @section Scripts{
-    <script src="~/js/InputFields.js"></script>
+    <script src="~/js/InputSelectFieldsChange.js"></script>
     <script src="~/lib/jquery-validation/dist/jquery.validate.min.js" asp-append-version="true"></script>
     <script src="~/lib/jquery-validation-unobtrusive/dist/jquery.validate.unobtrusive.js" asp-append-version="true"></script>
 }

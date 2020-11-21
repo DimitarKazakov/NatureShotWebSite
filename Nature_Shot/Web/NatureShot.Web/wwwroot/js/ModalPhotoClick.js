@@ -13,7 +13,6 @@
         const target = e.target;
         const targetName = target.tagName;
 
-        console.log("works");
         if (targetName === 'IMG') {
 
             let source = target.getAttribute('src');
@@ -22,15 +21,17 @@
 
             const infoDiv = target.parentElement.nextElementSibling.children[0];
 
+
             const location = infoDiv.querySelector('.locationText span').textContent;
             const camera = infoDiv.querySelector('.cameraText span').textContent;
             const likes = infoDiv.querySelector('.likesText span').textContent;
             const dislikes = infoDiv.querySelector('.dislikesText span').textContent;
 
-            modalInfo[0].querySelector('span').textContent = location;
-            modalInfo[1].querySelector('span').textContent = camera;
-            modalInfo[2].querySelector('span').textContent = likes;
-            modalInfo[3].querySelector('span').textContent = dislikes;
+            console.log(modalInfo);
+            modalInfo[0].querySelector('#locationName').textContent = location;
+            modalInfo[1].querySelector('#cameraName').textContent = camera;
+            modalInfo[2].querySelector('#likesName').textContent = likes;
+            modalInfo[3].querySelector('#dislikesName').textContent = dislikes;
         }
     }
 

@@ -11,11 +11,10 @@
     </div>
     <button class="btnSmaller bg-primary text-white dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Search By</button>
     <div class="dropdown-menu">
-        <a class="dropdown-item" href="#">Action</a>
-        <a class="dropdown-item" href="#">Another action</a>
-        <a class="dropdown-item" href="#">Something else here</a>
-        <div role="separator" class="dropdown-divider"></div>
-        <a class="dropdown-item" href="#">Separated link</a>
+        <a class="dropdown-item active" href="#">Name</a>
+        <a class="dropdown-item" href="#">Tags</a>
+        <a class="dropdown-item" href="#">Location Name</a>
+        <a class="dropdown-item" href="#">Camera Model</a>
     </div>
     <input class="form-control p-4 input-lg my-0 py-1 searchBorder" type="text" placeholder="Search . . ." aria-label="Search">
 </div>
@@ -24,11 +23,14 @@
 <div class="offset-md-9 offset-6 offset-lg-10 mb-5 mr-0">
     <button class="btn bg-primary text-white dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Order by</button>
     <div class="dropdown-menu">
-        <a class="dropdown-item" href="#">Action</a>
-        <a class="dropdown-item" href="#">Another action</a>
-        <a class="dropdown-item" href="#">Something else here</a>
+        <a class="dropdown-item active" href="#">Date (Newest)</a>
+        <a class="dropdown-item" href="#">Date (Oldest)</a>
         <div role="separator" class="dropdown-divider"></div>
-        <a class="dropdown-item" href="#">Separated link</a>
+        <a class="dropdown-item" href="#">Likes (Most)</a>
+        <a class="dropdown-item" href="#">Likes (Least)</a>
+        <div role="separator" class="dropdown-divider"></div>
+        <a class="dropdown-item" href="#">Dislikes (Most)</a>
+        <a class="dropdown-item" href="#">Dislikes (Least)</a>
     </div>
 </div>
 
@@ -86,10 +88,10 @@
                 <hr>
                 <div class="text-center" id="modalInfo">
 
-                    <p class="text-black-50 mb-3 mt-3">Location: <span class="text-dark nameBorder">Plovdiv/Buaaddadalgaria</span></p>
-                    <p class="text-black-50 mb-3 mt-3">Camera: <span class="text-dark nameBorder"> Sony</span></p>
-                    <p class="text-black-50 mb-4">Likes: <span class="text-dark nameBorder">123</span></p>
-                    <p class="text-black-50 mb-4">Dislikes: <span class="text-dark nameBorder">12</span></p>
+                    <p class="text-black-50 mb-3 mt-3"><span class="border-primary border-bottom">Location: <span id="locationName" class="text-dark"> No Location</span></span></p>
+                    <p class="text-black-50 mb-3 mt-3"><span class="border-primary border-bottom">Camera: <span id="cameraName" class="text-dark"> No Camera</span></span></p>
+                    <p class="text-black-50 mb-4"><span class="border-primary border-bottom">Likes: <span id="likesName" class="text-dark">0</span></span></p>
+                    <p class="text-black-50 mb-4"><span class="border-primary border-bottom">Dislikes: <span id="dislikesName" class="text-dark">0</span></span></p>
 
                 </div>
             </div>
@@ -105,7 +107,7 @@
                 <!--Linkedin-->
                 <a type="button" href="https://insagram.com" class="btn-floating btn-sm text-dark btn-ins"><i class="fab fa-instagram"></i></a>
 
-                <button type="button" class="btn btn-outline-dark btn-rounded btn-md ml-4" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-outline-primary btn-rounded btn-md ml-4" data-dismiss="modal">Close</button>
 
             </div>
         </div>
@@ -114,13 +116,13 @@
     </div>
 </div>
 
-<div class="justify-content-center">
+<div class="offset-md-5 offset-4">
     <button class="btn btn-primary loadMore" value="1">Load More</button>
 </div>
 
 
 @section Scripts{
 
-    <script src="~/js/ModalPhoto.js"></script>
+    <script src="~/js/ModalPhotoClick.js"></script>
     <script src="~/js/LoadMoreImages.js"></script>
 }

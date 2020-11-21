@@ -41,5 +41,17 @@
             return listOfTags;
 
         }
+
+        public IEnumerable<KeyValuePair<string, string>> GetAllTagsAsKeyValuePair()
+        {
+            return this.tagsRepository.AllAsNoTracking()
+                                      .Select(x => new
+                                      {
+                                          x.Id,
+                                          x.Name,
+                                      })
+                                      .Distinct()
+                                      .ToList().Select(x => new KeyValuePair<string, string>(x.Id.ToString(), x.Name));
+        }
     }
 }
