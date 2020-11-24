@@ -1,6 +1,8 @@
 ﻿namespace NatureShot.Web.Controllers
 {
+    using System.Collections.Generic;
     using System.Diagnostics;
+    using System.IO;
     using System.Linq;
     using System.Threading.Tasks;
 
@@ -61,6 +63,8 @@
             if (!this.ModelState.IsValid)
             {
                 input.LocationsDropDown = this.locationsService.GetAllLocationsAsKeyValuePair();
+                input.CamerasDropDown = this.cameraService.GetAllCamerasAsKeyValuePair();
+                input.TagsDropDown = this.tagsService.GetAllTagsAsKeyValuePair();
 
                 return this.View(input);
             }

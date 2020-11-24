@@ -26,5 +26,7 @@
         public int ImageTypeId { get; set; }
 
         public virtual ImageType Type { get; set; }
+
+        public bool IsProfilePicture { get; set; }
     }
 }

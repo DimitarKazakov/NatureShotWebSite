@@ -5,6 +5,7 @@
     using System.Linq;
     using System.Threading.Tasks;
 
+    using NatureShot.Data;
     using NatureShot.Data.Common.Repositories;
     using NatureShot.Data.Models;
 
@@ -32,6 +33,11 @@
 
                 if (!tagsFromDb.Contains(tag))
                 {
+                    if (!tag.Name.StartsWith('#'))
+                    {
+                        tag.Name.Insert(0, "#");
+                    }
+
                     await this.tagsRepository.AddAsync(tag);
                 }
 
@@ -39,7 +45,6 @@
             }
 
             return listOfTags;
-
         }
 
         public IEnumerable<KeyValuePair<string, string>> GetAllTagsAsKeyValuePair()

@@ -1,40 +1,4 @@
 ﻿@model List<NatureShot.Web.ViewModels.Images.ImagePostViewModel>
-<!--Search-->
-<div class="input-group input-group-lg md-form form-sm form-1 pl-0 mb-5 border-primary">
-    <div class="input-group-prepend">
-        <span class="input-group-text bg-primary border-primary" id="basic-text1">
-            <a href="">
-                <i class="fas fa-search text-white"
-                   aria-hidden="true"></i>
-            </a>
-        </span>
-    </div>
-    <button class="btnSmaller bg-primary text-white dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Search By</button>
-    <div class="dropdown-menu">
-        <a class="dropdown-item active" href="#">Name</a>
-        <a class="dropdown-item" href="#">Tags</a>
-        <a class="dropdown-item" href="#">Location Name</a>
-        <a class="dropdown-item" href="#">Camera Model</a>
-    </div>
-    <input class="form-control p-4 input-lg my-0 py-1 searchBorder" type="text" placeholder="Search . . ." aria-label="Search">
-</div>
-
-<!--FILTER ORDER BY-->
-<div class="offset-md-9 offset-6 offset-lg-10 mb-5 mr-0">
-    <button class="btn bg-primary text-white dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Order by</button>
-    <div class="dropdown-menu">
-        <a class="dropdown-item active" href="#">Date (Newest)</a>
-        <a class="dropdown-item" href="#">Date (Oldest)</a>
-        <div role="separator" class="dropdown-divider"></div>
-        <a class="dropdown-item" href="#">Likes (Most)</a>
-        <a class="dropdown-item" href="#">Likes (Least)</a>
-        <div role="separator" class="dropdown-divider"></div>
-        <a class="dropdown-item" href="#">Dislikes (Most)</a>
-        <a class="dropdown-item" href="#">Dislikes (Least)</a>
-    </div>
-</div>
-
-
 <!--IMAGES-->
 @for (int i = 0; i < Model.Count; i++)
 {
@@ -107,7 +71,7 @@
                 <!--Linkedin-->
                 <a type="button" href="https://insagram.com" class="btn-floating btn-sm text-dark btn-ins"><i class="fab fa-instagram"></i></a>
 
-                <button type="button" class="btn btn-outline-primary btn-rounded btn-md ml-4" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-outline-primary btn-rounded btn-md ml-4 border border-primary" data-dismiss="modal">Close</button>
 
             </div>
         </div>
@@ -119,10 +83,3 @@
 <div class="offset-md-5 offset-4">
     <button class="btn btn-primary loadMore" value="1">Load More</button>
 </div>
-
-
-@section Scripts{
-
-    <script src="~/js/ModalPhotoClick.js"></script>
-    <script src="~/js/LoadMoreImages.js"></script>
-}

@@ -10,8 +10,8 @@ using NatureShot.Data;
 namespace NatureShot.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20201119200012_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20201123101906_Created")]
+    partial class Created
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -375,6 +375,9 @@ namespace NatureShot.Data.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsProfilePicture")
                         .HasColumnType("bit");
 
                     b.Property<DateTime?>("ModifiedOn")

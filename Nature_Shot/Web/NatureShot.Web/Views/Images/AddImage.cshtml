@@ -6,113 +6,120 @@
     var tagItems = Model.TagsDropDown.Select(x => new SelectListItem(x.Value, x.Key));
 }
 
+<a asp-controller="NormalPosts" asp-action="AddPost" class="btn btn-primary mb-2 mr-2 m text-white">Go Share Post</a>
+<a class="btn btn-primary mb-2 text-white">Go Share Video</a>
 
-<div class="row align-items-center no-gutters mb-4 mb-lg-5 offset-lg-3">
+<div class="row justify-content-center no-gutters mb-5 border border-primary round">
+    <div class="text-center h-100 project">
+        <div class="d-flex h-100">
+            <div class="project-text w-100 my-auto text-center">
+                <form method="post" enctype="multipart/form-data" asp-controller="Images" asp-action="AddImage">
+                    <div class="text-center">
 
-    <form method="post" enctype="multipart/form-data" asp-controller="Images" asp-action="AddImage">
-        <div class="text-center">
+                        <!--USER NAME-->
+                        <h4>@this.User.Identity.Name</h4>
 
-            <!--USER NAME-->
-            <h4>@this.User.Identity.Name</h4>
+                        <div asp-validation-summary="All" class="text-danger"></div>
+                        <br>
 
-            <div asp-validation-summary="All" class="text-danger"></div>
-            <br>
+                        <!--IMAGE FILE INPUT-->
+                        <div class="input-group">
+                            <div class="custom-file">
+                                <input asp-for="Image" id="fileInput" type="file" accept="image/*" class="custom-file-input form-control" />
+                                <label asp-for="Image" id="fileLabel" class="custom-file-label text-black-50 mb-1 border border-primary rounded">Select <span class="text-dark text-uppercase">Image</span></label>
+                            </div>
+                        </div>
+                        <span asp-validation-for="Image" class="text-danger"></span>
 
-            <!--IMAGE FILE INPUT-->
-            <div class="input-group">
-                <div class="custom-file">
-                    <input asp-for="Image" id="fileInput" type="file" accept="image/*" class="custom-file-input form-control" />
-                    <label asp-for="Image" id="fileLabel" class="custom-file-label text-black-50 mb-1 border border-primary rounded">Select <span class="text-dark text-uppercase">Image</span></label>
-                </div>
+                        <br>
+
+                        <!--TAGS INPUT-->
+                        <label asp-for="Tags" class="text-black-50 mb-1"><u>Type some <span class="text-dark text-uppercase">#tags</span> here:</u></label>
+                        <div class="input-group-lg input-group">
+                            <textarea asp-for="Tags" id="tagInput" type="text" class="form-control col-12 mt-2 border border-primary rounded-left" aria-label="Text input with dropdown button" rows="1"></textarea>
+                            <div class="input-group-append col-12">
+                                <select asp-items="tagItems" id="tagSelect" data-live-search="true" data-live-search-placeholder="Search Location" class="form-control selectpicker border border-primary rounded" multiple data-selected-text-format="count > 1" data-size="6">
+                                    @*<option>No Camera...</option>
+                                        <option>#day</option>
+                                        <option>#hot</option>
+                                        <option>#beautiful</option>
+                                        <option>#wow</option>
+                                        <option>#love</option>
+                                        <option>#moon</option>
+                                        <option>#sun</option>
+                                        <option>#night</option>*@
+                                </select>
+                            </div>
+                        </div>
+                        <span asp-validation-for="Tags" class="text-danger"></span>
+                        <br>
+
+                        <!--CAPTION INPUT-->
+                        <div class="form-group">
+                            <label asp-for="Caption" class="text-black-50 mb-1"><u>Write short <span class="text-dark text-uppercase">description/caption</span> here:</u></label>
+                            <textarea asp-for="Caption" type="text" class="form-control border border-primary rounded" placeholder="Very beautiful and breath taking, place i recomment you to go there!" rows="5"></textarea>
+                            <span asp-validation-for="Caption" class="text-danger"></span>
+                        </div>
+
+                        <br>
+
+                        <!--LOCATION INPUT-->
+                        <label asp-for="Location" class="text-black-50 mb-1"><u>Select <span class="text-dark text-uppercase">Location</span> where you took the photo:</u></label>
+                        <div class="input-group-lg input-group">
+                            <input asp-for="Location" id="townInput" type="text" class="form-control col-6 mt-2 border border-primary rounded-left" aria-label="Text input with dropdown button">
+                            <input asp-for="Country" id="countryInput" type="text" class="form-control col-6 mt-2 border border-primary rounded-right" aria-label="Text input with dropdown button">
+                        </div>
+                        <div class="border border-primary rounded">
+                            <select asp-items="locationItems" id="locationDropDown" data-live-search="true" data-live-search-placeholder="Search Location" class="form-control selectpicker" data-size="6">
+                                @*<option>No Camera...</option>
+                                    <option>Plovdiv/Bulgaria</option>
+                                    <option>Burgas/Bulgaria</option>
+                                    <option>Varna/Bulgaria</option>
+                                    <option>Sofia/Bulgaria</option>
+                                    <option>Pazarzdik/Bulgaria</option>
+                                    <option>Peshtera/Bulgaria</option>
+                                    <option>Stara Zagora/Bulgaria</option>
+                                    <option>Rila/Bulgaria</option>*@
+                            </select>
+                        </div>
+                        <span asp-validation-for="Location" class="text-danger"></span>
+                        <br>
+                        <span asp-validation-for="Country" class="text-danger"></span>
+
+                        <br>
+                        <br>
+
+                        <!--CAMERA INPUT-->
+                        <label asp-for="Camera" class="text-black-50 mb-1"><u>Select the <span class="text-dark text-uppercase">Camera</span> which took the photo:</u></label>
+                        <div class="input-group-lg input-group">
+                            <input asp-for="Camera" id="cameraInput" type="text" class="form-control col-6 mt-2 border border-primary rounded-left" aria-label="Text input with dropdown button">
+                            <div class="input-group-append col-6">
+                                <select asp-items="cameraItems" id="cameraSelect" data-live-search="true" data-live-search-placeholder="Search Location" class="form-control selectpicker border border-primary rounded" data-size="6">
+                                    @*<option selected>No Camera...</option>
+                                        <option>Plovdiv/Bulgaria</option>
+                                        <option>Orange</option>
+                                        <option>Lychee</option>
+                                        <option>Pineapple</option>
+                                        <option>Apple</option>
+                                        <option>Banana</option>
+                                        <option>Grapes</option>
+                                        <option>Water Melon</option>*@
+                                </select>
+                            </div>
+                        </div>
+                        <span asp-validation-for="Camera" class="text-danger"></span>
+
+                    </div>
+                    <div class="text-center">
+                        <button type="submit" value="AddImage" class="btn btn-outline-primary mt-4 border border-primary rounded" name="uploadbutton">Share Image</button>
+                    </div>
+                </form>
             </div>
-            <span asp-validation-for="Image" class="text-danger"></span>
-
-            <br>
-
-            <!--TAGS INPUT-->
-            <label asp-for="Tags" class="text-black-50 mb-1"><u>Type some <span class="text-dark text-uppercase">#tags</span> here:</u></label>
-            <div class="input-group-lg input-group">
-                <textarea asp-for="Tags" id="tagInput" type="text" class="form-control col-12 mt-2 border border-primary rounded-left" aria-label="Text input with dropdown button" rows="1"></textarea>
-                <div class="input-group-append col-12">
-                    <select asp-items="tagItems" id="tagSelect" data-live-search="true" data-live-search-placeholder="Search Location" class="form-control selectpicker border border-primary rounded" multiple data-selected-text-format="count > 1" data-size="6">
-                        @*<option>No Camera...</option>
-                            <option>#day</option>
-                            <option>#hot</option>
-                            <option>#beautiful</option>
-                            <option>#wow</option>
-                            <option>#love</option>
-                            <option>#moon</option>
-                            <option>#sun</option>
-                            <option>#night</option>*@
-                    </select>
-                </div>
-            </div>
-            <span asp-validation-for="Tags" class="text-danger"></span>
-            <br>
-
-            <!--CAPTION INPUT-->
-            <div class="form-group">
-                <label asp-for="Caption" class="text-black-50 mb-1"><u>Write short <span class="text-dark text-uppercase">description/caption</span> here:</u></label>
-                <textarea asp-for="Caption" type="text" class="form-control border border-primary rounded" placeholder="Very beautiful and breath taking, place i recomment you to go there!" rows="5"></textarea>
-                <span asp-validation-for="Caption" class="text-danger"></span>
-            </div>
-
-            <br>
-
-            <!--LOCATION INPUT-->
-            <label asp-for="Location" class="text-black-50 mb-1"><u>Select <span class="text-dark text-uppercase">Location</span> where you took the photo:</u></label>
-            <div class="input-group-lg input-group">
-                <input asp-for="Location" id="townInput" type="text" class="form-control col-6 mt-2 border border-primary rounded-left" aria-label="Text input with dropdown button">
-                <input asp-for="Country" id="countryInput" type="text" class="form-control col-6 mt-2 border border-primary rounded-right" aria-label="Text input with dropdown button">
-            </div>
-            <div class="border border-primary rounded">
-                <select asp-items="locationItems" id="locationDropDown" data-live-search="true" data-live-search-placeholder="Search Location" class="form-control selectpicker" data-size="6">
-                    @*<option>No Camera...</option>
-                        <option>Plovdiv/Bulgaria</option>
-                        <option>Burgas/Bulgaria</option>
-                        <option>Varna/Bulgaria</option>
-                        <option>Sofia/Bulgaria</option>
-                        <option>Pazarzdik/Bulgaria</option>
-                        <option>Peshtera/Bulgaria</option>
-                        <option>Stara Zagora/Bulgaria</option>
-                        <option>Rila/Bulgaria</option>*@
-                </select>
-            </div>
-            <span asp-validation-for="Location" class="text-danger"></span>
-            <br>
-            <span asp-validation-for="Country" class="text-danger"></span>
-
-            <br>
-            <br>
-
-            <!--CAMERA INPUT-->
-            <label asp-for="Camera" class="text-black-50 mb-1"><u>Select the <span class="text-dark text-uppercase">Camera</span> which took the photo:</u></label>
-            <div class="input-group-lg input-group">
-                <input asp-for="Camera" id="cameraInput" type="text" class="form-control col-6 mt-2 border border-primary rounded-left" aria-label="Text input with dropdown button">
-                <div class="input-group-append col-6">
-                    <select asp-items="cameraItems" id="cameraSelect" data-live-search="true" data-live-search-placeholder="Search Location" class="form-control selectpicker border border-primary rounded" data-size="6">
-                        @*<option selected>No Camera...</option>
-                            <option>Plovdiv/Bulgaria</option>
-                            <option>Orange</option>
-                            <option>Lychee</option>
-                            <option>Pineapple</option>
-                            <option>Apple</option>
-                            <option>Banana</option>
-                            <option>Grapes</option>
-                            <option>Water Melon</option>*@
-                    </select>
-                </div>
-            </div>
-            <span asp-validation-for="Camera" class="text-danger"></span>
-
         </div>
-        <div class="text-center">
-            <button type="submit" value="AddImage" class="btn btn-outline-primary mt-4 border border-primary rounded" name="uploadbutton">Share Image</button>
-        </div>
-    </form>
+    </div>
 </div>
 @section Scripts{
-    <script src="~/js/InputSelectFieldsChange.js"></script>
+    <script src="~/js/SelectFields.js"></script>
     <script src="~/lib/jquery-validation/dist/jquery.validate.min.js" asp-append-version="true"></script>
     <script src="~/lib/jquery-validation-unobtrusive/dist/jquery.validate.unobtrusive.js" asp-append-version="true"></script>
 }

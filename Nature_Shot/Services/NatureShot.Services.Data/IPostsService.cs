@@ -7,11 +7,14 @@
     using CloudinaryDotNet.Actions;
 
     using NatureShot.Web.ViewModels.Images;
+    using NatureShot.Web.ViewModels.NormalPosts;
 
     public interface IPostsService
     {
         Task CreateImagePostAsync(ImagePostInputModel input, string userId, ImageUploadResult image);
 
-        IEnumerable<ImagePostViewModel> GetImagePosts(int page, int count = 10);
+        Task CreateNormalPostAsync(NormalPostInputModel input, string userId);
+
+        IEnumerable<NormalPostViewModel> GetNormalPosts(int page, int count = 10);
     }
 }

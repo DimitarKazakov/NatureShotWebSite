@@ -42,23 +42,10 @@
 
     function putIntoTagInput(e) {
 
-        let currentSelection = e.target.selectedIndex;
-        let currentSelectionName = e.target.options[currentSelection].textContent;
+        const selected = document.querySelectorAll('#tagSelect option:checked');
+        const values = Array.from(selected).map(el => el.text);
+        inputTag.value = values.join(' ');
 
-        for (let option of selectTag.options) {
-            let optionValue = option.textContent;
-            if (option.selected) {
-                if (!inputTag.value.includes(optionValue)) {
-                    inputTag.value += ' ' + optionValue;
-                }
-            }
-            else {
-                if (inputTag.value.includes(optionValue)) {
-
-                    inputTag.value = inputTag.value.replace(' ' + optionValue, '');
-                }
-            }
-        }
     }
 
     // camera input

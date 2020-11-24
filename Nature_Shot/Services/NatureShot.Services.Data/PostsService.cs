@@ -9,6 +9,7 @@
     using NatureShot.Data.Common.Repositories;
     using NatureShot.Data.Models;
     using NatureShot.Web.ViewModels.Images;
+    using NatureShot.Web.ViewModels.NormalPosts;
 
     public class PostsService : IPostsService
     {
@@ -73,52 +74,74 @@
             await this.postRepository.SaveChangesAsync();
         }
 
-        public IEnumerable<ImagePostViewModel> GetImagePosts(int page, int count = 10)
+        public async Task CreateNormalPostAsync(NormalPostInputModel input, string userId)
         {
-            var imageCount = this.postRepository.AllAsNoTracking().Where(x => x.Type.Name == "Image").Count();
-            if (imageCount > (page * count) && imageCount < (page + 1) * count)
+            var postType = new PostType
+            {
+                Name = "Post",
+            };
+
+            var post = new Post
+            {
+                AddedByUserId = userId,
+                Caption = input.Caption,
+                Type = postType,
+                Dislikes = 0,
+                Likes = 0,
+            };
+
+            var tags = await this.tagsService.GetTagsForPost(input.Tags);
+            foreach (var tag in tags)
+            {
+                post.Tags.Add(new PostTag
+                {
+                    Tag = tag,
+                    Post = post,
+                });
+            }
+
+            await this.postRepository.AddAsync(post);
+            await this.postRepository.SaveChangesAsync();
+        }
+
+        public IEnumerable<NormalPostViewModel> GetNormalPosts(int page, int count = 10)
+        {
+            var postsCount = this.postRepository.AllAsNoTracking().Where(x => x.Type.Name == "Post").Count();
+            if (postsCount > (page * count) && postsCount < (page + 1) * count)
             {
                 return this.postRepository.AllAsNoTracking()
-                               .Where(x => x.Type.Name == "Image")
-                               .OrderByDescending(x => x.Id)
+                               .Where(x => x.Type.Name == "Post")
+                               .OrderByDescending(x => x.CreatedOn)
                                .Skip(page * count)
-                               .Take(imageCount - (count * page))
-                               .Select(x => new ImagePostViewModel
+                               .Take(postsCount - (count * page))
+                               .Select(x => new NormalPostViewModel
                                {
                                    Username = x.AddedByUser.UserName,
                                    Tags = string.Join(' ', x.Tags.Select(x => x.Tag.Name)),
                                    Caption = x.Caption,
-                                   Camera = x.Camera.Model,
-                                   ImageUrl = x.Image.ImageUrl,
                                    Likes = x.Likes,
                                    Dislikes = x.Dislikes,
-                                   Location = x.Location.Name,
-                                   Type = x.Image.Type.Name,
                                }).ToList();
             }
-            else if (imageCount >= (page + 1) * count)
+            else if (postsCount >= (page + 1) * count)
             {
                 return this.postRepository.AllAsNoTracking()
-                               .Where(x => x.Type.Name == "Image")
-                               .OrderByDescending(x => x.Id)
+                               .Where(x => x.Type.Name == "Post")
+                               .OrderByDescending(x => x.CreatedOn)
                                .Skip(page * count)
                                .Take(count)
-                               .Select(x => new ImagePostViewModel
+                               .Select(x => new NormalPostViewModel
                                {
                                    Username = x.AddedByUser.UserName,
                                    Tags = string.Join(' ', x.Tags.Select(x => x.Tag.Name)),
                                    Caption = x.Caption,
-                                   Camera = x.Camera.Model,
-                                   ImageUrl = x.Image.ImageUrl,
                                    Likes = x.Likes,
                                    Dislikes = x.Dislikes,
-                                   Location = x.Location.Name,
-                                   Type = x.Image.Type.Name,
                                }).ToList();
             }
             else
             {
-                return new List<ImagePostViewModel>();
+                return new List<NormalPostViewModel>();
             }
         }
     }

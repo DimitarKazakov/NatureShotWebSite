@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace NatureShot.Data.Migrations
 {
-    public partial class InitialCreate : Migration
+    public partial class Created : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -321,7 +321,8 @@ namespace NatureShot.Data.Migrations
                     ImageUrl = table.Column<string>(nullable: false),
                     AddedByUserId = table.Column<string>(nullable: false),
                     Extension = table.Column<string>(nullable: true),
-                    ImageTypeId = table.Column<int>(nullable: false)
+                    ImageTypeId = table.Column<int>(nullable: false),
+                    IsProfilePicture = table.Column<bool>(nullable: false)
                 },
                 constraints: table =>
                 {

@@ -27,5 +27,7 @@
   <ItemGroup>
     <Folder Include="Home\" />
     <Folder Include="Images\" />
+    <Folder Include="NormalPosts\" />
+    <Folder Include="CustomAttributes\" />
   </ItemGroup>
 </Project>

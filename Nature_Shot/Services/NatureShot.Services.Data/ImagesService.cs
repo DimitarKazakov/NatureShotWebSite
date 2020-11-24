@@ -38,9 +38,11 @@
                 Extension = imageInput.Format,
                 ImageUrl = imageInput.Url.AbsoluteUri,
                 Type = type,
+                IsProfilePicture = false,
             };
 
             await this.imageRepository.AddAsync(image);
+
             await this.imageRepository.SaveChangesAsync();
             return image;
         }

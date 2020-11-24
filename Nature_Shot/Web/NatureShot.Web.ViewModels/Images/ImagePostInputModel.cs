@@ -4,6 +4,7 @@
     using System.ComponentModel.DataAnnotations;
 
     using Microsoft.AspNetCore.Http;
+    using NatureShot.Web.ViewModels.CustomAttributes;
 
     public class ImagePostInputModel
     {
@@ -12,6 +13,7 @@
         }
 
         [Required]
+        [AllowedExtensionsAttribute(new string[] { ".bmp", ".gif", ".ico", ".jpeg", ".png", ".jpg", ".tif", ".tiff", ".svg", ".webp" })]
         public IFormFile Image { get; set; }
 
         [Required]

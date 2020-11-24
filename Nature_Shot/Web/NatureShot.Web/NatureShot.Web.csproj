@@ -54,11 +54,12 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="wwwroot\images\" />
-    <Folder Include="Views\Posts\" />
+    <Folder Include="Views\PhotoPosts\" />
     <Folder Include="Views\Images\" />
     <Folder Include="ViewModels\" />
     <Folder Include="ViewModels\Images\" />
     <Folder Include="CloudinaryHelper\" />
+    <Folder Include="Views\NormalPosts\" />
   </ItemGroup>
   <ItemGroup>
     <Content Update="wwwroot\images\archway-in-a-pod.jpg">
