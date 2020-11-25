@@ -15,8 +15,8 @@
     [ApiController]
     public class ImagePostsAjaxController : BaseController
     {
-        private readonly IPostsService postsService;
         private readonly HtmlEncoder encoder;
+        private readonly IPostsService postsService;
         private readonly IPhotoPostsNewest photoNewestService;
         private readonly IPhotoPostsOldest photoOldestService;
         private readonly IPhotoPostsLeastLikes photoLeastLikesService;
@@ -44,29 +44,155 @@
 
         [Authorize]
         [HttpGet("{page}")]
-        public ICollection<ImagePostViewModel> LoadMoreImages(int page, string order)
+        public ICollection<ImagePostViewModel> LoadMoreImages(int page, string order, string searchBy, string searchInput)
         {
             var imageList = new List<ImagePostViewModel>();
 
             switch (order)
             {
                 case "Date (Newest)":
-                    imageList = this.photoNewestService.GetImagePostsNewest(page).ToList();
+                    switch (searchBy)
+                    {
+                        case "Name":
+                            imageList = this.photoNewestService.SearchByUsername(page, searchInput).ToList();
+                            break;
+                        case "Tag":
+                            imageList = this.photoNewestService.SearchByTags(page, searchInput).ToList();
+                            break;
+                        case "Location":
+                            imageList = this.photoNewestService.SearchByLocation(page, searchInput).ToList();
+                            break;
+                        case "Camera":
+                            imageList = this.photoNewestService.SearchByCamera(page, searchInput).ToList();
+                            break;
+                        case "Caption":
+                            imageList = this.photoNewestService.SearchByCaption(page, searchInput).ToList();
+                            break;
+                        default:
+                            imageList = this.photoNewestService.GetImagePostsNewest(page).ToList();
+                            break;
+                    }
+
                     break;
                 case "Date (Oldest)":
-                    imageList = this.photoOldestService.GetImagePostsOldest(page).ToList();
+                    switch (searchBy)
+                    {
+                        case "Name":
+                            imageList = this.photoOldestService.SearchByUsername(page, searchInput).ToList();
+                            break;
+                        case "Tag":
+                            imageList = this.photoOldestService.SearchByTags(page, searchInput).ToList();
+                            break;
+                        case "Location":
+                            imageList = this.photoOldestService.SearchByLocation(page, searchInput).ToList();
+                            break;
+                        case "Camera":
+                            imageList = this.photoOldestService.SearchByCamera(page, searchInput).ToList();
+                            break;
+                        case "Caption":
+                            imageList = this.photoOldestService.SearchByCaption(page, searchInput).ToList();
+                            break;
+                        default:
+                            imageList = this.photoOldestService.GetImagePostsOldest(page).ToList();
+                            break;
+                    }
+
                     break;
                 case "Likes (Most)":
-                    imageList = this.photoMostLikesService.GetImagePostsMostLikes(page).ToList();
+                    switch (searchBy)
+                    {
+                        case "Name":
+                            imageList = this.photoMostLikesService.SearchByUsername(page, searchInput).ToList();
+                            break;
+                        case "Tag":
+                            imageList = this.photoMostLikesService.SearchByTags(page, searchInput).ToList();
+                            break;
+                        case "Location":
+                            imageList = this.photoMostLikesService.SearchByLocation(page, searchInput).ToList();
+                            break;
+                        case "Camera":
+                            imageList = this.photoMostLikesService.SearchByCamera(page, searchInput).ToList();
+                            break;
+                        case "Caption":
+                            imageList = this.photoMostLikesService.SearchByCaption(page, searchInput).ToList();
+                            break;
+                        default:
+                            imageList = this.photoMostLikesService.GetImagePostsMostLikes(page).ToList();
+                            break;
+                    }
+
                     break;
                 case "Likes (Least)":
-                    imageList = this.photoLeastLikesService.GetImagePostsLeastLikes(page).ToList();
+                    switch (searchBy)
+                    {
+                        case "Name":
+                            imageList = this.photoLeastLikesService.SearchByUsername(page, searchInput).ToList();
+                            break;
+                        case "Tag":
+                            imageList = this.photoLeastLikesService.SearchByTags(page, searchInput).ToList();
+                            break;
+                        case "Location":
+                            imageList = this.photoLeastLikesService.SearchByLocation(page, searchInput).ToList();
+                            break;
+                        case "Camera":
+                            imageList = this.photoLeastLikesService.SearchByCamera(page, searchInput).ToList();
+                            break;
+                        case "Caption":
+                            imageList = this.photoLeastLikesService.SearchByCaption(page, searchInput).ToList();
+                            break;
+                        default:
+                            imageList = this.photoLeastLikesService.GetImagePostsLeastLikes(page).ToList();
+                            break;
+                    }
+
                     break;
                 case "Dislikes (Most)":
-                    imageList = this.photoMostDislikesService.GetImagePostsMostDislikes(page).ToList();
+                    switch (searchBy)
+                    {
+                        case "Name":
+                            imageList = this.photoMostDislikesService.SearchByUsername(page, searchInput).ToList();
+                            break;
+                        case "Tag":
+                            imageList = this.photoMostDislikesService.SearchByTags(page, searchInput).ToList();
+                            break;
+                        case "Location":
+                            imageList = this.photoMostDislikesService.SearchByLocation(page, searchInput).ToList();
+                            break;
+                        case "Camera":
+                            imageList = this.photoMostDislikesService.SearchByCamera(page, searchInput).ToList();
+                            break;
+                        case "Caption":
+                            imageList = this.photoMostDislikesService.SearchByCaption(page, searchInput).ToList();
+                            break;
+                        default:
+                            imageList = this.photoMostDislikesService.GetImagePostsMostDislikes(page).ToList();
+                            break;
+                    }
+
                     break;
                 case "Dislikes (Least)":
-                    imageList = this.photoLeastDislikesService.GetImagePostsLeastDislikes(page).ToList();
+                    switch (searchBy)
+                    {
+                        case "Name":
+                            imageList = this.photoLeastDislikesService.SearchByUsername(page, searchInput).ToList();
+                            break;
+                        case "Tag":
+                            imageList = this.photoLeastDislikesService.SearchByTags(page, searchInput).ToList();
+                            break;
+                        case "Location":
+                            imageList = this.photoLeastDislikesService.SearchByLocation(page, searchInput).ToList();
+                            break;
+                        case "Camera":
+                            imageList = this.photoLeastDislikesService.SearchByCamera(page, searchInput).ToList();
+                            break;
+                        case "Caption":
+                            imageList = this.photoLeastDislikesService.SearchByCaption(page, searchInput).ToList();
+                            break;
+                        default:
+                            imageList = this.photoLeastDislikesService.GetImagePostsLeastDislikes(page).ToList();
+                            break;
+                    }
+
                     break;
                 default:
                     break;

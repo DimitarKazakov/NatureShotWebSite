@@ -3,6 +3,7 @@
 
     const btnLoad = document.querySelector('.loadMore');
     btnLoad.addEventListener('click', LoadMore);
+    const ordeyBy = document.querySelector('#orderByDropDown a.active');
 
     function LoadMore() {
         console.log("clicked");
@@ -38,8 +39,12 @@
             }
         }
 
+        const paramsInUrl = new URLSearchParams(window.location.search);
+        const searchByParam = paramsInUrl.get('searchBy');
+        const searchInputParam = paramsInUrl.get('searchInput');
+
         const pageNumber = parseInt(btnLoad.getAttribute("value"), 10);
-        xhr.open("GET", "/api/NormalPostsAjax/" + pageNumber);
+        xhr.open("GET", "/api/NormalPostsAjax/" + pageNumber + "?order=" + ordeyBy.textContent + "&searchBy=" + searchByParam + "&searchInput=" + searchInputParam);
         btnLoad.setAttribute("value", pageNumber + 1);
         xhr.send();
     }

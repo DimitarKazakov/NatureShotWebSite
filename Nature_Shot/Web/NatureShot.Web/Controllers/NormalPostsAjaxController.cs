@@ -8,32 +8,164 @@
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
     using NatureShot.Services.Data;
+    using NatureShot.Services.Data.NormalPosts;
     using NatureShot.Web.ViewModels.NormalPosts;
 
     [Route("api/[controller]")]
     [ApiController]
     public class NormalPostsAjaxController : BaseController
     {
-        private readonly IPostsService postsService;
         private readonly HtmlEncoder encoder;
+        private readonly INormalPostsNewest normalPostNewestService;
+        private readonly INormalPostsOldest normalPostOldestService;
+        private readonly INormalPostsMostLikes normalPostMostLikesService;
+        private readonly INormalPostsLeastLikes normalPostLeastLikesService;
+        private readonly INormalPostsMostDislikes normalPostMostDislikesService;
+        private readonly INormalPostsLeastDislikes normalPostLeastDislikesService;
 
-        public NormalPostsAjaxController(IPostsService postsService, HtmlEncoder encoder)
+        public NormalPostsAjaxController(HtmlEncoder encoder,
+                                     INormalPostsNewest normalPostNewestService,
+                                     INormalPostsOldest normalPostOldestService,
+                                     INormalPostsMostLikes normalPostMostLikesService,
+                                     INormalPostsLeastLikes normalPostLeastLikesService,
+                                     INormalPostsMostDislikes normalPostMostDislikesService,
+                                     INormalPostsLeastDislikes normalPostLeastDislikesService)
         {
-            this.postsService = postsService;
             this.encoder = encoder;
+            this.normalPostNewestService = normalPostNewestService;
+            this.normalPostOldestService = normalPostOldestService;
+            this.normalPostMostLikesService = normalPostMostLikesService;
+            this.normalPostLeastLikesService = normalPostLeastLikesService;
+            this.normalPostMostDislikesService = normalPostMostDislikesService;
+            this.normalPostLeastDislikesService = normalPostLeastDislikesService;
         }
 
         [Authorize]
         [HttpGet("{page}")]
-        public ICollection<NormalPostViewModel> LoadMoreImages(int page)
+        public ICollection<NormalPostViewModel> LoadMoreImages(int page, string order, string searchBy, string searchInput)
         {
-            var normalPostList = this.postsService.GetNormalPosts(page).ToList();
-            foreach (var post in normalPostList)
+            var postList = new List<NormalPostViewModel>();
+
+            switch (order)
+            {
+                case "Date (Newest)":
+                    switch (searchBy)
+                    {
+                        case "Name":
+                            postList = this.normalPostNewestService.SearchByUsername(page, searchInput).ToList();
+                            break;
+                        case "Tag":
+                            postList = this.normalPostNewestService.SearchByTags(page, searchInput).ToList();
+                            break;
+                        case "Caption":
+                            postList = this.normalPostNewestService.SearchByCaption(page, searchInput).ToList();
+                            break;
+                        default:
+                            postList = this.normalPostNewestService.GetNormalPostsNewest(page).ToList();
+                            break;
+                    }
+
+                    break;
+                case "Date (Oldest)":
+                    switch (searchBy)
+                    {
+                        case "Name":
+                            postList = this.normalPostOldestService.SearchByUsername(page, searchInput).ToList();
+                            break;
+                        case "Tag":
+                            postList = this.normalPostOldestService.SearchByTags(page, searchInput).ToList();
+                            break;
+                        case "Caption":
+                            postList = this.normalPostOldestService.SearchByCaption(page, searchInput).ToList();
+                            break;
+                        default:
+                            postList = this.normalPostOldestService.GetNormalPostsOldest(page).ToList();
+                            break;
+                    }
+
+                    break;
+                case "Likes (Most)":
+                    switch (searchBy)
+                    {
+                        case "Name":
+                            postList = this.normalPostMostLikesService.SearchByUsername(page, searchInput).ToList();
+                            break;
+                        case "Tag":
+                            postList = this.normalPostMostLikesService.SearchByTags(page, searchInput).ToList();
+                            break;
+                        case "Caption":
+                            postList = this.normalPostMostLikesService.SearchByCaption(page, searchInput).ToList();
+                            break;
+                        default:
+                            postList = this.normalPostMostLikesService.GetNormalPostsMostLikes(page).ToList();
+                            break;
+                    }
+
+                    break;
+                case "Likes (Least)":
+                    switch (searchBy)
+                    {
+                        case "Name":
+                            postList = this.normalPostLeastLikesService.SearchByUsername(page, searchInput).ToList();
+                            break;
+                        case "Tag":
+                            postList = this.normalPostLeastLikesService.SearchByTags(page, searchInput).ToList();
+                            break;
+                        case "Caption":
+                            postList = this.normalPostLeastLikesService.SearchByCaption(page, searchInput).ToList();
+                            break;
+                        default:
+                            postList = this.normalPostLeastLikesService.GetNormalPostsLeastLikes(page).ToList();
+                            break;
+                    }
+
+                    break;
+                case "Dislikes (Most)":
+                    switch (searchBy)
+                    {
+                        case "Name":
+                            postList = this.normalPostMostDislikesService.SearchByUsername(page, searchInput).ToList();
+                            break;
+                        case "Tag":
+                            postList = this.normalPostMostDislikesService.SearchByTags(page, searchInput).ToList();
+                            break;
+                        case "Caption":
+                            postList = this.normalPostMostDislikesService.SearchByCaption(page, searchInput).ToList();
+                            break;
+                        default:
+                            postList = this.normalPostMostDislikesService.GetNormalPostsMostDislikes(page).ToList();
+                            break;
+                    }
+
+                    break;
+                case "Dislikes (Least)":
+                    switch (searchBy)
+                    {
+                        case "Name":
+                            postList = this.normalPostLeastDislikesService.SearchByUsername(page, searchInput).ToList();
+                            break;
+                        case "Tag":
+                            postList = this.normalPostLeastDislikesService.SearchByTags(page, searchInput).ToList();
+                            break;
+                        case "Caption":
+                            postList = this.normalPostLeastDislikesService.SearchByCaption(page, searchInput).ToList();
+                            break;
+                        default:
+                            postList = this.normalPostLeastDislikesService.GetNormalPostsLeastDislikes(page).ToList();
+                            break;
+                    }
+
+                    break;
+                default:
+                    break;
+            }
+
+            foreach (var post in postList)
             {
                 post.Caption = this.encoder.Encode(post.Caption);
             }
 
-            return normalPostList;
+            return postList;
         }
     }
 }

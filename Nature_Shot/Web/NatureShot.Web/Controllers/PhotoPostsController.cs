@@ -13,6 +13,7 @@
     using NatureShot.Services.Data;
     using NatureShot.Services.Data.PhotoPosts;
     using NatureShot.Web.ViewModels.Images;
+    using Microsoft.AspNetCore.Http.Extensions;
 
     public class PhotoPostsController : Controller
     {
@@ -42,50 +43,73 @@
         }
 
         [Authorize]
-        public IActionResult NormalPosts()
+        public IActionResult PhotosNewest(string searchBy, string searchInput)
         {
-            var viewModel = this.postsService.GetNormalPosts(0);
-            return this.View(viewModel);
-        }
+            if (searchBy != null && searchInput != null)
+            {
+                return this.RedirectToAction("SearchByNewest", new { searchBy = searchBy, searchInput = searchInput });
+            }
 
-        [Authorize]
-        public IActionResult PhotosNewest()
-        {
             var viewModel = this.photoNewestService.GetImagePostsNewest(0);
             return this.View(viewModel);
         }
 
         [Authorize]
-        public IActionResult PhotosOldest()
+        public IActionResult PhotosOldest(string searchBy, string searchInput)
         {
+            if (searchBy != null && searchInput != null)
+            {
+                return this.RedirectToAction("SearchByOldest", new { searchBy = searchBy, searchInput = searchInput });
+            }
+
             var viewModel = this.photoOldestService.GetImagePostsOldest(0);
             return this.View(viewModel);
         }
 
         [Authorize]
-        public IActionResult PhotosLikesMost()
+        public IActionResult PhotosLikesMost(string searchBy, string searchInput)
         {
+            if (searchBy != null && searchInput != null)
+            {
+                return this.RedirectToAction("SearchByMostLikes", new { searchBy = searchBy, searchInput = searchInput });
+            }
+
             var viewModel = this.photoMostLikesService.GetImagePostsMostLikes(0);
             return this.View(viewModel);
         }
 
         [Authorize]
-        public IActionResult PhotosLikesLeast()
+        public IActionResult PhotosLikesLeast(string searchBy, string searchInput)
         {
+            if (searchBy != null && searchInput != null)
+            {
+                return this.RedirectToAction("SearchByLeastLikes", new { searchBy = searchBy, searchInput = searchInput });
+            }
+
             var viewModel = this.photoLeastLikesService.GetImagePostsLeastLikes(0);
             return this.View(viewModel);
         }
 
         [Authorize]
-        public IActionResult PhotosDislikesMost()
+        public IActionResult PhotosDislikesMost(string searchBy, string searchInput)
         {
+            if (searchBy != null && searchInput != null)
+            {
+                return this.RedirectToAction("SearchByMostDislikes", new { searchBy = searchBy, searchInput = searchInput });
+            }
+
             var viewModel = this.photoMostDislikesService.GetImagePostsMostDislikes(0);
             return this.View(viewModel);
         }
 
         [Authorize]
-        public IActionResult PhotosDislikesLeast()
+        public IActionResult PhotosDislikesLeast(string searchBy, string searchInput)
         {
+            if (searchBy != null && searchInput != null)
+            {
+                return this.RedirectToAction("SearchByLeastDislikes", new { searchBy = searchBy, searchInput = searchInput });
+            }
+
             var viewModel = this.photoLeastDislikesService.GetImagePostsLeastDislikes(0);
             return this.View(viewModel);
         }
@@ -102,10 +126,10 @@
                 case "Tag":
                     viewModel = this.photoNewestService.SearchByTags(0, searchInput).ToList();
                     break;
-                case "Location Name":
+                case "Location":
                     viewModel = this.photoNewestService.SearchByLocation(0, searchInput).ToList();
                     break;
-                case "Camera Model":
+                case "Camera":
                     viewModel = this.photoNewestService.SearchByCamera(0, searchInput).ToList();
                     break;
                 case "Caption":
@@ -130,10 +154,10 @@
                 case "Tag":
                     viewModel = this.photoOldestService.SearchByTags(0, searchInput).ToList();
                     break;
-                case "Location Name":
+                case "Location":
                     viewModel = this.photoOldestService.SearchByLocation(0, searchInput).ToList();
                     break;
-                case "Camera Model":
+                case "Camera":
                     viewModel = this.photoOldestService.SearchByCamera(0, searchInput).ToList();
                     break;
                 case "Caption":
@@ -158,10 +182,10 @@
                 case "Tag":
                     viewModel = this.photoMostLikesService.SearchByTags(0, searchInput).ToList();
                     break;
-                case "Location Name":
+                case "Location":
                     viewModel = this.photoMostLikesService.SearchByLocation(0, searchInput).ToList();
                     break;
-                case "Camera Model":
+                case "Camera":
                     viewModel = this.photoMostLikesService.SearchByCamera(0, searchInput).ToList();
                     break;
                 case "Caption":
@@ -186,10 +210,10 @@
                 case "Tag":
                     viewModel = this.photoLeastLikesService.SearchByTags(0, searchInput).ToList();
                     break;
-                case "Location Name":
+                case "Location":
                     viewModel = this.photoLeastLikesService.SearchByLocation(0, searchInput).ToList();
                     break;
-                case "Camera Model":
+                case "Camera":
                     viewModel = this.photoLeastLikesService.SearchByCamera(0, searchInput).ToList();
                     break;
                 case "Caption":
@@ -214,10 +238,10 @@
                 case "Tag":
                     viewModel = this.photoMostDislikesService.SearchByTags(0, searchInput).ToList();
                     break;
-                case "Location Name":
+                case "Location":
                     viewModel = this.photoMostDislikesService.SearchByLocation(0, searchInput).ToList();
                     break;
-                case "Camera Model":
+                case "Camera":
                     viewModel = this.photoMostDislikesService.SearchByCamera(0, searchInput).ToList();
                     break;
                 case "Caption":
@@ -242,10 +266,10 @@
                 case "Tag":
                     viewModel = this.photoLeastDislikesService.SearchByTags(0, searchInput).ToList();
                     break;
-                case "Location Name":
+                case "Location":
                     viewModel = this.photoLeastDislikesService.SearchByLocation(0, searchInput).ToList();
                     break;
-                case "Camera Model":
+                case "Camera":
                     viewModel = this.photoLeastDislikesService.SearchByCamera(0, searchInput).ToList();
                     break;
                 case "Caption":

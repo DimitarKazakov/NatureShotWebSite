@@ -60,6 +60,7 @@
     <Folder Include="ViewModels\Images\" />
     <Folder Include="CloudinaryHelper\" />
     <Folder Include="Views\NormalPosts\" />
+    <Folder Include="Views\Posts\" />
   </ItemGroup>
   <ItemGroup>
     <Content Update="wwwroot\images\archway-in-a-pod.jpg">

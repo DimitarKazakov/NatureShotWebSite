@@ -18,6 +18,7 @@
     using NatureShot.Data.Repositories;
     using NatureShot.Data.Seeding;
     using NatureShot.Services.Data;
+    using NatureShot.Services.Data.NormalPosts;
     using NatureShot.Services.Data.PhotoPosts;
     using NatureShot.Services.Mapping;
     using NatureShot.Services.Messaging;
@@ -94,6 +95,13 @@
             services.AddTransient<IPhotoPostsLeastDislikes, PhotoPostsLeastDislikes>();
             services.AddTransient<IPhotoPostsNewest, PhotoPostsNewest>();
             services.AddTransient<IPhotoPostsOldest, PhotoPostsOldest>();
+
+            services.AddTransient<INormalPostsMostLikes, NormalPostsMostLikes>();
+            services.AddTransient<INormalPostsLeastLikes, NormalPostsLeastLikes>();
+            services.AddTransient<INormalPostsMostDislikes, NormalPostsMostDislikes>();
+            services.AddTransient<INormalPostsLeastDislikes, NormalPostsLeastDislikes>();
+            services.AddTransient<INormalPostsNewest, NormalPostsNewest>();
+            services.AddTransient<INormalPostsOldest, NormalPostsOldest>();
 
             // Cloudinary Configuration
             Account account = new Account(

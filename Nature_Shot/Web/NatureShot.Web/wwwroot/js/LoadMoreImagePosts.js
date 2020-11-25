@@ -6,7 +6,6 @@
     const ordeyBy = document.querySelector('#orderByDropDown a.active');
 
     function LoadMore() {
-        console.log("clicked");
         let xhr = new XMLHttpRequest();
 
         xhr.onreadystatechange = function (e) {
@@ -64,8 +63,12 @@
             }
         }
 
+        const paramsInUrl = new URLSearchParams(window.location.search);
+        const searchByParam = paramsInUrl.get('searchBy');
+        const searchInputParam = paramsInUrl.get('searchInput');
+
         const pageNumber = parseInt(btnLoad.getAttribute("value"), 10);
-        xhr.open("GET", "/api/ImagePostsAjax/" + pageNumber + "?order=" + ordeyBy.textContent);
+        xhr.open("GET", "/api/ImagePostsAjax/" + pageNumber + "?order=" + ordeyBy.textContent + "&searchBy=" + searchByParam + "&searchInput=" + searchInputParam);
         btnLoad.setAttribute("value", pageNumber + 1);
         xhr.send();
     }

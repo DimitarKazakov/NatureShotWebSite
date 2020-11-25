@@ -1,4 +1,4 @@
-﻿@model List<NatureShot.Web.ViewModels.Images.ImagePostViewModel>
+﻿@model List<NatureShot.Web.ViewModels.NormalPosts.NormalPostViewModel>
 <!--Search-->
 <div class="input-group input-group-lg md-form form-sm form-1 pl-0 mb-5 border-primary ml-md-5">
     <div class="input-group-prepend">
@@ -14,13 +14,11 @@
         <a class="dropdown-item active" href="javascript:void(0)">Name</a>
         <a class="dropdown-item" href="javascript:void(0)">Tag</a>
         <a class="dropdown-item" href="javascript:void(0)">Caption</a>
-        <a class="dropdown-item" href="javascript:void(0)">Location</a>
-        <a class="dropdown-item" href="javascript:void(0)">Camera</a>
     </div>
     <div class="input-group-append">
         <span class="input-group-text bg-primary text-white border border-primary" id="spanSearch">Name</span>
     </div>
-    <form id="searchForm" class="col-md-8 ml-0 pl-0 pr-0 mr-0" method="get" asp-controller="PhotoPosts" asp-action="SearchByMostDislikes">
+    <form id="searchForm" class="col-md-8 ml-0 pl-0 pr-0 mr-0" method="get" asp-controller="NormalPosts" asp-action="SearchByMostDislikes">
         <input id="searchByInputHidden" type="hidden" name="searchBy" value="Name" />
         <input class="form-control p-4 input-lg my-0 py-1 searchBorder rounded-0" name="searchInput" type="text" placeholder="Search . . ." aria-label="Search">
     </form>
@@ -30,26 +28,32 @@
 <div class="offset-md-9 offset-6 offset-lg-10 mb-5 mr-0">
     <button class="btn bg-primary text-white dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Order by</button>
     <div class="dropdown-menu" id="orderByDropDown">
-        <a class="dropdown-item" asp-controller="PhotoPosts" asp-action="PhotosNewest">Date (Newest)</a>
-        <a class="dropdown-item" asp-controller="PhotoPosts" asp-action="PhotosOldest">Date (Oldest)</a>
+        <a class="dropdown-item" asp-controller="NormalPosts" asp-action="NormalPostsNewest">Date (Newest)</a>
+        <a class="dropdown-item" asp-controller="NormalPosts" asp-action="NormalPostsOldest">Date (Oldest)</a>
         <div role="separator" class="dropdown-divider"></div>
-        <a class="dropdown-item" asp-controller="PhotoPosts" asp-action="PhotosLikesMost">Likes (Most)</a>
-        <a class="dropdown-item" asp-controller="PhotoPosts" asp-action="PhotosLikesLeast">Likes (Least)</a>
+        <a class="dropdown-item" asp-controller="NormalPosts" asp-action="NormalPostsLikesMost">Likes (Most)</a>
+        <a class="dropdown-item" asp-controller="NormalPosts" asp-action="NormalPostsLikesLeast">Likes (Least)</a>
         <div role="separator" class="dropdown-divider"></div>
-        <a class="dropdown-item active" asp-controller="PhotoPosts" asp-action="PhotosDislikesMost">Dislikes (Most)</a>
-        <a class="dropdown-item" asp-controller="PhotoPosts" asp-action="PhotosDislikesLeast">Dislikes (Least)</a>
+        <a class="dropdown-item active" asp-controller="NormalPosts" asp-action="NormalPostsDislikesMost">Dislikes (Most)</a>
+        <a class="dropdown-item" asp-controller="NormalPosts" asp-action="NormalPostsDislikesLeast">Dislikes (Least)</a>
     </div>
 </div>
 
+@foreach (var post in Model)
+{
+    <partial name="_ContentNormalPost" model="post" />
+}
 
-<!--IMAGES-->
-<partial name="_LoadImagesWithModal" model="Model" />
+<div id="normalPostsDiv">
 
+</div>
+
+<div class="offset-md-5 offset-4">
+    <button class="btn btn-primary loadMore" value="1">Load More</button>
+</div>
 
 @section Scripts{
-
-    <script src="~/js/ModalPhotoClick.js"></script>
-    <script src="~/js/LoadMoreImagePosts.js"></script>
+    <script src="~/js/LoadMoreNormalPosts.js"></script>
     <script src="~/js/SearchByInput.js"></script>
     <script src="~/js/OrderByFormPhotos.js"></script>
 }
