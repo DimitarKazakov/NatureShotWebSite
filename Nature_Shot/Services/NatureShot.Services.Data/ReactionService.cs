@@ -51,19 +51,25 @@
             return this.reactRepository.All().FirstOrDefault(x => x.PostId == postId && x.UserId == userId);
         }
 
-        public IEnumerable<string> GetUsersWhoDislikedPost(int postId)
+        public IEnumerable<PeopleReactedViewModel> GetUsersWhoDislikedPost(int postId)
         {
             return this.reactRepository.AllAsNoTracking()
                                        .Where(x => x.PostId == postId && x.IsLiked == false)
-                                       .Select(x => x.User.UserName)
+                                       .Select(x => new PeopleReactedViewModel
+                                       {
+                                           User = x.User.UserName,
+                                       })
                                        .ToList();
         }
 
-        public IEnumerable<string> GetUsersWhoLikedPost(int postId)
+        public IEnumerable<PeopleReactedViewModel> GetUsersWhoLikedPost(int postId)
         {
             return this.reactRepository.AllAsNoTracking()
                                        .Where(x => x.PostId == postId && x.IsLiked == true)
-                                       .Select(x => x.User.UserName)
+                                       .Select(x => new PeopleReactedViewModel
+                                       {
+                                           User = x.User.UserName,
+                                       })
                                        .ToList();
         }
     }

@@ -9,6 +9,6 @@ namespace NatureShot.Services.Data
     {
         Task AddComment(string userId, int postId, string comment);
 
-        IEnumerable<CommentViewModel> GetCommentsForPost(int postId);
+        IEnumerable<PeopleReactedViewModel> GetCommentsForPost(int postId);
     }
 }

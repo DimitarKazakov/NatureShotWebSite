@@ -16,7 +16,6 @@
     using NatureShot.Web.ViewModels;
     using NatureShot.Web.ViewModels.Images;
 
-    [EnableCors(origins: "*", headers: "*", methods: "*")]
     [Route("api/[controller]")]
     [ApiController]
     public class ImagePostsAjaxController : BaseController

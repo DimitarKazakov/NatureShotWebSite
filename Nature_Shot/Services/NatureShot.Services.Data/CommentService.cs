@@ -31,11 +31,11 @@
             await this.commentRepository.SaveChangesAsync();
         }
 
-        public IEnumerable<CommentViewModel> GetCommentsForPost(int postId)
+        public IEnumerable<PeopleReactedViewModel> GetCommentsForPost(int postId)
         {
             return this.commentRepository.AllAsNoTracking()
                                          .Where(x => x.PostId == postId)
-                                         .Select(x => new CommentViewModel
+                                         .Select(x => new PeopleReactedViewModel
                                          {
                                              User = x.UserPosted.UserName,
                                              Content = x.Content,

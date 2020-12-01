@@ -15,8 +15,8 @@
 
         Task CreateReact(int postId, string userId, bool isLiked);
 
-        IEnumerable<string> GetUsersWhoLikedPost(int postId);
+        IEnumerable<PeopleReactedViewModel> GetUsersWhoLikedPost(int postId);
 
-        IEnumerable<string> GetUsersWhoDislikedPost(int postId);
+        IEnumerable<PeopleReactedViewModel> GetUsersWhoDislikedPost(int postId);
     }
 }

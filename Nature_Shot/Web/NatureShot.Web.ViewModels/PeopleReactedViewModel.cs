@@ -1,9 +1,9 @@
 ﻿using System;
 namespace NatureShot.Web.ViewModels
 {
-    public class CommentViewModel
+    public class PeopleReactedViewModel
     {
-        public CommentViewModel()
+        public PeopleReactedViewModel()
         {
         }
 

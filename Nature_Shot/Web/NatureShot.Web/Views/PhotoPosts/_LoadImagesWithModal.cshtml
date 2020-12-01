@@ -52,11 +52,14 @@
                 <hr>
                 <div class="text-center" id="modalInfo">
 
+
                     <p class="text-black-50 mb-3 mt-3"><span class="border-primary border-bottom">Location: <span id="locationName" class="text-dark"> No Location</span></span></p>
                     <p class="text-black-50 mb-3 mt-3"><span class="border-primary border-bottom">Camera: <span id="cameraName" class="text-dark"> No Camera</span></span></p>
-                    <p class="text-black-50 mb-4"><span class="border-primary border-bottom">Likes: <span id="likesName" class="text-dark">0</span></span></p>
-                    <p class="text-black-50 mb-4"><span class="border-primary border-bottom">Dislikes: <span id="dislikesName" class="text-dark">0</span></span></p>
-                    <p class="text-black-50 mb-4"><span class="border-primary border-bottom">Click to see <span id="commentsName" class="text-dark">Comments</span></span></p>
+
+                    <p class="text-black-50 mb-4"><span class="border-primary border-bottom" id="likeModalTrigger">Likes: <span id="likesName" class="text-dark">0</span></span></p>
+                    <p class="text-black-50 mb-4"><span class="border-primary border-bottom" id="dislikeModalTrigger">Dislikes: <span id="dislikesName" class="text-dark">0</span></span></p>
+                    <p class="text-black-50 mb-4"><span class="border-primary border-bottom" id="commentModalTrigger">Click to see <span id="commentsName" class="text-dark">Comments</span></span></p>
+                    <p class="text-black-50 mb-0" id="id" hidden>0</p>
 
                 </div>
             </div>
@@ -78,6 +81,25 @@
         </div>
         <!--/.Content-->
 
+    </div>
+</div>
+
+<div class="modal fade bd-example-modal-lg" id="listOfUsersModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header" id="modalHeader">
+                <h2 class="modal-title" id="listOfUsersModalTitle">Modal title</h2>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body" id="modalBody">
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
     </div>
 </div>
 
