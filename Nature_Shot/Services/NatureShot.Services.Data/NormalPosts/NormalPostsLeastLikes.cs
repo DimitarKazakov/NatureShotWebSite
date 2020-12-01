@@ -29,6 +29,8 @@
                                .Take(postCount - (count * page))
                                .Select(x => new NormalPostViewModel
                                {
+                                   DatePosted = x.CreatedOn,
+                                   PostId = x.Id.ToString(),
                                    Username = x.AddedByUser.UserName,
                                    Tags = string.Join(' ', x.Tags.Select(x => x.Tag.Name)),
                                    Caption = x.Caption,
@@ -45,6 +47,8 @@
                                .Take(count)
                                .Select(x => new NormalPostViewModel
                                {
+                                   DatePosted = x.CreatedOn,
+                                   PostId = x.Id.ToString(),
                                    Username = x.AddedByUser.UserName,
                                    Tags = string.Join(' ', x.Tags.Select(x => x.Tag.Name)),
                                    Caption = x.Caption,
@@ -70,6 +74,8 @@
                                .Take(postCount - (count * page))
                                .Select(x => new NormalPostViewModel
                                {
+                                   DatePosted = x.CreatedOn,
+                                   PostId = x.Id.ToString(),
                                    Username = x.AddedByUser.UserName,
                                    Tags = string.Join(' ', x.Tags.Select(x => x.Tag.Name)),
                                    Caption = x.Caption,
@@ -86,6 +92,8 @@
                                .Take(count)
                                .Select(x => new NormalPostViewModel
                                {
+                                   DatePosted = x.CreatedOn,
+                                   PostId = x.Id.ToString(),
                                    Username = x.AddedByUser.UserName,
                                    Tags = string.Join(' ', x.Tags.Select(x => x.Tag.Name)),
                                    Caption = x.Caption,
@@ -111,6 +119,8 @@
                                .Take(postCount - (count * page))
                                .Select(x => new NormalPostViewModel
                                {
+                                   DatePosted = x.CreatedOn,
+                                   PostId = x.Id.ToString(),
                                    Username = x.AddedByUser.UserName,
                                    Tags = string.Join(' ', x.Tags.Select(x => x.Tag.Name)),
                                    Caption = x.Caption,
@@ -127,6 +137,8 @@
                                .Take(count)
                                .Select(x => new NormalPostViewModel
                                {
+                                   DatePosted = x.CreatedOn,
+                                   PostId = x.Id.ToString(),
                                    Username = x.AddedByUser.UserName,
                                    Tags = string.Join(' ', x.Tags.Select(x => x.Tag.Name)),
                                    Caption = x.Caption,
@@ -152,6 +164,8 @@
                                .Take(postCount - (count * page))
                                .Select(x => new NormalPostViewModel
                                {
+                                   DatePosted = x.CreatedOn,
+                                   PostId = x.Id.ToString(),
                                    Username = x.AddedByUser.UserName,
                                    Tags = string.Join(' ', x.Tags.Select(x => x.Tag.Name)),
                                    Caption = x.Caption,
@@ -168,6 +182,8 @@
                                .Take(count)
                                .Select(x => new NormalPostViewModel
                                {
+                                   DatePosted = x.CreatedOn,
+                                   PostId = x.Id.ToString(),
                                    Username = x.AddedByUser.UserName,
                                    Tags = string.Join(' ', x.Tags.Select(x => x.Tag.Name)),
                                    Caption = x.Caption,

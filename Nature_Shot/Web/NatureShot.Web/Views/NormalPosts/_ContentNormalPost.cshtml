@@ -4,6 +4,8 @@
         <div class="d-flex h-100 border border-primary rounded-pill">
             <div class="project-text w-100 my-auto text-center border border-primary rounded-pill">
                 <h4 class="text-black mb-4"><span class="border-primary border-bottom">@Model.Username</span></h4>
+                <p class="text-black-50 mb-0" id="id" hidden>@Model.PostId</p>
+                <p class="text-black-50 mb-0" id="datetime">@Model.DatePosted.ToString("dddd, dd MMMM yyyy")</p>
                 <br>
                 <p class="text-black mb-0"><span class="border-bottom border-primary">@Model.Tags</span></p>
                 <br>
@@ -11,16 +13,16 @@
                 <br>
                 <div class="row">
                     <p class="col-3"></p>
-                    <p class="text-black mb-0 col-3"><span class="border-primary border-bottom">Likes: <span class="text-black"> @Model.Likes</span></span></p>
-                    <p class="text-black mb-0 col-3"><span class="border-primary border-bottom">Dislikes: <span class="text-black"> @Model.Dislikes</span></span></p>
+                    <p class="text-black mb-0 col-3"><span class="border-primary border-bottom">Likes: <span id="likeSpan" class="text-black"> @Model.Likes</span></span></p>
+                    <p class="text-black mb-0 col-3"><span class="border-primary border-bottom">Dislikes: <span id="dislikeSpan" class="text-black"> @Model.Dislikes</span></span></p>
                     <p class="col-3"></p>
                 </div>
                 <br>
                 <form method="post">
-                    <button class="btn btn-outline-primary border-primary border mr-3 mb-3 mb-l-0">
+                    <button type="button" class="btn btn-outline-primary border-primary border mr-3 mb-3 mb-l-0" value="Like">
                         <i class="fas fa-thumbs-up"></i> Like
                     </button>
-                    <button class="btn btn-outline-primary border-primary border mb-3 mb-l-0">
+                    <button type="button" class="btn btn-outline-primary border-primary border mb-3 mb-l-0" value="Dislike">
                         <i class="fas fa-thumbs-down"></i> Dislike
                     </button>
                 </form>

@@ -4,13 +4,19 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Text.Encodings.Web;
+    using System.Threading.Tasks;
+    using System.Web.Http.Cors;
 
     using Microsoft.AspNetCore.Authorization;
+    using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Mvc;
+    using NatureShot.Data.Models;
     using NatureShot.Services.Data;
     using NatureShot.Services.Data.PhotoPosts;
+    using NatureShot.Web.ViewModels;
     using NatureShot.Web.ViewModels.Images;
 
+    [EnableCors(origins: "*", headers: "*", methods: "*")]
     [Route("api/[controller]")]
     [ApiController]
     public class ImagePostsAjaxController : BaseController
@@ -23,6 +29,8 @@
         private readonly IPhotoPostsMostLikes photoMostLikesService;
         private readonly IPhotoPostsMostDislikes photoMostDislikesService;
         private readonly IPhotoPostsLeastDislikes photoLeastDislikesService;
+        private readonly ICommentService commentService;
+        private readonly UserManager<ApplicationUser> userManager;
 
         public ImagePostsAjaxController(IPostsService postsService, HtmlEncoder encoder,
                                         IPhotoPostsNewest photoNewestService,
@@ -30,7 +38,9 @@
                                         IPhotoPostsLeastLikes photoLeastLikesService,
                                         IPhotoPostsMostLikes photoMostLikesService,
                                         IPhotoPostsMostDislikes photoMostDislikesService,
-                                        IPhotoPostsLeastDislikes photoLeastDislikesService)
+                                        IPhotoPostsLeastDislikes photoLeastDislikesService,
+                                        ICommentService commentService,
+                                        UserManager<ApplicationUser> userManager)
         {
             this.postsService = postsService;
             this.encoder = encoder;
@@ -40,6 +50,37 @@
             this.photoMostLikesService = photoMostLikesService;
             this.photoMostDislikesService = photoMostDislikesService;
             this.photoLeastDislikesService = photoLeastDislikesService;
+            this.commentService = commentService;
+            this.userManager = userManager;
+        }
+
+        [Authorize]
+        [HttpPut]
+        public async Task<IActionResult> LikeDislike([FromBody] LikeDislikeModel model)
+        {
+            var user = await this.userManager.GetUserAsync(this.User);
+
+            if (model.Type == "Like")
+            {
+                await this.postsService.LikeAsync(int.Parse(model.Id), user.Id);
+                return this.Json(true);
+            }
+            else
+            {
+                await this.postsService.DislikeAsync(int.Parse(model.Id), user.Id);
+                return this.Json(false);
+            }
+
+            return this.Ok();
+        }
+
+        [Authorize]
+        [HttpPost]
+        public async Task<IActionResult> Comment([FromBody] CommentInputModel model)
+        {
+            var user = await this.userManager.GetUserAsync(this.User);
+            await this.commentService.AddComment(user.Id, int.Parse(model.Id), model.Comment);
+            return this.Ok();
         }
 
         [Authorize]

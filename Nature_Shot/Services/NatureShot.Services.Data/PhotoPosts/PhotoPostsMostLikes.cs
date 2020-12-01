@@ -1,12 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using NatureShot.Data.Common.Repositories;
-using NatureShot.Data.Models;
-using NatureShot.Web.ViewModels.Images;
-
-namespace NatureShot.Services.Data.PhotoPosts
+﻿namespace NatureShot.Services.Data.PhotoPosts
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+
+    using NatureShot.Data.Common.Repositories;
+    using NatureShot.Data.Models;
+    using NatureShot.Web.ViewModels.Images;
+
     public class PhotoPostsMostLikes : IPhotoPostsMostLikes
     {
         private readonly IDeletableEntityRepository<Post> postRepository;
@@ -28,6 +29,8 @@ namespace NatureShot.Services.Data.PhotoPosts
                                .Take(imageCount - (count * page))
                                .Select(x => new ImagePostViewModel
                                {
+                                   DatePosted = x.CreatedOn,
+                                   ImageId = x.Id,
                                    Username = x.AddedByUser.UserName,
                                    Tags = string.Join(' ', x.Tags.Select(x => x.Tag.Name)),
                                    Caption = x.Caption,
@@ -48,6 +51,8 @@ namespace NatureShot.Services.Data.PhotoPosts
                                .Take(count)
                                .Select(x => new ImagePostViewModel
                                {
+                                   DatePosted = x.CreatedOn,
+                                   ImageId = x.Id,
                                    Username = x.AddedByUser.UserName,
                                    Tags = string.Join(' ', x.Tags.Select(x => x.Tag.Name)),
                                    Caption = x.Caption,
@@ -77,6 +82,8 @@ namespace NatureShot.Services.Data.PhotoPosts
                                .Take(imageCount - (count * page))
                                .Select(x => new ImagePostViewModel
                                {
+                                   DatePosted = x.CreatedOn,
+                                   ImageId = x.Id,
                                    Username = x.AddedByUser.UserName,
                                    Tags = string.Join(' ', x.Tags.Select(x => x.Tag.Name)),
                                    Caption = x.Caption,
@@ -97,6 +104,8 @@ namespace NatureShot.Services.Data.PhotoPosts
                                .Take(count)
                                .Select(x => new ImagePostViewModel
                                {
+                                   DatePosted = x.CreatedOn,
+                                   ImageId = x.Id,
                                    Username = x.AddedByUser.UserName,
                                    Tags = string.Join(' ', x.Tags.Select(x => x.Tag.Name)),
                                    Caption = x.Caption,
@@ -126,6 +135,8 @@ namespace NatureShot.Services.Data.PhotoPosts
                                .Take(imageCount - (count * page))
                                .Select(x => new ImagePostViewModel
                                {
+                                   DatePosted = x.CreatedOn,
+                                   ImageId = x.Id,
                                    Username = x.AddedByUser.UserName,
                                    Tags = string.Join(' ', x.Tags.Select(x => x.Tag.Name)),
                                    Caption = x.Caption,
@@ -146,6 +157,8 @@ namespace NatureShot.Services.Data.PhotoPosts
                                .Take(count)
                                .Select(x => new ImagePostViewModel
                                {
+                                   DatePosted = x.CreatedOn,
+                                   ImageId = x.Id,
                                    Username = x.AddedByUser.UserName,
                                    Tags = string.Join(' ', x.Tags.Select(x => x.Tag.Name)),
                                    Caption = x.Caption,
@@ -175,6 +188,8 @@ namespace NatureShot.Services.Data.PhotoPosts
                                .Take(imageCount - (count * page))
                                .Select(x => new ImagePostViewModel
                                {
+                                   DatePosted = x.CreatedOn,
+                                   ImageId = x.Id,
                                    Username = x.AddedByUser.UserName,
                                    Tags = string.Join(' ', x.Tags.Select(x => x.Tag.Name)),
                                    Caption = x.Caption,
@@ -195,6 +210,8 @@ namespace NatureShot.Services.Data.PhotoPosts
                                .Take(count)
                                .Select(x => new ImagePostViewModel
                                {
+                                   DatePosted = x.CreatedOn,
+                                   ImageId = x.Id,
                                    Username = x.AddedByUser.UserName,
                                    Tags = string.Join(' ', x.Tags.Select(x => x.Tag.Name)),
                                    Caption = x.Caption,
@@ -224,6 +241,8 @@ namespace NatureShot.Services.Data.PhotoPosts
                                .Take(imageCount - (count * page))
                                .Select(x => new ImagePostViewModel
                                {
+                                   DatePosted = x.CreatedOn,
+                                   ImageId = x.Id,
                                    Username = x.AddedByUser.UserName,
                                    Tags = string.Join(' ', x.Tags.Select(x => x.Tag.Name)),
                                    Caption = x.Caption,
@@ -244,6 +263,8 @@ namespace NatureShot.Services.Data.PhotoPosts
                                .Take(count)
                                .Select(x => new ImagePostViewModel
                                {
+                                   DatePosted = x.CreatedOn,
+                                   ImageId = x.Id,
                                    Username = x.AddedByUser.UserName,
                                    Tags = string.Join(' ', x.Tags.Select(x => x.Tag.Name)),
                                    Caption = x.Caption,
@@ -273,6 +294,8 @@ namespace NatureShot.Services.Data.PhotoPosts
                                .Take(imageCount - (count * page))
                                .Select(x => new ImagePostViewModel
                                {
+                                   DatePosted = x.CreatedOn,
+                                   ImageId = x.Id,
                                    Username = x.AddedByUser.UserName,
                                    Tags = string.Join(' ', x.Tags.Select(x => x.Tag.Name)),
                                    Caption = x.Caption,
@@ -293,6 +316,8 @@ namespace NatureShot.Services.Data.PhotoPosts
                                .Take(count)
                                .Select(x => new ImagePostViewModel
                                {
+                                   DatePosted = x.CreatedOn,
+                                   ImageId = x.Id,
                                    Username = x.AddedByUser.UserName,
                                    Tags = string.Join(' ', x.Tags.Select(x => x.Tag.Name)),
                                    Caption = x.Caption,

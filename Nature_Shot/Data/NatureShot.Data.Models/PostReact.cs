@@ -1,15 +1,14 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using NatureShot.Data.Common.Models;
 
 namespace NatureShot.Data.Models
 {
 
-    public class PostReact
+    public class PostReact : BaseModel<int>
     {
         public PostReact()
         {
         }
-
-        public int Id { get; set; }
 
         [Required]
         public string UserId { get; set; }

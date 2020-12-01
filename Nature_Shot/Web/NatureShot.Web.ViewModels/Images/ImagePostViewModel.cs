@@ -1,10 +1,16 @@
-﻿namespace NatureShot.Web.ViewModels.Images
+﻿using System;
+
+namespace NatureShot.Web.ViewModels.Images
 {
     public class ImagePostViewModel
     {
         public ImagePostViewModel()
         {
         }
+
+        public DateTime DatePosted { get; set; }
+
+        public int ImageId { get; set; }
 
         public string Username { get; set; }
 

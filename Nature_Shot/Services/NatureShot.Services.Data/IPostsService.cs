@@ -15,6 +15,8 @@
 
         Task CreateNormalPostAsync(NormalPostInputModel input, string userId);
 
-        IEnumerable<NormalPostViewModel> GetNormalPosts(int page, int count = 10);
+        Task LikeAsync(int postId, string userId);
+
+        Task DislikeAsync(int postId, string userId);
     }
 }

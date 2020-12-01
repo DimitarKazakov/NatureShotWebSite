@@ -1,6 +1,7 @@
 ﻿namespace NatureShot.Web
 {
     using System.Reflection;
+    using System.Web.Http.Cors;
 
     using CloudinaryDotNet;
     using Microsoft.AspNetCore.Builder;
@@ -72,7 +73,10 @@
             services.AddRazorPages();
 
             services.AddSingleton(this.configuration);
-
+            services.AddAntiforgery(options =>
+            {
+                options.HeaderName = "X-CSRF-TOKEN";
+            });
             // Data repositories
             services.AddScoped(typeof(IDeletableEntityRepository<>), typeof(EfDeletableEntityRepository<>));
             services.AddScoped(typeof(IRepository<>), typeof(EfRepository<>));
@@ -88,6 +92,8 @@
             services.AddTransient<ICountriesService, CountriesService>();
             services.AddTransient<ILocationsService, LocationsService>();
             services.AddTransient<ITagsService, TagsService>();
+            services.AddTransient<IReactionService, ReactionService>();
+            services.AddTransient<ICommentService, CommentService>();
 
             services.AddTransient<IPhotoPostsMostLikes, PhotoPostsMostLikes>();
             services.AddTransient<IPhotoPostsLeastLikes, PhotoPostsLeastLikes>();
@@ -141,7 +147,7 @@
             app.UseCookiePolicy();
 
             app.UseRouting();
-
+            app.UseCors("CorsPolicy");
             app.UseAuthentication();
             app.UseAuthorization();
 

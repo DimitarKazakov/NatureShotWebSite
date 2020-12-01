@@ -8,6 +8,10 @@
         {
         }
 
+        public DateTime DatePosted { get; set; }
+
+        public string PostId { get; set; }
+
         public string Username { get; set; }
 
         public string Tags { get; set; }

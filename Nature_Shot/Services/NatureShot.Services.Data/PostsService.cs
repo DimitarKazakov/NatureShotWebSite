@@ -19,13 +19,15 @@
         private readonly ILocationsService locationsService;
         private readonly ICountriesService countriesService;
         private readonly ITagsService tagsService;
+        private readonly IReactionService reactionService;
 
         public PostsService(IDeletableEntityRepository<Post> postRepository,
                             IImagesService imagesService,
                             ICameraService cameraService,
                             ILocationsService locationsService,
                             ICountriesService countriesService,
-                            ITagsService tagsService)
+                            ITagsService tagsService,
+                            IReactionService reactionService)
         {
             this.imagesService = imagesService;
             this.postRepository = postRepository;
@@ -33,6 +35,7 @@
             this.locationsService = locationsService;
             this.countriesService = countriesService;
             this.tagsService = tagsService;
+            this.reactionService = reactionService;
         }
 
         public async Task CreateImagePostAsync(ImagePostInputModel input, string userId, ImageUploadResult imageInput)
@@ -104,44 +107,44 @@
             await this.postRepository.SaveChangesAsync();
         }
 
-        public IEnumerable<NormalPostViewModel> GetNormalPosts(int page, int count = 10)
+        public async Task DislikeAsync(int postId, string userId)
         {
-            var postsCount = this.postRepository.AllAsNoTracking().Where(x => x.Type.Name == "Post").Count();
-            if (postsCount > (page * count) && postsCount < (page + 1) * count)
+            var reaction = this.reactionService.GetPostReact(postId, userId);
+            var post = this.postRepository.All().FirstOrDefault(x => x.Id == postId);
+
+            if (reaction == null)
             {
-                return this.postRepository.AllAsNoTracking()
-                               .Where(x => x.Type.Name == "Post")
-                               .OrderByDescending(x => x.CreatedOn)
-                               .Skip(page * count)
-                               .Take(postsCount - (count * page))
-                               .Select(x => new NormalPostViewModel
-                               {
-                                   Username = x.AddedByUser.UserName,
-                                   Tags = string.Join(' ', x.Tags.Select(x => x.Tag.Name)),
-                                   Caption = x.Caption,
-                                   Likes = x.Likes,
-                                   Dislikes = x.Dislikes,
-                               }).ToList();
+                await this.reactionService.CreateReact(postId, userId, false);
+                post.Dislikes += 1;
+                await this.postRepository.SaveChangesAsync();
             }
-            else if (postsCount >= (page + 1) * count)
+            else if (reaction.IsLiked == true)
             {
-                return this.postRepository.AllAsNoTracking()
-                               .Where(x => x.Type.Name == "Post")
-                               .OrderByDescending(x => x.CreatedOn)
-                               .Skip(page * count)
-                               .Take(count)
-                               .Select(x => new NormalPostViewModel
-                               {
-                                   Username = x.AddedByUser.UserName,
-                                   Tags = string.Join(' ', x.Tags.Select(x => x.Tag.Name)),
-                                   Caption = x.Caption,
-                                   Likes = x.Likes,
-                                   Dislikes = x.Dislikes,
-                               }).ToList();
+                post.Likes -= 1;
+                post.Dislikes += 1;
+                await this.reactionService.ChangeReactionAsync(postId, userId, "Dislike");
+                await this.postRepository.SaveChangesAsync();
             }
-            else
+
+        }
+
+        public async Task LikeAsync(int postId, string userId)
+        {
+            var reaction = this.reactionService.GetPostReact(postId, userId);
+            var post = this.postRepository.All().FirstOrDefault(x => x.Id == postId);
+
+            if (reaction == null)
             {
-                return new List<NormalPostViewModel>();
+                await this.reactionService.CreateReact(postId, userId, true);
+                post.Likes += 1;
+                await this.postRepository.SaveChangesAsync();
+            }
+            else if (reaction.IsLiked == false)
+            {
+                post.Likes += 1;
+                post.Dislikes -= 1;
+                await this.reactionService.ChangeReactionAsync(postId, userId, "Like");
+                await this.postRepository.SaveChangesAsync();
             }
         }
     }
