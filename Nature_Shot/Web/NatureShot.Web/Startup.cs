@@ -94,6 +94,7 @@
             services.AddTransient<ITagsService, TagsService>();
             services.AddTransient<IReactionService, ReactionService>();
             services.AddTransient<ICommentService, CommentService>();
+            services.AddTransient<IVideosService, VideosService>();
 
             services.AddTransient<IPhotoPostsMostLikes, PhotoPostsMostLikes>();
             services.AddTransient<IPhotoPostsLeastLikes, PhotoPostsLeastLikes>();

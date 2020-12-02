@@ -1,20 +1,20 @@
-﻿@model NatureShot.Web.ViewModels.Images.ImagePostInputModel
+﻿@model NatureShot.Web.ViewModels.Videos.VideoPostInputModel
 @{
-    this.ViewData["Title"] = "Share Image";
+    this.ViewData["Title"] = "Share Video";
     var locationItems = Model.LocationsDropDown.Select(x => new SelectListItem(x.Value, x.Key));
     var cameraItems = Model.CamerasDropDown.Select(x => new SelectListItem(x.Value, x.Key));
     var tagItems = Model.TagsDropDown.Select(x => new SelectListItem(x.Value, x.Key));
 }
 
-<a asp-controller="NormalPosts" asp-action="AddPost" class="btn btn-primary mb-2 mr-2 m text-white">Go Share Post</a>
-<a class="btn btn-primary mb-2 text-white">Go Share Video</a>
+<a asp-controller="Posts" asp-action="AddPost" class="btn btn-primary mb-2 mr-2 m text-white">Go Share Post</a>
+<a asp-controller="Posts" asp-action="AddImage" class="btn btn-primary mb-2 text-white">Go Share Image</a>
 
 <div class="row justify-content-center no-gutters mb-5 border border-primary round">
     <div class="text-center h-100 project">
         <div class="d-flex h-100">
             <div class="project-text w-100 my-auto text-center">
-                <form method="post" enctype="multipart/form-data" asp-controller="Images" asp-action="AddImage">
-                    <div class="text-center">
+                <form method="post" enctype="multipart/form-data" asp-controller="Posts" asp-action="AddVideo">
+                    <div class="text-center col-8 offset-2  offset-sm-0 col-sm-12">
 
                         <!--USER NAME-->
                         <h4>@this.User.Identity.Name</h4>
@@ -22,14 +22,15 @@
                         <div asp-validation-summary="All" class="text-danger"></div>
                         <br>
 
-                        <!--IMAGE FILE INPUT-->
+                        <!--VIDEO FILE INPUT-->
+                        <label asp-for="Tags" class="text-black-50 mb-1"><u>Upload Video: <span class="text-dark text-uppercase">.mp4, .mov, ... (MAX 100 MB)</span> here:</u></label>
                         <div class="input-group">
                             <div class="custom-file">
-                                <input asp-for="Image" id="fileInput" type="file" accept="image/*" class="custom-file-input form-control" />
-                                <label asp-for="Image" id="fileLabel" class="custom-file-label text-black-50 mb-1 border border-primary rounded">Select <span class="text-dark text-uppercase">Image</span></label>
+                                <input asp-for="Video" id="fileInput" type="file" accept="video/*" class="custom-file-input form-control" />
+                                <label asp-for="Video" id="fileLabel" class="custom-file-label text-black-50 mb-1 border border-primary rounded">Select <span class="text-dark text-uppercase">Video</span></label>
                             </div>
                         </div>
-                        <span asp-validation-for="Image" class="text-danger"></span>
+                        <span asp-validation-for="Video" class="text-danger"></span>
 
                         <br>
 
@@ -39,15 +40,6 @@
                             <textarea asp-for="Tags" id="tagInput" type="text" class="form-control col-12 mt-2 border border-primary rounded-left" aria-label="Text input with dropdown button" rows="1"></textarea>
                             <div class="input-group-append col-12">
                                 <select asp-items="tagItems" id="tagSelect" data-live-search="true" data-live-search-placeholder="Search Location" class="form-control selectpicker border border-primary rounded" multiple data-selected-text-format="count > 1" data-size="6">
-                                    @*<option>No Camera...</option>
-                                        <option>#day</option>
-                                        <option>#hot</option>
-                                        <option>#beautiful</option>
-                                        <option>#wow</option>
-                                        <option>#love</option>
-                                        <option>#moon</option>
-                                        <option>#sun</option>
-                                        <option>#night</option>*@
                                 </select>
                             </div>
                         </div>
@@ -71,15 +63,6 @@
                         </div>
                         <div class="border border-primary rounded">
                             <select asp-items="locationItems" id="locationDropDown" data-live-search="true" data-live-search-placeholder="Search Location" class="form-control selectpicker" data-size="6">
-                                @*<option>No Camera...</option>
-                                    <option>Plovdiv/Bulgaria</option>
-                                    <option>Burgas/Bulgaria</option>
-                                    <option>Varna/Bulgaria</option>
-                                    <option>Sofia/Bulgaria</option>
-                                    <option>Pazarzdik/Bulgaria</option>
-                                    <option>Peshtera/Bulgaria</option>
-                                    <option>Stara Zagora/Bulgaria</option>
-                                    <option>Rila/Bulgaria</option>*@
                             </select>
                         </div>
                         <span asp-validation-for="Location" class="text-danger"></span>
@@ -92,18 +75,9 @@
                         <!--CAMERA INPUT-->
                         <label asp-for="Camera" class="text-black-50 mb-1"><u>Select the <span class="text-dark text-uppercase">Camera</span> which took the photo:</u></label>
                         <div class="input-group-lg input-group">
-                            <input asp-for="Camera" id="cameraInput" type="text" class="form-control col-6 mt-2 border border-primary rounded-left" aria-label="Text input with dropdown button">
-                            <div class="input-group-append col-6">
+                            <input asp-for="Camera" id="cameraInput" type="text" class="form-control col-md-6 col-12 mt-2 border border-primary rounded-left" aria-label="Text input with dropdown button">
+                            <div class="input-group-append col-md-6 col-12">
                                 <select asp-items="cameraItems" id="cameraSelect" data-live-search="true" data-live-search-placeholder="Search Location" class="form-control selectpicker border border-primary rounded" data-size="6">
-                                    @*<option selected>No Camera...</option>
-                                        <option>Plovdiv/Bulgaria</option>
-                                        <option>Orange</option>
-                                        <option>Lychee</option>
-                                        <option>Pineapple</option>
-                                        <option>Apple</option>
-                                        <option>Banana</option>
-                                        <option>Grapes</option>
-                                        <option>Water Melon</option>*@
                                 </select>
                             </div>
                         </div>
@@ -111,7 +85,7 @@
 
                     </div>
                     <div class="text-center">
-                        <button type="submit" value="AddImage" class="btn btn-outline-primary mt-4 border border-primary rounded" name="uploadbutton">Share Image</button>
+                        <button type="submit" value="AddVideo" class="btn btn-outline-primary mt-4 border border-primary rounded" name="uploadbutton">Share Video</button>
                     </div>
                 </form>
             </div>

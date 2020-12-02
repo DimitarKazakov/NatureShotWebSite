@@ -10,6 +10,7 @@
     using NatureShot.Data.Models;
     using NatureShot.Web.ViewModels.Images;
     using NatureShot.Web.ViewModels.NormalPosts;
+    using NatureShot.Web.ViewModels.Videos;
 
     public class PostsService : IPostsService
     {
@@ -20,6 +21,7 @@
         private readonly ICountriesService countriesService;
         private readonly ITagsService tagsService;
         private readonly IReactionService reactionService;
+        private readonly IVideosService videosService;
 
         public PostsService(IDeletableEntityRepository<Post> postRepository,
                             IImagesService imagesService,
@@ -27,7 +29,8 @@
                             ILocationsService locationsService,
                             ICountriesService countriesService,
                             ITagsService tagsService,
-                            IReactionService reactionService)
+                            IReactionService reactionService,
+                            IVideosService videosService)
         {
             this.imagesService = imagesService;
             this.postRepository = postRepository;
@@ -36,6 +39,7 @@
             this.countriesService = countriesService;
             this.tagsService = tagsService;
             this.reactionService = reactionService;
+            this.videosService = videosService;
         }
 
         public async Task CreateImagePostAsync(ImagePostInputModel input, string userId, ImageUploadResult imageInput)
@@ -96,6 +100,45 @@
             var tags = await this.tagsService.GetTagsForPost(input.Tags);
             foreach (var tag in tags)
             {
+                post.Tags.Add(new PostTag
+                {
+                    Tag = tag,
+                    Post = post,
+                });
+            }
+
+            await this.postRepository.AddAsync(post);
+            await this.postRepository.SaveChangesAsync();
+        }
+
+        public async Task CreateVideoPostAsync(VideoPostInputModel input, string userId, VideoUploadResult videoInput)
+        {
+            var video = await this.videosService.CreateVideo(userId, videoInput);
+            var camera = await this.cameraService.GetCameraByNameAsync(input.Camera);
+            var country = await this.countriesService.GetCountry(input.Country);
+            var location = await this.locationsService.GetLocation(input.Location, country);
+            var postType = new PostType
+            {
+                Name = "Video",
+            };
+
+            var post = new Post
+            {
+                AddedByUserId = userId,
+                Camera = camera,
+                Caption = input.Caption,
+                Type = postType,
+                Dislikes = 0,
+                Likes = 0,
+                Video = video,
+                VideoId = video.Id,
+                Location = location,
+            };
+
+            var tags = await this.tagsService.GetTagsForPost(input.Tags);
+            foreach (var tag in tags)
+            {
+
                 post.Tags.Add(new PostTag
                 {
                     Tag = tag,

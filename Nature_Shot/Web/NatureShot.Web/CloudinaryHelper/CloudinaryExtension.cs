@@ -37,5 +37,29 @@
                 return uploadResult;
             }
         }
+
+        public static async Task<VideoUploadResult> UploadVideoAsync(Cloudinary cloudinary, IFormFile videoFile)
+        {
+            var result = "";
+            byte[] destinationImage;
+
+            using (var memoryStream = new MemoryStream())
+            {
+                await videoFile.CopyToAsync(memoryStream);
+                destinationImage = memoryStream.ToArray();
+            }
+
+            using (var destinationStream = new MemoryStream(destinationImage))
+            {
+                var uploadParams = new VideoUploadParams()
+                {
+                    File = new FileDescription(videoFile.FileName, destinationStream),
+                };
+
+                var uploadResult = await cloudinary.UploadAsync(uploadParams);
+
+                return uploadResult;
+            }
+        }
     }
 }

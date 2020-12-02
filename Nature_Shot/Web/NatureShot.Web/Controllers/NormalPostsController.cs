@@ -47,31 +47,6 @@
         }
 
         [Authorize]
-        public IActionResult AddPost()
-        {
-            var viewModel = new NormalPostInputModel();
-            viewModel.TagsDropDown = this.tagsService.GetAllTagsAsKeyValuePair();
-            return this.View(viewModel);
-        }
-
-        [Authorize]
-        [HttpPost]
-        public async Task<IActionResult> AddPost(NormalPostInputModel input)
-        {
-            if (!this.ModelState.IsValid)
-            {
-                input.TagsDropDown = this.tagsService.GetAllTagsAsKeyValuePair();
-
-                return this.View(input);
-            }
-
-            var user = await this.userManager.GetUserAsync(this.User);
-            await this.postsService.CreateNormalPostAsync(input, user.Id);
-
-            return this.Redirect("/");
-        }
-
-        [Authorize]
         public IActionResult NormalPostsNewest(string searchBy, string searchInput)
         {
             if (searchBy != null && searchInput != null)

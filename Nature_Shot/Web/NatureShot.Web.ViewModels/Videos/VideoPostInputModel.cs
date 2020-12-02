@@ -1,20 +1,21 @@
-﻿namespace NatureShot.Web.ViewModels.Images
+﻿namespace NatureShot.Web.ViewModels.Videos
 {
+    using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
 
     using Microsoft.AspNetCore.Http;
     using NatureShot.Web.ViewModels.CustomAttributes;
 
-    public class ImagePostInputModel
+    public class VideoPostInputModel
     {
-        public ImagePostInputModel()
+        public VideoPostInputModel()
         {
         }
 
         [Required]
-        [AllowedExtensionsAttribute(new string[] { ".bmp", ".gif", ".jpeg", ".png", ".jpg", ".tif", ".tiff", ".svg", ".webp" })]
-        public IFormFile Image { get; set; }
+        [AllowedExtensionsAttribute(new string[] { ".avi", ".mpeg", ".ogv", ".ts", ".webm", ".3gp", ".3g2", ".wmv", ".flv", "avchd", ".mp4", ".mov" })]
+        public IFormFile Video { get; set; }
 
         [Required]
         [MinLength(3, ErrorMessage = "The field cannot be empty, you need at least 1 tag.")]

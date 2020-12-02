@@ -16,6 +16,9 @@
         public string AddedByUserId { get; set; }
 
         [Required]
+        public string VideoUrl { get; set; }
+
+        [Required]
         public virtual ApplicationUser AddedByUser { get; set; }
 
         [Required]

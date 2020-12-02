@@ -5,14 +5,14 @@
 }
 
 
-<a asp-controller="Images" asp-action="AddImage" class="btn btn-primary mb-2 mr-2 m text-white">Go Share Image</a>
-<a class="btn btn-primary mb-2 text-white">Go Share Video</a>
+<a asp-controller="Posts" asp-action="AddImage" class="btn btn-primary mb-2 mr-2 m text-white">Go Share Image</a>
+<a asp-controller="Posts" asp-action="AddVideo" class="btn btn-primary mb-2 text-white">Go Share Video</a>
 
 <div class="row justify-content-center no-gutters mb-5 border border-primary round">
     <div class="text-center h-100 project">
         <div class="d-flex h-100">
             <div class="project-text w-100 my-auto text-center">
-                <form method="post" asp-controller="NormalPosts" asp-action="AddPost">
+                <form method="post" asp-controller="Posts" asp-action="AddPost">
                     <div class="text-center">
                         <!--USER NAME-->
                         <h4>@this.User.Identity.Name</h4>

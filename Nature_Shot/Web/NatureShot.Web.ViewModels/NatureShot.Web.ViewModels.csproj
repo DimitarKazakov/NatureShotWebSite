@@ -29,5 +29,6 @@
     <Folder Include="Images\" />
     <Folder Include="NormalPosts\" />
     <Folder Include="CustomAttributes\" />
+    <Folder Include="Videos\" />
   </ItemGroup>
 </Project>

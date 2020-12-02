@@ -8,10 +8,13 @@
 
     using NatureShot.Web.ViewModels.Images;
     using NatureShot.Web.ViewModels.NormalPosts;
+    using NatureShot.Web.ViewModels.Videos;
 
     public interface IPostsService
     {
         Task CreateImagePostAsync(ImagePostInputModel input, string userId, ImageUploadResult image);
+
+        Task CreateVideoPostAsync(VideoPostInputModel input, string userId, VideoUploadResult video);
 
         Task CreateNormalPostAsync(NormalPostInputModel input, string userId);
 
