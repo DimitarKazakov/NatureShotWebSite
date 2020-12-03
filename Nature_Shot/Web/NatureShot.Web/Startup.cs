@@ -21,6 +21,7 @@
     using NatureShot.Services.Data;
     using NatureShot.Services.Data.NormalPosts;
     using NatureShot.Services.Data.PhotoPosts;
+    using NatureShot.Services.Data.VideoPosts;
     using NatureShot.Services.Mapping;
     using NatureShot.Services.Messaging;
     using NatureShot.Web.ViewModels;
@@ -109,6 +110,15 @@
             services.AddTransient<INormalPostsLeastDislikes, NormalPostsLeastDislikes>();
             services.AddTransient<INormalPostsNewest, NormalPostsNewest>();
             services.AddTransient<INormalPostsOldest, NormalPostsOldest>();
+
+            services.AddTransient<IVideoPostsNewest, VideoPostsNewest>();
+            services.AddTransient<IVideoPostsOldest, VideoPostsOldest>();
+            services.AddTransient<IVideoPostsLeastDislikes, VideoPostsLeastDislikes>();
+            services.AddTransient<IVideoPostsLeastLikes, VideoPostsLeastLikes>();
+            services.AddTransient<IVideoPostsMostLikes, VideoPostsMostLikes>();
+            services.AddTransient<IVideoPostsMostDislikes, VideoPostsMostDislikes>();
+            services.AddTransient<IVideoPostsLongest, VideoPostsLongest>();
+            services.AddTransient<IVideoPostsShortest, VideoPostsShortest>();
 
             // Cloudinary Configuration
             Account account = new Account(

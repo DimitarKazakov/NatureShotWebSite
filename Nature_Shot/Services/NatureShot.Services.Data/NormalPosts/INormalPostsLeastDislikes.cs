@@ -7,12 +7,12 @@
 
     public interface INormalPostsLeastDislikes
     {
-        IEnumerable<NormalPostViewModel> GetNormalPostsLeastDislikes(int page, int count = 10);
+        IEnumerable<NormalPostViewModel> GetNormalPostsLeastDislikes(int page, int count = 5);
 
-        IEnumerable<NormalPostViewModel> SearchByCaption(int page, string input, int count = 10);
+        IEnumerable<NormalPostViewModel> SearchByCaption(int page, string input, int count = 5);
 
-        IEnumerable<NormalPostViewModel> SearchByUsername(int page, string input, int count = 10);
+        IEnumerable<NormalPostViewModel> SearchByUsername(int page, string input, int count = 5);
 
-        IEnumerable<NormalPostViewModel> SearchByTags(int page, string input, int count = 10);
+        IEnumerable<NormalPostViewModel> SearchByTags(int page, string input, int count = 5);
     }
 }

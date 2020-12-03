@@ -5,6 +5,7 @@
 
     using LumenWorks.Framework.IO.Csv;
     using Microsoft.AspNetCore.Authorization;
+    using Microsoft.AspNetCore.Http.Extensions;
     using Microsoft.AspNetCore.Mvc;
     using NatureShot.Data;
     using NatureShot.Data.Common.Repositories;
@@ -13,7 +14,6 @@
     using NatureShot.Services.Data;
     using NatureShot.Services.Data.PhotoPosts;
     using NatureShot.Web.ViewModels.Images;
-    using Microsoft.AspNetCore.Http.Extensions;
 
     public class PhotoPostsController : Controller
     {

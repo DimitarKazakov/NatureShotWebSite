@@ -22,6 +22,7 @@
         private readonly ITagsService tagsService;
         private readonly IReactionService reactionService;
         private readonly IVideosService videosService;
+        private readonly IDeletableEntityRepository<PostType> postTypeRepository;
 
         public PostsService(IDeletableEntityRepository<Post> postRepository,
                             IImagesService imagesService,
@@ -30,7 +31,8 @@
                             ICountriesService countriesService,
                             ITagsService tagsService,
                             IReactionService reactionService,
-                            IVideosService videosService)
+                            IVideosService videosService,
+                            IDeletableEntityRepository<PostType> postTypeRepository)
         {
             this.imagesService = imagesService;
             this.postRepository = postRepository;
@@ -40,6 +42,7 @@
             this.tagsService = tagsService;
             this.reactionService = reactionService;
             this.videosService = videosService;
+            this.postTypeRepository = postTypeRepository;
         }
 
         public async Task CreateImagePostAsync(ImagePostInputModel input, string userId, ImageUploadResult imageInput)
@@ -48,10 +51,7 @@
             var camera = await this.cameraService.GetCameraByNameAsync(input.Camera);
             var country = await this.countriesService.GetCountry(input.Country);
             var location = await this.locationsService.GetLocation(input.Location, country);
-            var postType = new PostType
-            {
-                Name = "Image",
-            };
+            var postType = this.postTypeRepository.AllAsNoTracking().FirstOrDefault(x => x.Name == "Image");
 
             var post = new Post
             {
@@ -83,10 +83,7 @@
 
         public async Task CreateNormalPostAsync(NormalPostInputModel input, string userId)
         {
-            var postType = new PostType
-            {
-                Name = "Post",
-            };
+            var postType = this.postTypeRepository.AllAsNoTracking().FirstOrDefault(x => x.Name == "Post");
 
             var post = new Post
             {
@@ -117,10 +114,7 @@
             var camera = await this.cameraService.GetCameraByNameAsync(input.Camera);
             var country = await this.countriesService.GetCountry(input.Country);
             var location = await this.locationsService.GetLocation(input.Location, country);
-            var postType = new PostType
-            {
-                Name = "Video",
-            };
+            var postType = this.postTypeRepository.AllAsNoTracking().FirstOrDefault(x => x.Name == "Video");
 
             var post = new Post
             {

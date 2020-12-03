@@ -1,10 +1,34 @@
-﻿using System;
-namespace NatureShot.Web.Views.VideoPosts
-{
-	public class _VideoContentPartial
-	{
-		public _VideoContentPartial()
-		{
-		}
-	}
-}
+﻿@model NatureShot.Web.ViewModels.Videos.VideoPostViewModel
+
+<h4><span class="border-bottom border-primary">@Model.Username</span></h4>
+<p class="text-black-50 mb-0" id="datetime">@Model.DatePosted.ToString("dddd, dd MMMM yyyy")</p>
+<br>
+<p class="text-black mb-0"><span class="border-bottom border-primary">@Model.Tags</span></p>
+<br>
+<p class="text-black-50 mb-0">@Model.Caption</p>
+<p class="text-black-50 mb-0" id="id" hidden>@Model.VideoId</p>
+
+<p class="text-black-50 mb-0 locationText" hidden>Location: <span class="text-dark"> @Model.Location</span></p>
+<p class="text-black-50 mb-0 cameraText" hidden>Camera: <span class="text-dark"> @Model.Camera</span></p>
+<p class="text-black-50 mb-0 likesText" hidden>Likes: <span class="text-dark">@Model.Likes</span></p>
+<p class="text-black-50 mb-0 dislikesText" hidden>Dislikes: <span class="text-dark">@Model.Dislikes</span></p>
+<p class="text-black-50 mb-0 lengthText" hidden>Length: <span class="text-dark">@Model.Length</span></p>
+<br>
+<br>
+<p class="text-black"><span id="infoTrigger" class="border-bottom border-primary">Click for information</span></p>
+<br>
+<br>
+<div class="input-group mb-3">
+    <input type="text" class="form-control" id="commentInput" placeholder="Write a comment . . ." aria-label="comment" aria-describedby="comment">
+    <div class="input-group-append" id="commentDiv">
+        <span class="input-group-text bg-outline-dark" id="comment"><a href="javascript:void(0)"><i class="fa fa-share-square" aria-hidden="true"></i></a></span>
+    </div>
+</div>
+<form method="post" id="reaction">
+    <button type="button" class="btn btn-outline-primary mr-3 border border-primary" value="Like">
+        <i class="fas fa-thumbs-up"></i> Like
+    </button>
+    <button type="button" class="btn btn-outline-primary border border-primary" value="Dislike">
+        <i class="fas fa-thumbs-down"></i> Dislike
+    </button>
+</form>

@@ -20,17 +20,24 @@
         {
             var seconds = (int)Math.Round(videoInput.Duration, MidpointRounding.AwayFromZero);
             var minitus = 0;
+            var url = videoInput.Url.AbsoluteUri;
+
             if (seconds > 60)
             {
                 minitus = seconds / 60;
                 seconds -= minitus * 60;
             }
 
+            if (url.StartsWith("http"))
+            {
+                url = url.Replace("http", "https");
+            }
+
             var video = new NatureShot.Data.Models.Video
             {
                 AddedByUserId = userId,
                 Extension = videoInput.Format,
-                VideoUrl = videoInput.Url.AbsoluteUri,
+                VideoUrl = url,
                 Length = new TimeSpan(0, minitus, seconds),
             };
 

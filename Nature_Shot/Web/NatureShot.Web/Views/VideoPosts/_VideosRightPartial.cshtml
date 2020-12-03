@@ -1,0 +1,16 @@
+﻿@model NatureShot.Web.ViewModels.Videos.VideoPostViewModel
+
+<div class="row align-items-center no-gutters mb-4 mb-lg-5">
+    <div class="col-xl-8 col-lg-7">
+
+        <partial name="_VideoTagPartial" model="@Model" />
+
+    </div>
+    <div class="col-xl-4 col-lg-5 order-lg-first">
+        <div class="featured-text-right text-center text-lg-left">
+
+            <partial name="_VideoContentPartial" model="@Model" />
+
+        </div>
+    </div>
+</div>

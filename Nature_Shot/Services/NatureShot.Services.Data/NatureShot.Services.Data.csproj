@@ -30,5 +30,6 @@
     <Folder Include="Models\" />
     <Folder Include="PhotoPosts\" />
     <Folder Include="NormalPosts\" />
+    <Folder Include="VideoPosts\" />
   </ItemGroup>
 </Project>

@@ -17,7 +17,7 @@
             this.postRepository = postRepository;
         }
 
-        public IEnumerable<NormalPostViewModel> GetNormalPostsMostDislikes(int page, int count = 10)
+        public IEnumerable<NormalPostViewModel> GetNormalPostsMostDislikes(int page, int count = 5)
         {
             var postCount = this.postRepository.AllAsNoTracking().Where(x => x.Type.Name == "Post").Count();
             if (postCount > (page * count) && postCount < (page + 1) * count)
@@ -62,7 +62,7 @@
             }
         }
 
-        public IEnumerable<NormalPostViewModel> SearchByCaption(int page, string input, int count = 10)
+        public IEnumerable<NormalPostViewModel> SearchByCaption(int page, string input, int count = 5)
         {
             var postCount = this.postRepository.AllAsNoTracking().Where(x => x.Type.Name == "Post" && x.Caption.ToLower().Contains(input.ToLower())).Count();
             if (postCount > (page * count) && postCount < (page + 1) * count)
@@ -107,7 +107,7 @@
             }
         }
 
-        public IEnumerable<NormalPostViewModel> SearchByTags(int page, string input, int count = 10)
+        public IEnumerable<NormalPostViewModel> SearchByTags(int page, string input, int count = 5)
         {
             var postCount = this.postRepository.AllAsNoTracking().Where(x => x.Type.Name == "Post" && x.Tags.Select(x => x.Tag.Name).Contains(input)).Count();
             if (postCount > (page * count) && postCount < (page + 1) * count)
@@ -152,7 +152,7 @@
             }
         }
 
-        public IEnumerable<NormalPostViewModel> SearchByUsername(int page, string input, int count = 10)
+        public IEnumerable<NormalPostViewModel> SearchByUsername(int page, string input, int count = 5)
         {
             var postCount = this.postRepository.AllAsNoTracking().Where(x => x.Type.Name == "Post" && x.AddedByUser.UserName.ToLower().Contains(input.ToLower())).Count();
             if (postCount > (page * count) && postCount < (page + 1) * count)

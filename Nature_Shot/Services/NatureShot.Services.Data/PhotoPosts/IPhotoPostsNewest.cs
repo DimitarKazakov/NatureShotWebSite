@@ -7,16 +7,16 @@
 
     public interface IPhotoPostsNewest
     {
-        IEnumerable<ImagePostViewModel> GetImagePostsNewest(int page, int count = 10);
+        IEnumerable<ImagePostViewModel> GetImagePostsNewest(int page, int count = 5);
 
-        IEnumerable<ImagePostViewModel> SearchByCaption(int page, string input, int count = 10);
+        IEnumerable<ImagePostViewModel> SearchByCaption(int page, string input, int count = 5);
 
-        IEnumerable<ImagePostViewModel> SearchByUsername(int page, string input, int count = 10);
+        IEnumerable<ImagePostViewModel> SearchByUsername(int page, string input, int count = 5);
 
-        IEnumerable<ImagePostViewModel> SearchByTags(int page, string input, int count = 10);
+        IEnumerable<ImagePostViewModel> SearchByTags(int page, string input, int count = 5);
 
-        IEnumerable<ImagePostViewModel> SearchByLocation(int page, string input, int count = 10);
+        IEnumerable<ImagePostViewModel> SearchByLocation(int page, string input, int count = 5);
 
-        IEnumerable<ImagePostViewModel> SearchByCamera(int page, string input, int count = 10);
+        IEnumerable<ImagePostViewModel> SearchByCamera(int page, string input, int count = 5);
     }
 }

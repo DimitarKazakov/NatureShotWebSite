@@ -17,7 +17,7 @@
             this.postRepository = postRepository;
         }
 
-        public IEnumerable<ImagePostViewModel> GetImagePostsLeastDislikes(int page, int count = 10)
+        public IEnumerable<ImagePostViewModel> GetImagePostsLeastDislikes(int page, int count = 5)
         {
             var imageCount = this.postRepository.AllAsNoTracking().Where(x => x.Type.Name == "Image").Count();
             if (imageCount > (page * count) && imageCount < (page + 1) * count)
@@ -70,7 +70,7 @@
             }
         }
 
-        public IEnumerable<ImagePostViewModel> SearchByCamera(int page, string input, int count = 10)
+        public IEnumerable<ImagePostViewModel> SearchByCamera(int page, string input, int count = 5)
         {
             var imageCount = this.postRepository.AllAsNoTracking().Where(x => x.Type.Name == "Image" && x.Camera.Model.ToLower().Contains(input.ToLower())).Count();
             if (imageCount > (page * count) && imageCount < (page + 1) * count)
@@ -123,7 +123,7 @@
             }
         }
 
-        public IEnumerable<ImagePostViewModel> SearchByCaption(int page, string input, int count = 10)
+        public IEnumerable<ImagePostViewModel> SearchByCaption(int page, string input, int count = 5)
         {
             var imageCount = this.postRepository.AllAsNoTracking().Where(x => x.Type.Name == "Image" && x.Caption.ToLower().Contains(input.ToLower())).Count();
             if (imageCount > (page * count) && imageCount < (page + 1) * count)
@@ -176,7 +176,7 @@
             }
         }
 
-        public IEnumerable<ImagePostViewModel> SearchByLocation(int page, string input, int count = 10)
+        public IEnumerable<ImagePostViewModel> SearchByLocation(int page, string input, int count = 5)
         {
             var imageCount = this.postRepository.AllAsNoTracking().Where(x => x.Type.Name == "Image" && x.Location.Name.ToLower().Contains(input.ToLower())).Count();
             if (imageCount > (page * count) && imageCount < (page + 1) * count)
@@ -229,7 +229,7 @@
             }
         }
 
-        public IEnumerable<ImagePostViewModel> SearchByTags(int page, string input, int count = 10)
+        public IEnumerable<ImagePostViewModel> SearchByTags(int page, string input, int count = 5)
         {
             var imageCount = this.postRepository.AllAsNoTracking().Where(x => x.Type.Name == "Image" && x.Tags.Select(x => x.Tag.Name).Contains(input)).Count();
             if (imageCount > (page * count) && imageCount < (page + 1) * count)
@@ -282,7 +282,7 @@
             }
         }
 
-        public IEnumerable<ImagePostViewModel> SearchByUsername(int page, string input, int count = 10)
+        public IEnumerable<ImagePostViewModel> SearchByUsername(int page, string input, int count = 5)
         {
             var imageCount = this.postRepository.AllAsNoTracking().Where(x => x.Type.Name == "Image" && x.AddedByUser.UserName.ToLower().Contains(input.ToLower())).Count();
             if (imageCount > (page * count) && imageCount < (page + 1) * count)
