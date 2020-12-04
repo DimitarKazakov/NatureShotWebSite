@@ -52,20 +52,32 @@
                     });
 
             // Social Account Login
+            services.AddAuthentication()
+               .AddFacebook(
+               options =>
+            {
+                options.AppId = this.configuration["Facebook:AppId"];
+                options.AppSecret = this.configuration["Facebook:AppSecret"];
+                options.Events.OnRemoteFailure = (context) =>
+                {
+                    context.Response.Redirect("/Identity/Account/Login");
+                    context.HandleResponse();
+                    return System.Threading.Tasks.Task.CompletedTask;
+                };
+            })
+               .AddGoogle(options =>
+               {
 
-            // services.AddAuthentication()
-            //    .AddFacebook(
-            //    options =>
-            // {
-            //    options.AppId = this.configuration["Facebook:AppId"];
-            //    options.AppSecret = this.configuration["Facebook:AppSecret"];
-            //    options.Events.OnRemoteFailure = (context) =>
-            //    {
-            //        context.Response.Redirect("/Identity/Account/Login");
-            //        context.HandleResponse();
-            //        return System.Threading.Tasks.Task.CompletedTask;
-            //    };
-            // });
+                   options.ClientId = this.configuration["Google:ClientID"];
+                   options.ClientSecret = this.configuration["Google:ClientSecret"];
+                   options.Events.OnRemoteFailure = (context) =>
+                   {
+                       context.Response.Redirect("/Identity/Account/Login");
+                       context.HandleResponse();
+                       return System.Threading.Tasks.Task.CompletedTask;
+                   };
+               });
+
             services.AddControllersWithViews(
                 options =>
                     {
