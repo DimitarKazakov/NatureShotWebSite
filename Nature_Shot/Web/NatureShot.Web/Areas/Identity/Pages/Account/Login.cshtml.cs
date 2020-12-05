@@ -16,22 +16,26 @@ namespace NatureShot.Web.Areas.Identity.Pages.Account
     using Microsoft.Extensions.Logging;
     using NatureShot.Data;
     using NatureShot.Data.Models;
+    using NatureShot.Services;
 
     [AllowAnonymous]
     public class LoginModel : PageModel
     {
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly ApplicationDbContext db;
+        private readonly IGoogleRecapchaService googleRecapchaService;
         private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly ILogger<LoginModel> _logger;
 
         public LoginModel(SignInManager<ApplicationUser> signInManager,
             ILogger<LoginModel> logger,
             UserManager<ApplicationUser> userManager,
-            ApplicationDbContext db)
+            ApplicationDbContext db,
+            IGoogleRecapchaService googleRecapchaService)
         {
             this._userManager = userManager;
             this.db = db;
+            this.googleRecapchaService = googleRecapchaService;
             this._signInManager = signInManager;
             this._logger = logger;
         }
@@ -55,6 +59,9 @@ namespace NatureShot.Web.Areas.Identity.Pages.Account
             [Required]
             [DataType(DataType.Password)]
             public string Password { get; set; }
+
+            [Required]
+            public string Token { get; set; }
 
             [Display(Name = "Remember me?")]
             public bool RememberMe { get; set; }
@@ -80,6 +87,14 @@ namespace NatureShot.Web.Areas.Identity.Pages.Account
         public async Task<IActionResult> OnPostAsync(string returnUrl = null)
         {
             returnUrl = returnUrl ?? this.Url.Content("~/");
+
+            //Google Recaptcha
+            var googleRecaptcha = this.googleRecapchaService.Verify(this.Input.Token);
+            if (!googleRecaptcha.Result.success && googleRecaptcha.Result.score <= 0.5)
+            {
+                this.ModelState.AddModelError(string.Empty, "You are not a human!");
+                return this.Page();
+            }
 
             if (this.ModelState.IsValid)
             {

@@ -1,5 +1,7 @@
 @page
 @model LoginModel
+@using Microsoft.Extensions.Options
+@inject IOptions<NatureShot.Web.ViewModels.Recaptcha.RecaptchaV3> GoogleRecaptcha
 
 @{ ViewData["Title"] = "Log in"; }
 
@@ -22,6 +24,7 @@
                     <input asp-for="Input.Password" class="form-control" />
                     <span asp-validation-for="Input.Password" class="text-danger"></span>
                 </div>
+                <input asp-for="Input.Token" hidden />
                 <div class="form-group">
                     <div class="checkbox">
                         <label asp-for="Input.RememberMe">
@@ -31,7 +34,12 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <button type="submit" class="btn btn-primary">Login</button>
+                    <button type="submit"
+                            data-sitekey="reCAPTCHA_site_key"
+                            data-callback='onSubmit'
+                            data-action='submit' class="btn btn-primary g-recaptcha">
+                        Login
+                    </button>
                 </div>
                 <div class="form-group">
                     <p>
@@ -44,7 +52,7 @@
             </form>
         </section>
     </div>
-    <div class="">
+    <div>
         <section>
             <br>
             @{ if ((Model.ExternalLogins?.Count ?? 0) == 0)
@@ -59,10 +67,14 @@
                 {
                     if (provider.Name == "Facebook")
                     {
-<button type="submit" class="btn btn-facebook" name="provider" value="@provider.Name" title="Log in using your @provider.DisplayName account"><i class="fab fa-facebook fa-lg"></i> Sign in with @provider.DisplayName</button> }
+<button type="submit" class="btn btn-facebook mb-2" name="provider" value="@provider.Name" title="Log in using your @provider.DisplayName account"><i class="fab fa-facebook fa-lg"></i> Sign in with @provider.DisplayName</button> }
 else if (provider.Name == "Google")
 {
-<button type="submit" class="btn btn-google" name="provider" value="@provider.Name" title="Log in using your @provider.DisplayName account"><i class="fab fa-google fa-lg"></i> Sign in with @provider.DisplayName</button> }
+<button type="submit" class="btn btn-google mb-2" name="provider" value="@provider.Name" title="Log in using your @provider.DisplayName account"><i class="fab fa-google fa-lg"></i> Sign in with @provider.DisplayName</button> }
+else if (provider.Name == "Twitter")
+{
+<button type="submit" class="btn btn-twitter mb-2" name="provider" value="@provider.Name" title="Log in using your @provider.DisplayName account"><i class="fab fa-twitter fa-lg"></i> Sign in with @provider.DisplayName</button> }
+
 
 else
 {
@@ -77,4 +89,14 @@ else
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
+    <script src="https://www.google.com/recaptcha/api.js?render=@GoogleRecaptcha.Value.RecaptchaSiteKey"></script>
+    <script>
+grecaptcha.ready(function () {
+            grecaptcha.execute('@GoogleRecaptcha.Value.RecaptchaSiteKey', { action: 'homepage' }).then(function (token) {
+
+                document.querySelector('#Input_Token').setAttribute('value', token);
+
+            });
+        });</script>
+
 }

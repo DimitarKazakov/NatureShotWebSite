@@ -18,12 +18,14 @@
     using NatureShot.Data.Models;
     using NatureShot.Data.Repositories;
     using NatureShot.Data.Seeding;
+    using NatureShot.Services;
     using NatureShot.Services.Data;
     using NatureShot.Services.Data.NormalPosts;
     using NatureShot.Services.Data.PhotoPosts;
     using NatureShot.Services.Data.VideoPosts;
     using NatureShot.Services.Mapping;
     using NatureShot.Services.Messaging;
+    using NatureShot.Web.ViewModels.Recaptcha;
     using NatureShot.Web.ViewModels;
 
     public class Startup
@@ -76,8 +78,20 @@
                        context.HandleResponse();
                        return System.Threading.Tasks.Task.CompletedTask;
                    };
+               })
+               .AddTwitter(options =>
+               {
+                   options.ConsumerKey = this.configuration["Twitter:AppId"];
+                   options.ConsumerSecret = this.configuration["Twitter:AppSecret"];
+                   options.Events.OnRemoteFailure = (context) =>
+                   {
+                       context.Response.Redirect("/Identity/Account/Login");
+                       context.HandleResponse();
+                       return System.Threading.Tasks.Task.CompletedTask;
+                   };
                });
 
+            services.Configure<RecaptchaV3>(this.configuration.GetSection("Recaptcha"));
             services.AddControllersWithViews(
                 options =>
                     {
@@ -98,6 +112,7 @@
             // Application services
             services.AddTransient<IEmailSender, NullMessageSender>();
             services.AddTransient<ISettingsService, SettingsService>();
+            services.AddTransient<IGoogleRecapchaService, GoogleRecapchaService>();
 
             services.AddTransient<IPostsService, PostsService>();
             services.AddTransient<ICameraService, CameraService>();
