@@ -162,6 +162,11 @@
 
             foreach (var post in postList)
             {
+                if (this.User.Identity.Name == post.Username)
+                {
+                    post.UsersOwnPhoto = true;
+                }
+
                 post.Caption = this.encoder.Encode(post.Caption);
             }
 

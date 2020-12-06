@@ -240,6 +240,11 @@
 
             foreach (var image in imageList)
             {
+                if (this.User.Identity.Name == image.Username)
+                {
+                    image.UsersOwnPhoto = true;
+                }
+
                 image.Caption = this.encoder.Encode(image.Caption);
             }
 

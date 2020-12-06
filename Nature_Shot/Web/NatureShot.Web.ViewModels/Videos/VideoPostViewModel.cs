@@ -29,5 +29,7 @@
         public int Dislikes { get; set; }
 
         public string Length { get; set; }
+
+        public bool UsersOwnPhoto { get; set; }
     }
 }

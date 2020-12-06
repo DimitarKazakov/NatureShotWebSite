@@ -27,6 +27,7 @@
     using NatureShot.Services.Messaging;
     using NatureShot.Web.ViewModels.Recaptcha;
     using NatureShot.Web.ViewModels;
+    using System;
 
     public class Startup
     {
@@ -90,6 +91,13 @@
                        return System.Threading.Tasks.Task.CompletedTask;
                    };
                });
+
+            services.AddSession(options =>
+            {
+                options.IdleTimeout = TimeSpan.FromHours(24);
+                options.Cookie.HttpOnly = true;
+                options.Cookie.IsEssential = true;
+            });
 
             services.Configure<RecaptchaV3>(this.configuration.GetSection("Recaptcha"));
             services.AddControllersWithViews(
@@ -183,7 +191,7 @@
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseCookiePolicy();
-
+            app.UseSession();
             app.UseRouting();
             app.UseCors("CorsPolicy");
             app.UseAuthentication();

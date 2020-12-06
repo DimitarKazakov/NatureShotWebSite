@@ -124,5 +124,142 @@
 
             return this.Redirect("/");
         }
+
+        [Authorize]
+        [HttpPost]
+        public async Task<IActionResult> DeleteImage(int id)
+        {
+            var user = await this.userManager.GetUserAsync(this.User);
+            if (!this.postsService.CheckPostOwner(id, user.Id))
+            {
+                return this.Redirect($"/PhotoPosts/PhotosNewest");
+            }
+
+            await this.postsService.Delete(id);
+            return this.Redirect($"/PhotoPosts/PhotosNewest");
+        }
+
+        [Authorize]
+        [HttpPost]
+        public async Task<IActionResult> DeleteVideo(int id)
+        {
+            var user = await this.userManager.GetUserAsync(this.User);
+            if (!this.postsService.CheckPostOwner(id, user.Id))
+            {
+                return this.Redirect("/VideoPosts/VideosNewest");
+            }
+
+            await this.postsService.Delete(id);
+            return this.Redirect("/VideoPosts/VideosNewest");
+        }
+
+        [Authorize]
+        [HttpPost]
+        public async Task<IActionResult> DeletePost(int id)
+        {
+            var user = await this.userManager.GetUserAsync(this.User);
+            if (!this.postsService.CheckPostOwner(id, user.Id))
+            {
+                return this.Redirect("/NormalPosts/NormalPostsNewest");
+            }
+
+            await this.postsService.Delete(id);
+            return this.Redirect("/NormalPosts/NormalPostsNewest");
+        }
+
+        [Authorize]
+        public async Task<IActionResult> UpdateImage(int id)
+        {
+            var user = await this.userManager.GetUserAsync(this.User);
+            if (!this.postsService.CheckPostOwner(id, user.Id))
+            {
+                return this.Redirect($"/PhotoPosts/PhotosNewest");
+            }
+
+            var viewModel = this.postsService.GetImagePost(id);
+            viewModel.LocationsDropDown = this.locationsService.GetAllLocationsAsKeyValuePair();
+            viewModel.CamerasDropDown = this.cameraService.GetAllCamerasAsKeyValuePair();
+            viewModel.TagsDropDown = this.tagsService.GetAllTagsAsKeyValuePair();
+            return this.View(viewModel);
+        }
+
+        [Authorize]
+        public async Task<IActionResult> UpdateVideo(int id)
+        {
+            var user = await this.userManager.GetUserAsync(this.User);
+            if (!this.postsService.CheckPostOwner(id, user.Id))
+            {
+                return this.Redirect("/VideoPosts/VideosNewest");
+            }
+
+            var viewModel = this.postsService.GetVideoPost(id);
+            viewModel.LocationsDropDown = this.locationsService.GetAllLocationsAsKeyValuePair();
+            viewModel.CamerasDropDown = this.cameraService.GetAllCamerasAsKeyValuePair();
+            viewModel.TagsDropDown = this.tagsService.GetAllTagsAsKeyValuePair();
+            return this.View(viewModel);
+        }
+
+        [Authorize]
+        public async Task<IActionResult> UpdatePost(int id)
+        {
+            var user = await this.userManager.GetUserAsync(this.User);
+            if (!this.postsService.CheckPostOwner(id, user.Id))
+            {
+                return this.Redirect("/NormalPosts/NormalPostsNewest");
+            }
+
+            var viewModel = this.postsService.GetNormalPost(id);
+            viewModel.TagsDropDown = this.tagsService.GetAllTagsAsKeyValuePair();
+            return this.View(viewModel);
+        }
+
+        [Authorize]
+        [HttpPost]
+        public async Task<IActionResult> UpdateVideo(VideoPostUpdateModel input)
+        {
+            if (!this.ModelState.IsValid)
+            {
+                input.LocationsDropDown = this.locationsService.GetAllLocationsAsKeyValuePair();
+                input.CamerasDropDown = this.cameraService.GetAllCamerasAsKeyValuePair();
+                input.TagsDropDown = this.tagsService.GetAllTagsAsKeyValuePair();
+
+                return this.View(input);
+            }
+
+            await this.postsService.UpdateVideo(input);
+            return this.Redirect("/VideoPosts/VideosNewest");
+        }
+
+        [Authorize]
+        [HttpPost]
+        public async Task<IActionResult> UpdateImage(ImagePostUpdateModel input)
+        {
+            if (!this.ModelState.IsValid)
+            {
+                input.LocationsDropDown = this.locationsService.GetAllLocationsAsKeyValuePair();
+                input.CamerasDropDown = this.cameraService.GetAllCamerasAsKeyValuePair();
+                input.TagsDropDown = this.tagsService.GetAllTagsAsKeyValuePair();
+
+                return this.View(input);
+            }
+
+            await this.postsService.UpdateImage(input);
+            return this.Redirect($"/PhotoPosts/PhotosNewest");
+        }
+
+        [Authorize]
+        [HttpPost]
+        public async Task<IActionResult> UpdatePost(NormalPostUpdateModel input)
+        {
+            if (!this.ModelState.IsValid)
+            {
+                input.TagsDropDown = this.tagsService.GetAllTagsAsKeyValuePair();
+
+                return this.View(input);
+            }
+
+            await this.postsService.UpdatePost(input);
+            return this.Redirect("/NormalPosts/NormalPostsNewest");
+        }
     }
 }

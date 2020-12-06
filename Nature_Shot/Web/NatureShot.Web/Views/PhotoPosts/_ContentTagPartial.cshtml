@@ -1,6 +1,18 @@
 ﻿@model NatureShot.Web.ViewModels.Images.ImagePostViewModel
 
 <h4><span class="border-bottom border-primary">@Model.Username</span></h4>
+<a class="dropdown-toggle float-right" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    <i class="fas fa-ellipsis-h"></i>
+</a>
+<div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+    @if (this.User.Identity.Name == Model.Username)
+    {
+        <a class="dropdown-item" asp-controller="Posts" asp-action="UpdateImage" asp-route-id="@Model.ImageId">Update</a>
+        <a class="dropdown-item" id="deleteTrigger" href="javascript:void(0)">Delete</a>
+    }
+    <a class="dropdown-item" id="reportTrigger" href="javascript:void(0)">Report</a>
+</div>
+
 <p class="text-black-50 mb-0" id="datetime">@Model.DatePosted.ToString("dddd, dd MMMM yyyy")</p>
 <br>
 <p class="text-black mb-0"><span class="border-bottom border-primary">@Model.Tags</span></p>

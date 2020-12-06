@@ -12,6 +12,7 @@
             this.Tags = new HashSet<PostTag>();
             this.Comments = new HashSet<Comment>();
             this.PostReacts = new HashSet<PostReact>();
+            this.Reports = new HashSet<Report>();
         }
 
         [Required]
@@ -53,5 +54,7 @@
         public virtual ICollection<Comment> Comments { get; set; }
 
         public virtual ICollection<PostReact> PostReacts { get; set; }
+
+        public virtual ICollection<Report> Reports { get; set; }
     }
 }

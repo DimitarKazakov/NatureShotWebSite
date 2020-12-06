@@ -1,4 +1,7 @@
 ﻿@model List<NatureShot.Web.ViewModels.Videos.VideoPostViewModel>
+@{ this.ViewData["Title"] = "Newest Videos";
+    this.ViewData["Controller"] = "VideoPosts";
+    this.ViewData["Action"] = "VideosNewest"; }
 <!--Search-->
 <div class="input-group input-group-lg md-form form-sm form-1 pl-0 mb-5 border-primary ml-md-5">
     <div class="input-group-prepend">
@@ -60,4 +63,6 @@
     <script src="~/js/LikesDislikeCommentVideo.js"></script>
     <script src="~/js/LocationModalVideo.js"></script>
     <script src="~/js/CameraInfoModal.js"></script>
+    <script src="~/js/DeleteModalPost.js"></script>
+    <script src="~/js/OpenReportModal.js"></script>
 }

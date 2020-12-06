@@ -1,0 +1,53 @@
+﻿@model NatureShot.Web.ViewModels.NormalPosts.NormalPostUpdateModel
+@{
+    this.ViewData["Title"] = "Update Post";
+    var tagItems = Model.TagsDropDown.Select(x => new SelectListItem(x.Value, x.Key));
+}
+
+<div class="row justify-content-center no-gutters mb-5 border border-primary round">
+    <div class="text-center h-100 project">
+        <div class="d-flex h-100">
+            <div class="project-text w-100 my-auto text-center">
+                <form method="post" asp-controller="Posts" asp-action="UpdatePost">
+                    <div class="text-center">
+                        <!--USER NAME-->
+                        <h4>@this.User.Identity.Name</h4>
+                        <input asp-for="NormalPostId" value="@Model.NormalPostId" hidden>
+                        <div asp-validation-summary="All" class="text-danger"></div>
+                        <br>
+
+                        <!--TAGS INPUT-->
+                        <label asp-for="Tags" class="text-black-50 mb-1"><u>Type some <span class="text-dark text-uppercase">#tags</span> here:</u></label>
+                        <div class="input-group-lg input-group">
+                            <textarea asp-for="Tags" id="tagInput" type="text" class="form-control col-12 mt-2 border border-primary rounded-left" aria-label="Text input with dropdown button" rows="1">@Model.Tags</textarea>
+                            <div class="input-group-append col-12">
+                                <select asp-items="tagItems" id="tagSelect" data-live-search="true" data-live-search-placeholder="Search Location" class="form-control selectpicker border border-primary rounded" multiple data-selected-text-format="count > 1" data-size="6">
+                                </select>
+                            </div>
+                        </div>
+                        <span asp-validation-for="Tags" class="text-danger"></span>
+                        <br>
+
+                        <!--CAPTION INPUT-->
+                        <div class="form-group">
+                            <label asp-for="Caption" class="text-black-50 mb-1"><u>Write short <span class="text-dark text-uppercase">description/caption</span> here:</u></label>
+                            <textarea asp-for="Caption" type="text" class="form-control border border-primary rounded" placeholder="Very beautiful and breath taking, place i recomment you to go there!" rows="5">@Model.Caption</textarea>
+                            <span asp-validation-for="Caption" class="text-danger"></span>
+                        </div>
+
+                        <br>
+                    </div>
+                    <div class="text-center">
+                        <button type="submit" value="UpdatePost" class="btn btn-outline-primary mt-4 border border-primary rounded" name="uploadbutton">Update Post</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    <script src="~/js/PostInputFields.js"></script>
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js" asp-append-version="true"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/dist/jquery.validate.unobtrusive.js" asp-append-version="true"></script>
+}

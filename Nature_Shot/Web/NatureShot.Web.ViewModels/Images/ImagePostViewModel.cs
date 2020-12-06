@@ -29,5 +29,8 @@ namespace NatureShot.Web.ViewModels.Images
         public int Dislikes { get; set; }
 
         public string Type { get; set; }
+
+        public bool UsersOwnPhoto { get; set; }
+
     }
 }

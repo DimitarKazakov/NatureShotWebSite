@@ -254,6 +254,11 @@
 
             foreach (var video in videoList)
             {
+                if (this.User.Identity.Name == video.Username)
+                {
+                    video.UsersOwnPhoto = true;
+                }
+
                 video.Caption = this.encoder.Encode(video.Caption);
             }
 

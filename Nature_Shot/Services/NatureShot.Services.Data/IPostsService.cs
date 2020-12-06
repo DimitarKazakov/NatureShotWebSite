@@ -21,5 +21,21 @@
         Task LikeAsync(int postId, string userId);
 
         Task DislikeAsync(int postId, string userId);
+
+        Task Delete(int postId);
+
+        bool CheckPostOwner(int postId, string userId);
+
+        Task UpdateImage(ImagePostUpdateModel input);
+
+        Task UpdateVideo(VideoPostUpdateModel input);
+
+        Task UpdatePost(NormalPostUpdateModel input);
+
+        ImagePostUpdateModel GetImagePost(int id);
+
+        VideoPostUpdateModel GetVideoPost(int id);
+
+        NormalPostUpdateModel GetNormalPost(int id);
     }
 }

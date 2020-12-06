@@ -22,23 +22,25 @@
         {
             var listOfTags = new List<Tag>();
             var tags = tagsInput.Split(' ');
-            var tagsFromDb = this.tagsRepository.All().ToList();
 
             foreach (var tagName in tags)
             {
-                var tag = new Tag
-                {
-                    Name = tagName,
-                };
+                var tag = this.tagsRepository.All().FirstOrDefault(x => x.Name == tagName);
 
-                if (!tagsFromDb.Contains(tag))
+                if (tag == null)
                 {
-                    if (!tag.Name.StartsWith('#'))
+                    if (!tagName.StartsWith('#'))
                     {
-                        tag.Name.Insert(0, "#");
+                        tagName.Insert(0, "#");
                     }
 
+                    tag = new Tag
+                    {
+                        Name = tagName,
+                    };
+
                     await this.tagsRepository.AddAsync(tag);
+                    await this.tagsRepository.SaveChangesAsync();
                 }
 
                 listOfTags.Add(tag);
