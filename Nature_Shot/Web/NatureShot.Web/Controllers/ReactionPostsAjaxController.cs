@@ -4,26 +4,31 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Text.Encodings.Web;
+    using System.Threading.Tasks;
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
     using NatureShot.Services.Data;
     using NatureShot.Web.ViewModels;
+    using NatureShot.Web.ViewModels.Report;
 
     [Route("api/[controller]")]
     [ApiController]
-    public class ReactionPostsAjax : BaseController
+    public class ReactionPostsAjaxController : BaseController
     {
         private readonly HtmlEncoder encoder;
         private readonly IReactionService reactionService;
         private readonly ICommentService commentService;
+        private readonly IReportService reportService;
 
-        public ReactionPostsAjax(HtmlEncoder encoder,
+        public ReactionPostsAjaxController(HtmlEncoder encoder,
                                  IReactionService reactionService,
-                                 ICommentService commentService)
+                                 ICommentService commentService,
+                                 IReportService reportService)
         {
             this.encoder = encoder;
             this.reactionService = reactionService;
             this.commentService = commentService;
+            this.reportService = reportService;
         }
 
         [Authorize]
@@ -56,6 +61,14 @@
             }
 
             return peopleList;
+        }
+
+        [Authorize]
+        [HttpPost]
+        public async Task<IActionResult> ReportPost([FromBody] ReportInputModel model)
+        {
+            await this.reportService.CreateReport(model);
+            return this.Json(true);
         }
     }
 }

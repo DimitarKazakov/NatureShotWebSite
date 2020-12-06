@@ -131,6 +131,7 @@
             services.AddTransient<IReactionService, ReactionService>();
             services.AddTransient<ICommentService, CommentService>();
             services.AddTransient<IVideosService, VideosService>();
+            services.AddTransient<IReportService, ReportService>();
 
             services.AddTransient<IPhotoPostsMostLikes, PhotoPostsMostLikes>();
             services.AddTransient<IPhotoPostsLeastLikes, PhotoPostsLeastLikes>();

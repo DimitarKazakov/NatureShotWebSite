@@ -31,5 +31,6 @@
     <Folder Include="CustomAttributes\" />
     <Folder Include="Videos\" />
     <Folder Include="Recaptcha\" />
+    <Folder Include="Report\" />
   </ItemGroup>
 </Project>
