@@ -7,7 +7,6 @@
 
     using NatureShot.Data.Common.Repositories;
     using NatureShot.Data.Models;
-    using NatureShot.Services.Data.Models;
 
     public class CameraService : ICameraService
     {

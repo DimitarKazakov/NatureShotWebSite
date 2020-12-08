@@ -33,7 +33,7 @@
 
         public IEnumerable<PeopleReactedViewModel> GetCommentsForPost(int postId)
         {
-            return this.commentRepository.AllAsNoTracking()
+            var comments = this.commentRepository.AllAsNoTracking()
                                          .Where(x => x.PostId == postId)
                                          .Select(x => new PeopleReactedViewModel
                                          {
@@ -41,6 +41,8 @@
                                              Content = x.Content,
                                          })
                                          .ToList();
+
+            return comments;
         }
     }
 }

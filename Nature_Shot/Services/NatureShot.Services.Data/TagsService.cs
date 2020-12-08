@@ -31,16 +31,24 @@
                 {
                     if (!tagName.StartsWith('#'))
                     {
-                        tagName.Insert(0, "#");
+                        tag = new Tag
+                        {
+                            Name = '#' + tagName,
+                        };
+
+                        await this.tagsRepository.AddAsync(tag);
+                        await this.tagsRepository.SaveChangesAsync();
                     }
-
-                    tag = new Tag
+                    else
                     {
-                        Name = tagName,
-                    };
+                        tag = new Tag
+                        {
+                            Name = tagName,
+                        };
 
-                    await this.tagsRepository.AddAsync(tag);
-                    await this.tagsRepository.SaveChangesAsync();
+                        await this.tagsRepository.AddAsync(tag);
+                        await this.tagsRepository.SaveChangesAsync();
+                    }
                 }
 
                 listOfTags.Add(tag);
