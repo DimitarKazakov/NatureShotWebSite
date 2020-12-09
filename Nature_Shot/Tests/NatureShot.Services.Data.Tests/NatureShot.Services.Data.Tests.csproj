@@ -31,4 +31,9 @@
     <ProjectReference Include="..\..\Services\NatureShot.Services.Data\NatureShot.Services.Data.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="NormalPostsTests\" />
+    <Folder Include="PhotoPosts\" />
+    <Folder Include="VideoPosts\" />
+  </ItemGroup>
 </Project>
