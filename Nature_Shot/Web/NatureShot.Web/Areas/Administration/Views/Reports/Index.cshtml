@@ -1,0 +1,55 @@
+@model IEnumerable<NatureShot.Data.Models.Report>
+
+@{ ViewData["Title"] = "Reports Admin"; }
+
+<h1>Reports</h1>
+
+<table class="table table-hover table-responsive-lg">
+    <thead class="thead-dark">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Post)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Subject)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Content)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IsDeleted)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CreatedOn)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.Post.Id)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Subject)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Content)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.IsDeleted)
+        @Html.DisplayFor(modelItem => item.DeletedOn)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.CreatedOn)
+    </td>
+    <td>
+        <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+        <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+    </td>
+</tr>
+}
+    </tbody>
+</table>

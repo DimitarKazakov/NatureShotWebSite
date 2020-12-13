@@ -62,10 +62,21 @@
     <Folder Include="Views\NormalPosts\" />
     <Folder Include="Views\Posts\" />
     <Folder Include="Views\VideoPosts\" />
+    <Folder Include="Areas\Administration\Views\Tags\" />
+    <Folder Include="Areas\Administration\Views\Shared\" />
+    <Folder Include="Areas\Administration\Views\Countries\" />
+    <Folder Include="Areas\Administration\Views\Cameras\" />
+    <Folder Include="Areas\Administration\Views\Locations\" />
+    <Folder Include="Areas\Administration\Views\ApplicationUsers\" />
+    <Folder Include="Areas\Administration\Views\Comments\" />
+    <Folder Include="Areas\Administration\Views\Reports\" />
   </ItemGroup>
   <ItemGroup>
     <Content Remove="Views\VideoPosts\_RightVideoPartial.cshtml" />
     <Content Remove="Views\VideoPosts\_LeftVideoPartial.cshtml" />
+    <Content Remove="Views\Tags\Delete.cshtml" />
+    <Content Remove="Views\Shared\_ValidationScriptsPartial.cshtml" />
+    <Content Remove="Views\Tags\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Update="wwwroot\images\archway-in-a-pod.jpg">

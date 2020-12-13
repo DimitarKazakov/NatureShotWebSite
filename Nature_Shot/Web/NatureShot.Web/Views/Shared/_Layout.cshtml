@@ -18,30 +18,6 @@
 <body id="page-top">
 
     <header>
-        @*<nav class="navbar navbar-expand-sm navbar-light bg-white border-bottom box-shadow mb-3">
-                <div class="container">
-                    <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">@GlobalConstants.SystemName</a>
-                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                            aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-                    <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
-                        <partial name="_LoginPartial" />
-                        <ul class="navbar-nav flex-grow-1">
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Settings" asp-action="Index">Settings</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </nav>*@
-
         @if ((string)this.ViewData["Action"] == "Index")
         {
 <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
@@ -91,8 +67,23 @@ else
                         <a class="dropdown-item" asp-area="" asp-controller="VideoPosts" asp-action="VideosNewest"><span class="line">Videos</span></a>
                     </div>
                 </li>
+                @if (this.User.IsInRole(GlobalConstants.AdministratorRoleName))
+                {
+<li class="nav-item dropdown">
+    <a class="nav-link dropdown-toggle text-dark" href="#" id="navbarDropdownAdmin" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <span class="line">Administration</span>
+    </a>
+    <div class="dropdown-menu" aria-labelledby="navbarDropdownAdmin">
+        <a class="dropdown-item" asp-area="Administration" asp-controller="Tags" asp-action="Index"><span class="line">Tags</span></a>
+        <a class="dropdown-item" asp-area="Administration" asp-controller="Countries" asp-action="Index"><span class="line">Countries</span></a>
+        <a class="dropdown-item" asp-area="Administration" asp-controller="Locations" asp-action="Index"><span class="line">Locations</span></a>
+        <a class="dropdown-item" asp-area="Administration" asp-controller="ApplicationUsers" asp-action="Index"><span class="line">Users</span></a>
+        <a class="dropdown-item" asp-area="Administration" asp-controller="Cameras" asp-action="Index"><span class="line">Cameras</span></a>
+        <a class="dropdown-item" asp-area="Administration" asp-controller="Comments" asp-action="Index"><span class="line">Comments</span></a>
+        <a class="dropdown-item" asp-area="Administration" asp-controller="Reports" asp-action="Index"><span class="line">Reports</span></a>
+    </div>
+</li>}
                 <partial name="_LoginPartial" />
-
             </ul>
             <div class="line"></div>
         </div>
@@ -100,13 +91,6 @@ else
 </nav>}
     </header>
 
-
-    @*<div class="container">
-            <partial name="_CookieConsentPartial" />
-            <main role="main" class="pb-3">
-                @this.RenderBody()
-            </main>
-        </div>*@
     @if (this.ViewData["Action"] == "Index")
     {
 @this.RenderBody() }
@@ -118,13 +102,6 @@ else
         @this.RenderBody()
     </div>
 </section>}
-
-    @*<footer class="border-top footer text-muted">
-            <div class="container">
-                &copy; @DateTime.Now.Year - @GlobalConstants.SystemName - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-            </div>
-        </footer>*@
-
 
     <footer class="page-footer font-small stylish-color-dark pt-4 row text-center">
 
