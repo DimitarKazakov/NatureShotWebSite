@@ -3,7 +3,7 @@
     <div class="text-center h-100 project border border-primary rounded-pill">
         <div class="d-flex h-100 border border-primary rounded-pill">
             <div class="project-text w-100 my-auto text-center border border-primary rounded-pill">
-                <h4 class="text-black mb-4"><span class="border-primary border-bottom">@Model.Username</span></h4>
+                <h4><span class="border-bottom border-primary"><a class="text-decoration-none" asp-area="" asp-controller="Home" asp-action="Profile" asp-route-username="@Model.Username">@Model.Username</a></span></h4>
                 <a class="dropdown-toggle float-right" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <i class="fas fa-ellipsis-h"></i>
                 </a>
@@ -16,7 +16,7 @@
                     <a class="dropdown-item" id="reportTrigger" href="javascript:void(0)">Report</a>
                 </div>
                 <p class="text-black-50 mb-0" id="id" hidden>@Model.PostId</p>
-                <p class="text-black-50 mb-0" id="datetime">@Model.DatePosted.ToString("dddd, dd MMMM yyyy")</p>
+                <p class="text-black-50 mb-0" id="datetime">@Model.DatePosted</p>
                 <br>
                 <p class="text-black mb-0"><span class="border-bottom border-primary">@Model.Tags</span></p>
                 <br>

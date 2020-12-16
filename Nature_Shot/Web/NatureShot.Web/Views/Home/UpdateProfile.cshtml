@@ -1,0 +1,75 @@
+﻿@model NatureShot.Web.ViewModels.User.UserProfileInputModel
+@{
+    this.ViewData["Title"] = "Update Profile";
+}
+
+<div class="row justify-content-center no-gutters mb-5 border border-primary round">
+    <div class="text-center h-100 project">
+        <div class="d-flex h-100">
+            <form method="post" enctype="multipart/form-data" asp-controller="Home" asp-action="UpdateProfile">
+                <div class="text-center col-8 offset-2  offset-sm-0 col-sm-12">
+
+                    <!--USER NAME-->
+                    <h4>@this.User.Identity.Name</h4>
+                    <input asp-for="Id" value="@Model.Id" hidden>
+
+                    @if (Model.ProfilePictureUrl == null)
+                    {
+                        <img class="img-fluid z-depth-1 mb-3 mb-lg-0" src="https://www.thumbayclinic.com/wp-content/uploads/2018/05/default-user-image.png" alt="Image" />
+                    }
+                    else
+                    {
+                        <img class="img-fluid z-depth-1 mb-3 mb-lg-0" src="@Model.ProfilePictureUrl" alt="Image" />
+                    }
+
+                    <div asp-validation-summary="All" class="text-danger"></div>
+                    <br>
+
+                    <!--IMAGE FILE INPUT-->
+                    <label asp-for="ProfilePicture" class="text-black-50 mb-1"><u>Upload Profile Picture: <span class="text-dark text-uppercase">.pdf, .jpeg, .jpg ... (MAX 10 MB)</span> here:</u></label>
+                    <div class="input-group">
+                        <div class="custom-file">
+                            <input asp-for="ProfilePicture" id="fileInput" type="file" accept="image/*" class="custom-file-input form-control" />
+                            <label asp-for="ProfilePicture" id="fileLabel" class="custom-file-label text-black-50 mb-1 border border-primary rounded">Select <span class="text-dark text-uppercase">Image</span></label>
+                        </div>
+                    </div>
+                    <span asp-validation-for="ProfilePicture" class="text-danger"></span>
+
+                    <br>
+
+                    <!--Name INPUT-->
+                    <label asp-for="Name" class="text-black-50 mb-1"><u>Write your <span class="text-dark text-uppercase">Name</span> here:</u></label>
+                    <input asp-for="Name" class="form-control border border-primary round" value="@Model.Name" />
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                    <br>
+
+                    <!--Proffesion INPUT-->
+                    <label asp-for="Proffesion" class="text-black-50 mb-1"><u>Write your <span class="text-dark text-uppercase">Proffesion</span> here:</u></label>
+                    <input asp-for="Proffesion" class="form-control border border-primary round" value="@Model.Proffesion" />
+                    <span asp-validation-for="Proffesion" class="text-danger"></span>
+                    <br>
+
+                    <!--Camera INPUT-->
+                    <label asp-for="Camera" class="text-black-50 mb-1"><u>Write your <span class="text-dark text-uppercase">Camera</span> here:</u></label>
+                    <input asp-for="Camera" class="form-control border border-primary round" value="@Model.Camera" />
+                    <span asp-validation-for="Camera" class="text-danger"></span>
+                    <br>
+
+                    <!--LivesIn INPUT-->
+                    <label asp-for="LivesIn" class="text-black-50 mb-1"><u>Write where you <span class="text-dark text-uppercase">Live</span> here:</u></label>
+                    <input asp-for="LivesIn" class="form-control border border-primary round" value="@Model.LivesIn" />
+                    <span asp-validation-for="LivesIn" class="text-danger"></span>
+                    <br>
+
+                    <div class="text-center mb-4">
+                        <button type="submit" value="UpdateProfile" class="btn btn-outline-primary mt-4 border border-primary rounded" name="uploadbutton">Update Profile</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+@section Scripts{
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js" asp-append-version="true"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/dist/jquery.validate.unobtrusive.js" asp-append-version="true"></script>
+}

@@ -74,6 +74,15 @@
                         case "Caption":
                             videoList = this.videoNewestService.SearchByCaption(page, searchInput).ToList();
                             break;
+                        case "Liked":
+                            videoList = this.videoNewestService.SearchByLikedPosts(0, searchInput).ToList();
+                            break;
+                        case "Disliked":
+                            videoList = this.videoNewestService.SearchByDislikedPosts(0, searchInput).ToList();
+                            break;
+                        case "Commented":
+                            videoList = this.videoNewestService.SearchByCommentedPosts(0, searchInput).ToList();
+                            break;
                         default:
                             videoList = this.videoNewestService.GetVideoPostsNewest(page).ToList();
                             break;
@@ -97,6 +106,15 @@
                             break;
                         case "Caption":
                             videoList = this.videoOldestService.SearchByCaption(page, searchInput).ToList();
+                            break;
+                        case "Liked":
+                            videoList = this.videoOldestService.SearchByLikedPosts(0, searchInput).ToList();
+                            break;
+                        case "Disliked":
+                            videoList = this.videoOldestService.SearchByDislikedPosts(0, searchInput).ToList();
+                            break;
+                        case "Commented":
+                            videoList = this.videoOldestService.SearchByCommentedPosts(0, searchInput).ToList();
                             break;
                         default:
                             videoList = this.videoOldestService.GetVideoPostsOldest(page).ToList();
@@ -122,6 +140,15 @@
                         case "Caption":
                             videoList = this.videoMostLikesService.SearchByCaption(page, searchInput).ToList();
                             break;
+                        case "Liked":
+                            videoList = this.videoMostLikesService.SearchByLikedPosts(0, searchInput).ToList();
+                            break;
+                        case "Disliked":
+                            videoList = this.videoMostLikesService.SearchByDislikedPosts(0, searchInput).ToList();
+                            break;
+                        case "Commented":
+                            videoList = this.videoMostLikesService.SearchByCommentedPosts(0, searchInput).ToList();
+                            break;
                         default:
                             videoList = this.videoMostLikesService.GetVideoPostsMostLikes(page).ToList();
                             break;
@@ -145,6 +172,15 @@
                             break;
                         case "Caption":
                             videoList = this.videoLeastLikesService.SearchByCaption(page, searchInput).ToList();
+                            break;
+                        case "Liked":
+                            videoList = this.videoLeastLikesService.SearchByLikedPosts(0, searchInput).ToList();
+                            break;
+                        case "Disliked":
+                            videoList = this.videoLeastLikesService.SearchByDislikedPosts(0, searchInput).ToList();
+                            break;
+                        case "Commented":
+                            videoList = this.videoLeastLikesService.SearchByCommentedPosts(0, searchInput).ToList();
                             break;
                         default:
                             videoList = this.videoLeastLikesService.GetVideoPostsLeastLikes(page).ToList();
@@ -170,6 +206,15 @@
                         case "Caption":
                             videoList = this.videoMostDislikesService.SearchByCaption(page, searchInput).ToList();
                             break;
+                        case "Liked":
+                            videoList = this.videoMostDislikesService.SearchByLikedPosts(0, searchInput).ToList();
+                            break;
+                        case "Disliked":
+                            videoList = this.videoMostDislikesService.SearchByDislikedPosts(0, searchInput).ToList();
+                            break;
+                        case "Commented":
+                            videoList = this.videoMostDislikesService.SearchByCommentedPosts(0, searchInput).ToList();
+                            break;
                         default:
                             videoList = this.videoMostDislikesService.GetVideoPostsMostDislikes(page).ToList();
                             break;
@@ -193,6 +238,15 @@
                             break;
                         case "Caption":
                             videoList = this.videoLeastDislikesService.SearchByCaption(page, searchInput).ToList();
+                            break;
+                        case "Liked":
+                            videoList = this.videoLeastDislikesService.SearchByLikedPosts(0, searchInput).ToList();
+                            break;
+                        case "Disliked":
+                            videoList = this.videoLeastDislikesService.SearchByDislikedPosts(0, searchInput).ToList();
+                            break;
+                        case "Commented":
+                            videoList = this.videoLeastDislikesService.SearchByCommentedPosts(0, searchInput).ToList();
                             break;
                         default:
                             videoList = this.videoLeastDislikesService.GetVideoPostsLeastDislikes(page).ToList();
@@ -218,6 +272,15 @@
                         case "Caption":
                             videoList = this.videoLongestService.SearchByCaption(page, searchInput).ToList();
                             break;
+                        case "Liked":
+                            videoList = this.videoLongestService.SearchByLikedPosts(0, searchInput).ToList();
+                            break;
+                        case "Disliked":
+                            videoList = this.videoLongestService.SearchByDislikedPosts(0, searchInput).ToList();
+                            break;
+                        case "Commented":
+                            videoList = this.videoLongestService.SearchByCommentedPosts(0, searchInput).ToList();
+                            break;
                         default:
                             videoList = this.videoLongestService.GetVideoPostsLongest(page).ToList();
                             break;
@@ -241,6 +304,15 @@
                             break;
                         case "Caption":
                             videoList = this.videoShortestService.SearchByCaption(page, searchInput).ToList();
+                            break;
+                        case "Liked":
+                            videoList = this.videoShortestService.SearchByLikedPosts(0, searchInput).ToList();
+                            break;
+                        case "Disliked":
+                            videoList = this.videoShortestService.SearchByDislikedPosts(0, searchInput).ToList();
+                            break;
+                        case "Commented":
+                            videoList = this.videoShortestService.SearchByCommentedPosts(0, searchInput).ToList();
                             break;
                         default:
                             videoList = this.videoShortestService.GetVideoPostsShortest(page).ToList();

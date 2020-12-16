@@ -28,6 +28,7 @@
     using NatureShot.Web.ViewModels.Recaptcha;
     using NatureShot.Web.ViewModels;
     using System;
+    using NatureShot.Web.Hubs;
 
     public class Startup
     {
@@ -100,6 +101,7 @@
             });
 
             services.Configure<RecaptchaV3>(this.configuration.GetSection("Recaptcha"));
+            services.AddSignalR();
             services.AddControllersWithViews(
                 options =>
                     {
@@ -132,6 +134,7 @@
             services.AddTransient<ICommentService, CommentService>();
             services.AddTransient<IVideosService, VideosService>();
             services.AddTransient<IReportService, ReportService>();
+            services.AddTransient<IUserService, UserService>();
 
             services.AddTransient<IPhotoPostsMostLikes, PhotoPostsMostLikes>();
             services.AddTransient<IPhotoPostsLeastLikes, PhotoPostsLeastLikes>();
@@ -201,6 +204,7 @@
             app.UseEndpoints(
                 endpoints =>
                     {
+                        endpoints.MapHub<ChatHub>("/chat");
                         endpoints.MapControllerRoute("areaRoute", "{area:exists}/{controller=Home}/{action=Index}/{id?}");
                         endpoints.MapControllerRoute("default", "{controller=Home}/{action=Index}/{id?}");
                         endpoints.MapRazorPages();

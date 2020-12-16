@@ -59,6 +59,12 @@
 
         public DbSet<Report> Reports { get; set; }
 
+        public DbSet<Message> Messages { get; set; }
+
+        public DbSet<GroupMembers> GroupMembers { get; set; }
+
+        public DbSet<ChatGroup> ChatGroups { get; set; }
+
         public override int SaveChanges() => this.SaveChanges(true);
 
         public override int SaveChanges(bool acceptAllChangesOnSuccess)

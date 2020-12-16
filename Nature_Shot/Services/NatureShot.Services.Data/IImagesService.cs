@@ -9,5 +9,7 @@
     public interface IImagesService
     {
         Task<Image> CreateImage(string userId, ImageUploadResult imageInput);
+
+        Task<Image> CreateProfileImage(string userId, ImageUploadResult imageInput);
     }
 }

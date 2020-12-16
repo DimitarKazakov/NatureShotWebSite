@@ -8,7 +8,7 @@
         {
         }
 
-        public DateTime DatePosted { get; set; }
+        public string DatePosted { get; set; }
 
         public string PostId { get; set; }
 

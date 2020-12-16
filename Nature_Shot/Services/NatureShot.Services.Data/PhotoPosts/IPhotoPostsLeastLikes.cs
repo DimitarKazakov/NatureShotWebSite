@@ -7,16 +7,22 @@
 
     public interface IPhotoPostsLeastLikes
     {
-        IEnumerable<ImagePostViewModel> GetImagePostsLeastLikes(int page, int count = 5);
+        IEnumerable<ImagePostViewModel> GetImagePostsLeastLikes(int page, int count = 4);
 
-        IEnumerable<ImagePostViewModel> SearchByCaption(int page, string input, int count = 5);
+        IEnumerable<ImagePostViewModel> SearchByCaption(int page, string input, int count = 4);
 
-        IEnumerable<ImagePostViewModel> SearchByUsername(int page, string input, int count = 5);
+        IEnumerable<ImagePostViewModel> SearchByUsername(int page, string input, int count = 4);
 
-        IEnumerable<ImagePostViewModel> SearchByTags(int page, string input, int count = 5);
+        IEnumerable<ImagePostViewModel> SearchByTags(int page, string input, int count = 4);
 
-        IEnumerable<ImagePostViewModel> SearchByLocation(int page, string input, int count = 5);
+        IEnumerable<ImagePostViewModel> SearchByLocation(int page, string input, int count = 4);
 
-        IEnumerable<ImagePostViewModel> SearchByCamera(int page, string input, int count = 5);
+        IEnumerable<ImagePostViewModel> SearchByCamera(int page, string input, int count = 4);
+
+        IEnumerable<ImagePostViewModel> SearchByLikedPosts(int page, string input, int count = 4);
+
+        IEnumerable<ImagePostViewModel> SearchByDislikedPosts(int page, string input, int count = 4);
+
+        IEnumerable<ImagePostViewModel> SearchByCommentedPosts(int page, string input, int count = 4);
     }
 }

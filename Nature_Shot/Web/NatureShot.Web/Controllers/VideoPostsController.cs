@@ -160,6 +160,15 @@
                 case "Caption":
                     viewModel = this.videoNewestService.SearchByCaption(0, searchInput).ToList();
                     break;
+                case "Liked":
+                    viewModel = this.videoNewestService.SearchByLikedPosts(0, searchInput).ToList();
+                    break;
+                case "Disliked":
+                    viewModel = this.videoNewestService.SearchByDislikedPosts(0, searchInput).ToList();
+                    break;
+                case "Commented":
+                    viewModel = this.videoNewestService.SearchByCommentedPosts(0, searchInput).ToList();
+                    break;
                 default:
                     break;
             }
@@ -187,6 +196,15 @@
                     break;
                 case "Caption":
                     viewModel = this.videoOldestService.SearchByCaption(0, searchInput).ToList();
+                    break;
+                case "Liked":
+                    viewModel = this.videoOldestService.SearchByLikedPosts(0, searchInput).ToList();
+                    break;
+                case "Disliked":
+                    viewModel = this.videoOldestService.SearchByDislikedPosts(0, searchInput).ToList();
+                    break;
+                case "Commented":
+                    viewModel = this.videoOldestService.SearchByCommentedPosts(0, searchInput).ToList();
                     break;
                 default:
                     break;
@@ -216,6 +234,15 @@
                 case "Caption":
                     viewModel = this.videoMostLikesService.SearchByCaption(0, searchInput).ToList();
                     break;
+                case "Liked":
+                    viewModel = this.videoMostLikesService.SearchByLikedPosts(0, searchInput).ToList();
+                    break;
+                case "Disliked":
+                    viewModel = this.videoMostLikesService.SearchByDislikedPosts(0, searchInput).ToList();
+                    break;
+                case "Commented":
+                    viewModel = this.videoMostLikesService.SearchByCommentedPosts(0, searchInput).ToList();
+                    break;
                 default:
                     break;
             }
@@ -243,6 +270,15 @@
                     break;
                 case "Caption":
                     viewModel = this.videoLeastLikesService.SearchByCaption(0, searchInput).ToList();
+                    break;
+                case "Liked":
+                    viewModel = this.videoLeastLikesService.SearchByLikedPosts(0, searchInput).ToList();
+                    break;
+                case "Disliked":
+                    viewModel = this.videoLeastLikesService.SearchByDislikedPosts(0, searchInput).ToList();
+                    break;
+                case "Commented":
+                    viewModel = this.videoLeastLikesService.SearchByCommentedPosts(0, searchInput).ToList();
                     break;
                 default:
                     break;
@@ -272,6 +308,15 @@
                 case "Caption":
                     viewModel = this.videoMostDislikesService.SearchByCaption(0, searchInput).ToList();
                     break;
+                case "Liked":
+                    viewModel = this.videoMostDislikesService.SearchByLikedPosts(0, searchInput).ToList();
+                    break;
+                case "Disliked":
+                    viewModel = this.videoMostDislikesService.SearchByDislikedPosts(0, searchInput).ToList();
+                    break;
+                case "Commented":
+                    viewModel = this.videoMostDislikesService.SearchByCommentedPosts(0, searchInput).ToList();
+                    break;
                 default:
                     break;
             }
@@ -299,6 +344,15 @@
                     break;
                 case "Caption":
                     viewModel = this.videoLeastDislikesService.SearchByCaption(0, searchInput).ToList();
+                    break;
+                case "Liked":
+                    viewModel = this.videoLeastDislikesService.SearchByLikedPosts(0, searchInput).ToList();
+                    break;
+                case "Disliked":
+                    viewModel = this.videoLeastDislikesService.SearchByDislikedPosts(0, searchInput).ToList();
+                    break;
+                case "Commented":
+                    viewModel = this.videoLeastDislikesService.SearchByCommentedPosts(0, searchInput).ToList();
                     break;
                 default:
                     break;
@@ -328,6 +382,15 @@
                 case "Caption":
                     viewModel = this.videoLongestService.SearchByCaption(0, searchInput).ToList();
                     break;
+                case "Liked":
+                    viewModel = this.videoLongestService.SearchByLikedPosts(0, searchInput).ToList();
+                    break;
+                case "Disliked":
+                    viewModel = this.videoLongestService.SearchByDislikedPosts(0, searchInput).ToList();
+                    break;
+                case "Commented":
+                    viewModel = this.videoLongestService.SearchByCommentedPosts(0, searchInput).ToList();
+                    break;
                 default:
                     break;
             }
@@ -355,6 +418,15 @@
                     break;
                 case "Caption":
                     viewModel = this.videoShortestService.SearchByCaption(0, searchInput).ToList();
+                    break;
+                case "Liked":
+                    viewModel = this.videoShortestService.SearchByLikedPosts(0, searchInput).ToList();
+                    break;
+                case "Disliked":
+                    viewModel = this.videoShortestService.SearchByDislikedPosts(0, searchInput).ToList();
+                    break;
+                case "Commented":
+                    viewModel = this.videoShortestService.SearchByCommentedPosts(0, searchInput).ToList();
                     break;
                 default:
                     break;

@@ -3,7 +3,7 @@ namespace NatureShot.Data.Models
 {
     using System;
     using System.Collections.Generic;
-
+    using System.ComponentModel.DataAnnotations;
     using Microsoft.AspNetCore.Identity;
     using NatureShot.Data.Common.Models;
 
@@ -20,6 +20,7 @@ namespace NatureShot.Data.Models
             this.Posts = new HashSet<Post>();
             this.PostReacts = new HashSet<PostReact>();
             this.Videos = new HashSet<Video>();
+            this.Groups = new HashSet<GroupMembers>();
         }
 
         // Audit info
@@ -31,6 +32,18 @@ namespace NatureShot.Data.Models
         public bool IsDeleted { get; set; }
 
         public DateTime? DeletedOn { get; set; }
+
+        [MaxLength(50)]
+        public string Name { get; set; }
+
+        [MaxLength(50)]
+        public string Proffesion { get; set; }
+
+        [MaxLength(50)]
+        public string Camera { get; set; }
+
+        [MaxLength(50)]
+        public string LivesIn { get; set; }
 
         public virtual ICollection<IdentityUserRole<string>> Roles { get; set; }
 
@@ -47,5 +60,7 @@ namespace NatureShot.Data.Models
         public virtual ICollection<PostReact> PostReacts { get; set; }
 
         public virtual ICollection<Video> Videos { get; set; }
+
+        public virtual ICollection<GroupMembers> Groups { get; set; }
     }
 }

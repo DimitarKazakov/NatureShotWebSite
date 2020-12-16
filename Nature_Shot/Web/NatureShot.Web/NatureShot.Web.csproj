@@ -39,6 +39,8 @@
     <PackageReference Include="Microsoft.AspNet.WebApi.Cors" Version="5.2.7" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.Google" Version="3.1.9" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.Twitter" Version="3.1.9" />
+    <PackageReference Include="Microsoft.AspNet.SignalR.Core" Version="2.4.1" />
+    <PackageReference Include="Microsoft.AspNet.SignalR.Client" Version="2.4.1" />
   </ItemGroup>
 
   <ItemGroup>
@@ -70,6 +72,8 @@
     <Folder Include="Areas\Administration\Views\ApplicationUsers\" />
     <Folder Include="Areas\Administration\Views\Comments\" />
     <Folder Include="Areas\Administration\Views\Reports\" />
+    <Folder Include="Hubs\" />
+    <Folder Include="Views\Chat\" />
   </ItemGroup>
   <ItemGroup>
     <Content Remove="Views\VideoPosts\_RightVideoPartial.cshtml" />

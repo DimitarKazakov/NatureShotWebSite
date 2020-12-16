@@ -135,6 +135,15 @@
                 case "Caption":
                     viewModel = this.photoNewestService.SearchByCaption(0, searchInput).ToList();
                     break;
+                case "Liked":
+                    viewModel = this.photoNewestService.SearchByLikedPosts(0, searchInput).ToList();
+                    break;
+                case "Disliked":
+                    viewModel = this.photoNewestService.SearchByDislikedPosts(0, searchInput).ToList();
+                    break;
+                case "Commented":
+                    viewModel = this.photoNewestService.SearchByCommentedPosts(0, searchInput).ToList();
+                    break;
                 default:
                     break;
             }
@@ -162,6 +171,15 @@
                     break;
                 case "Caption":
                     viewModel = this.photoOldestService.SearchByCaption(0, searchInput).ToList();
+                    break;
+                case "Liked":
+                    viewModel = this.photoOldestService.SearchByLikedPosts(0, searchInput).ToList();
+                    break;
+                case "Disliked":
+                    viewModel = this.photoOldestService.SearchByDislikedPosts(0, searchInput).ToList();
+                    break;
+                case "Commented":
+                    viewModel = this.photoOldestService.SearchByCommentedPosts(0, searchInput).ToList();
                     break;
                 default:
                     break;
@@ -191,6 +209,15 @@
                 case "Caption":
                     viewModel = this.photoMostLikesService.SearchByCaption(0, searchInput).ToList();
                     break;
+                case "Liked":
+                    viewModel = this.photoMostLikesService.SearchByLikedPosts(0, searchInput).ToList();
+                    break;
+                case "Disliked":
+                    viewModel = this.photoMostLikesService.SearchByDislikedPosts(0, searchInput).ToList();
+                    break;
+                case "Commented":
+                    viewModel = this.photoMostLikesService.SearchByCommentedPosts(0, searchInput).ToList();
+                    break;
                 default:
                     break;
             }
@@ -218,6 +245,15 @@
                     break;
                 case "Caption":
                     viewModel = this.photoLeastLikesService.SearchByCaption(0, searchInput).ToList();
+                    break;
+                case "Liked":
+                    viewModel = this.photoLeastLikesService.SearchByLikedPosts(0, searchInput).ToList();
+                    break;
+                case "Disliked":
+                    viewModel = this.photoLeastLikesService.SearchByDislikedPosts(0, searchInput).ToList();
+                    break;
+                case "Commented":
+                    viewModel = this.photoLeastLikesService.SearchByCommentedPosts(0, searchInput).ToList();
                     break;
                 default:
                     break;
@@ -247,6 +283,15 @@
                 case "Caption":
                     viewModel = this.photoMostDislikesService.SearchByCaption(0, searchInput).ToList();
                     break;
+                case "Liked":
+                    viewModel = this.photoMostDislikesService.SearchByLikedPosts(0, searchInput).ToList();
+                    break;
+                case "Disliked":
+                    viewModel = this.photoMostDislikesService.SearchByDislikedPosts(0, searchInput).ToList();
+                    break;
+                case "Commented":
+                    viewModel = this.photoMostDislikesService.SearchByCommentedPosts(0, searchInput).ToList();
+                    break;
                 default:
                     break;
             }
@@ -274,6 +319,15 @@
                     break;
                 case "Caption":
                     viewModel = this.photoLeastDislikesService.SearchByCaption(0, searchInput).ToList();
+                    break;
+                case "Liked":
+                    viewModel = this.photoLeastDislikesService.SearchByLikedPosts(0, searchInput).ToList();
+                    break;
+                case "Disliked":
+                    viewModel = this.photoLeastDislikesService.SearchByDislikedPosts(0, searchInput).ToList();
+                    break;
+                case "Commented":
+                    viewModel = this.photoLeastDislikesService.SearchByCommentedPosts(0, searchInput).ToList();
                     break;
                 default:
                     break;

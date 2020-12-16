@@ -8,7 +8,7 @@ namespace NatureShot.Web.ViewModels.Images
         {
         }
 
-        public DateTime DatePosted { get; set; }
+        public string DatePosted { get; set; }
 
         public int ImageId { get; set; }
 

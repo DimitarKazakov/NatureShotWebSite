@@ -1,0 +1,235 @@
+﻿@model NatureShot.Web.ViewModels.User.UserProfileViewModel
+
+<div class="container emp-profile">
+    <form method="post">
+        <div class="row">
+            <div class="col-lg-4 order-1">
+                <div class="profile-img">
+                    @if (Model.ProfilePictureUrl != null)
+                    {
+                        <a><img class="img-fluid" data-toggle="modal" data-target="#profileModal" src="@Model.ProfilePictureUrl" alt="" /></a>
+
+                    }
+                    else
+                    {
+                        <a><img class="img-fluid" data-toggle="modal" data-target="#profileModal" src="https://www.thumbayclinic.com/wp-content/uploads/2018/05/default-user-image.png" alt="" /></a>
+                    }
+                </div>
+            </div>
+            <div class="col-lg-6 order-lg-2 order-3">
+                <div class="profile-head">
+                    <h3 class="mb-4">
+                        @Model.Username
+                    </h3>
+                    <ul class="nav nav-tabs" id="myTab" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">About</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Timeline</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            @if (this.User.Identity.Name == Model.Username)
+            {
+                <div class="col-lg-2 order-lg-3 order-2 mt-3 mb-3 mt-lg-0 mb-lg-0">
+                    <a class="btn btn-outline-primary border border-primary" asp-area="" asp-controller="Home" asp-action="UpdateProfile">Edit Profile</a>
+                </div>
+            }
+            else
+            {
+                <div class="col-lg-2 order-lg-3 order-2 mt-3 mb-3 mt-lg-0 mb-lg-0">
+                    <a class="btn btn-outline-primary border border-primary" asp-area="" asp-controller="Home" asp-action="Index">Chat</a>
+                </div>
+            }
+        </div>
+        <div class="row">
+            <div class="col-md-8">
+                <div class="tab-content profile-tab" id="myTabContent">
+                    <div class="tab-pane fade show active mt-3" id="home" role="tabpanel" aria-labelledby="home-tab">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>Username:</label>
+                            </div>
+                            <div class="col-md-6">
+                                <p>@Model.Username</p>
+                            </div>
+                        </div>
+                        <hr />
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>Email:</label>
+                            </div>
+                            <div class="col-md-6">
+                                <p>@Model.Email</p>
+                            </div>
+                        </div>
+                        <hr />
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>Name:</label>
+                            </div>
+                            <div class="col-md-6">
+                                <p>@Model.Name</p>
+                            </div>
+                        </div>
+                        <hr />
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>Profession:</label>
+                            </div>
+                            <div class="col-md-6">
+                                <p>@Model.Proffesion</p>
+                            </div>
+                        </div>
+                        <hr />
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>Camera:</label>
+                            </div>
+                            <div class="col-md-6">
+                                <p>@Model.Camera</p>
+                            </div>
+                        </div>
+                        <hr />
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>Lives in:</label>
+                            </div>
+                            <div class="col-md-6">
+                                <p>@Model.LivesIn</p>
+                            </div>
+                        </div>
+                        <hr />
+                    </div>
+                    <div class="tab-pane fade mt-3" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>Total Posts:</label>
+                            </div>
+                            <div class="col-md-6">
+                                <p>@Model.TotalPosts</p>
+                            </div>
+                        </div>
+                        <hr />
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>Total Likes:</label>
+                            </div>
+                            <div class="col-md-6">
+                                <p>@Model.TotalLikes</p>
+                            </div>
+                        </div>
+                        <hr />
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>Total Dislikes:</label>
+                            </div>
+                            <div class="col-md-6">
+                                <p>@Model.TotalDislikes</p>
+                            </div>
+                        </div>
+                        <hr />
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>On the platform since:</label>
+                            </div>
+                            <div class="col-md-6">
+                                <p>@Model.JoinedOn.ToString("MMMM dd yyyy")</p>
+                            </div>
+                        </div>
+                        <hr />
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 order-lg-first mt-3">
+                <div class="profile-work">
+                    <p>See User's: </p>
+                    <a href="/NormalPosts/SearchByNewest?searchBy=Name&searchInput=@Model.Username">Posts</a><br />
+                    <a href="/PhotoPosts/SearchByNewest?searchBy=Name&searchInput=@Model.Username">Photos</a><br />
+                    <a href="/VideoPosts/SearchByNewest?searchBy=Name&searchInput=@Model.Username">Videos</a>
+                    <p>See What User:</p>
+                    <div class="dropdown">
+                        <a class="dropdown-toggle" href="javascript:void(0)" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-expanded="false">
+                            <span>Liked</span>
+                        </a>
+
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                            <li><a class="dropdown-item" href="/NormalPosts/SearchByNewest?searchBy=Liked&searchInput=@Model.Username">Posts</a></li>
+                            <li><a class="dropdown-item" href="/PhotoPosts/SearchByNewest?searchBy=Liked&searchInput=@Model.Username">Photos</a></li>
+                            <li><a class="dropdown-item" href="/VideoPosts/SearchByNewest?searchBy=Liked&searchInput=@Model.Username">Videos</a></li>
+                        </ul>
+                    </div>
+                    <div class="dropdown">
+                        <a class="dropdown-toggle" href="javascript:void(0)" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-expanded="false">
+                            <span>Disliked</span>
+                        </a>
+
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                            <li><a class="dropdown-item" href="/NormalPosts/SearchByNewest?searchBy=Disliked&searchInput=@Model.Username">Posts</a></li>
+                            <li><a class="dropdown-item" href="/PhotoPosts/SearchByNewest?searchBy=Disliked&searchInput=@Model.Username">Photos</a></li>
+                            <li><a class="dropdown-item" href="/VideoPosts/SearchByNewest?searchBy=Disliked&searchInput=@Model.Username">Videos</a></li>
+                        </ul>
+                    </div>
+                    <div class="dropdown">
+                        <a class="dropdown-toggle" href="javascript:void(0)" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-expanded="false">
+                            <span>Commented</span>
+                        </a>
+
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                            <li><a class="dropdown-item" href="/NormalPosts/SearchByNewest?searchBy=Commented&searchInput=@Model.Username">Posts</a></li>
+                            <li><a class="dropdown-item" href="/PhotoPosts/SearchByNewest?searchBy=Commented&searchInput=@Model.Username">Photos</a></li>
+                            <li><a class="dropdown-item" href="/VideoPosts/SearchByNewest?searchBy=Commented&searchInput=@Model.Username">Videos</a></li>
+                        </ul>
+                    </div>
+                    <hr />
+                    @if (this.User.Identity.Name == Model.Username)
+                    {
+                        <a class="" asp-area="Identity" asp-page="/Account/Manage/Index">Options</a>
+                    }
+                </div>
+            </div>
+
+        </div>
+    </form>
+</div>
+
+@if (Model.ProfilePictureUrl != null)
+{
+    <div class="modal fade" id="profileModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+
+            <!--Content-->
+            <div class="modal-content">
+
+                <!--Body-->
+                <div class="modal-body mb-0 p-0">
+
+                    <div class="embed-responsive embed-responsive-16by9 z-depth-1-half">
+                        <img id="modalPhoto" class="embed-responsive-item" src="@Model.ProfilePictureUrl"
+                             allowfullscreen />
+
+                    </div>
+                </div>
+
+                <!--Footer-->
+                <div class="modal-footer justify-content-center">
+                    <span class="mr-4">Spread the word!</span>
+                    <a type="button" href="https://facebook.com" class="btn-floating btn-sm text-dark btn-fb"><i class="fab fa-facebook-f"></i></a>
+                    <!--Twitter-->
+                    <a type="button" href="https://twitter.com" class="btn-floating btn-sm text-dark btn-tw"><i class="fab fa-twitter"></i></a>
+                    <!--Google +-->
+                    <a type="button" href="https://pinterest.com" class="btn-floating btn-sm text-dark btn-gplus"><i class="fab fa-pinterest"></i></a>
+                    <!--Linkedin-->
+                    <a type="button" href="https://insagram.com" class="btn-floating btn-sm text-dark btn-ins"><i class="fab fa-instagram"></i></a>
+
+                    <button type="button" class="btn btn-outline-primary btn-rounded btn-md ml-4 border border-primary" data-dismiss="modal">Close</button>
+
+                </div>
+            </div>
+            <!--/.Content-->
+
+        </div>
+    </div>
+}

@@ -32,5 +32,8 @@
     <Folder Include="Videos\" />
     <Folder Include="Recaptcha\" />
     <Folder Include="Report\" />
+    <Folder Include="SignalR\" />
+    <Folder Include="SignalR\Chat\" />
+    <Folder Include="User\" />
   </ItemGroup>
 </Project>
