@@ -17,6 +17,7 @@
 - Facebook for developers
 - Twitter for developers
 - Google+ for developers
+- Google reCaptcha v3
 - Moq
 
 # :wrench: DB Diagram
