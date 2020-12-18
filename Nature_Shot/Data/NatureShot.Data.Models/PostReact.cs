@@ -1,8 +1,8 @@
-﻿using System.ComponentModel.DataAnnotations;
-using NatureShot.Data.Common.Models;
-
-namespace NatureShot.Data.Models
+﻿namespace NatureShot.Data.Models
 {
+    using System.ComponentModel.DataAnnotations;
+
+    using NatureShot.Data.Common.Models;
 
     public class PostReact : BaseModel<int>
     {

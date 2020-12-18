@@ -2,6 +2,7 @@
 {
     using System.ComponentModel.DataAnnotations;
 
+    using NatureShot.Common;
     using NatureShot.Data.Common.Models;
 
     public class Comment : BaseDeletableModel<int>
@@ -11,7 +12,7 @@
         }
 
         [Required]
-        [MaxLength(300)]
+        [MaxLength(GlobalConstants.MaxLengthThreeHundred)]
         public string Content { get; set; }
 
         [Required]

@@ -1,6 +1,7 @@
 ﻿namespace NatureShot.Data.Models
 {
     using System;
+
     using NatureShot.Data.Common.Models;
 
     public class PostTag : BaseDeletableModel<int>

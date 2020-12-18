@@ -333,6 +333,9 @@
                     video.UsersOwnPhoto = true;
                 }
 
+                video.Tags = this.encoder.Encode(video.Tags);
+                video.Camera = this.encoder.Encode(video.Camera);
+                video.Location = this.encoder.Encode(video.Location);
                 video.Caption = this.encoder.Encode(video.Caption);
             }
 

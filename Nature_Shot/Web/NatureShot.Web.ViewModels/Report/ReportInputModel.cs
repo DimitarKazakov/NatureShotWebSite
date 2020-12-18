@@ -1,8 +1,10 @@
-﻿using System;
-using System.ComponentModel.DataAnnotations;
-
-namespace NatureShot.Web.ViewModels.Report
+﻿namespace NatureShot.Web.ViewModels.Report
 {
+    using System;
+    using System.ComponentModel.DataAnnotations;
+
+    using NatureShot.Common;
+
     public class ReportInputModel
     {
         public ReportInputModel()
@@ -10,13 +12,13 @@ namespace NatureShot.Web.ViewModels.Report
         }
 
         [Required]
-        [MaxLength(100)]
-        [MinLength(5)]
+        [MaxLength(GlobalConstants.MaxLengthOneHundred)]
+        [MinLength(GlobalConstants.MinLengthFour)]
         public string Subject { get; set; }
 
         [Required]
-        [MaxLength(500)]
-        [MinLength(10)]
+        [MaxLength(GlobalConstants.MaxLengthFiveHundred)]
+        [MinLength(GlobalConstants.MinLengthTen)]
         public string Content { get; set; }
 
         [Required]

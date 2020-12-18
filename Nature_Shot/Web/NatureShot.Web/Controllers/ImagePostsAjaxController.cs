@@ -301,6 +301,9 @@
                     image.UsersOwnPhoto = true;
                 }
 
+                image.Tags = this.encoder.Encode(image.Tags);
+                image.Camera = this.encoder.Encode(image.Camera);
+                image.Location = this.encoder.Encode(image.Location);
                 image.Caption = this.encoder.Encode(image.Caption);
             }
 

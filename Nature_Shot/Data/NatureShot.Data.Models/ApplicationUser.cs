@@ -4,7 +4,9 @@ namespace NatureShot.Data.Models
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
+
     using Microsoft.AspNetCore.Identity;
+    using NatureShot.Common;
     using NatureShot.Data.Common.Models;
 
     public class ApplicationUser : IdentityUser, IAuditInfo, IDeletableEntity
@@ -33,16 +35,16 @@ namespace NatureShot.Data.Models
 
         public DateTime? DeletedOn { get; set; }
 
-        [MaxLength(50)]
+        [MaxLength(GlobalConstants.MaxLengthFifty)]
         public string Name { get; set; }
 
-        [MaxLength(50)]
+        [MaxLength(GlobalConstants.MaxLengthFifty)]
         public string Proffesion { get; set; }
 
-        [MaxLength(50)]
+        [MaxLength(GlobalConstants.MaxLengthFifty)]
         public string Camera { get; set; }
 
-        [MaxLength(50)]
+        [MaxLength(GlobalConstants.MaxLengthFifty)]
         public string LivesIn { get; set; }
 
         public virtual ICollection<IdentityUserRole<string>> Roles { get; set; }

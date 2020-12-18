@@ -3,6 +3,8 @@
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
+
+    using NatureShot.Common;
     using NatureShot.Data.Common.Models;
 
     public class Town : BaseDeletableModel<int>
@@ -13,7 +15,7 @@
         }
 
         [Required]
-        [MaxLength(60)]
+        [MaxLength(GlobalConstants.MaxLengthSixty)]
         public string Name { get; set; }
 
         public int CountryId { get; set; }

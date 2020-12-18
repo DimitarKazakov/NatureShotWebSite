@@ -16,6 +16,7 @@ namespace NatureShot.Web.Areas.Identity.Pages.Account
     using Microsoft.AspNetCore.Mvc.RazorPages;
     using Microsoft.AspNetCore.WebUtilities;
     using Microsoft.Extensions.Logging;
+    using NatureShot.Common;
     using NatureShot.Data.Models;
 
     [AllowAnonymous]
@@ -50,19 +51,19 @@ namespace NatureShot.Web.Areas.Identity.Pages.Account
             [Required]
             [EmailAddress]
             [Display(Name = "Email")]
-            [MinLength(6, ErrorMessage = "Username should be at least 6 characters long.")]
-            [MaxLength(25, ErrorMessage = "Username should be less than 25 characters")]
+            [MinLength(GlobalConstants.MinLengthSix, ErrorMessage = "Username should be at least 6 characters long.")]
+            [MaxLength(GlobalConstants.MaxLengthTwentyFive, ErrorMessage = "Username should be less than 25 characters")]
             public string Email { get; set; }
 
             [Required]
-            [MinLength(6, ErrorMessage = "Username should be at least 6 characters long.")]
-            [MaxLength(25, ErrorMessage = "Username should be less than 25 characters")]
+            [MinLength(GlobalConstants.MinLengthSix, ErrorMessage = "Username should be at least 6 characters long.")]
+            [MaxLength(GlobalConstants.MaxLengthTwentyFive, ErrorMessage = "Username should be less than 25 characters")]
             [RegularExpression(@"^[a-zA-Z0-9_\-.]{6,25}$", ErrorMessage = "Username field can contain only letters, numbers and _-.")]
             [Display(Name = "Username")]
             public string Username { get; set; }
 
             [Required]
-            [StringLength(100, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 6)]
+            [StringLength(GlobalConstants.MaxLengthOneHundred, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 6)]
             [DataType(DataType.Password)]
             [Display(Name = "Password")]
             public string Password { get; set; }

@@ -4,11 +4,11 @@
     using System.Collections.Generic;
     using System.Linq;
 
+    using NatureShot.Common;
     using NatureShot.Data.Common.Repositories;
     using NatureShot.Data.Models;
-    using NatureShot.Web.ViewModels.Images;
     using NatureShot.Services.Data.PhotoPosts.Contracts;
-    using NatureShot.Common;
+    using NatureShot.Web.ViewModels.Images;
 
     public class PhotoPostsMostDislikes : IPhotoPostsMostDislikes
     {
@@ -28,11 +28,11 @@
 
         public IEnumerable<ImagePostViewModel> GetImagePostsMostDislikes(int page, int count = GlobalConstants.Pages)
         {
-            var imageCount = this.postRepository.AllAsNoTracking().Where(x => x.Type.Name == "Image").Count();
+            var imageCount = this.postRepository.AllAsNoTracking().Where(x => x.Type.Name == GlobalConstants.Image).Count();
             if (imageCount > (page * count) && imageCount < (page + 1) * count)
             {
                 return this.postRepository.AllAsNoTracking()
-                               .Where(x => x.Type.Name == "Image")
+                               .Where(x => x.Type.Name == GlobalConstants.Image)
                                .OrderByDescending(x => x.Dislikes)
                                .Skip(page * count)
                                .Take(imageCount - (count * page))
@@ -54,7 +54,7 @@
             else if (imageCount >= (page + 1) * count)
             {
                 return this.postRepository.AllAsNoTracking()
-                               .Where(x => x.Type.Name == "Image")
+                               .Where(x => x.Type.Name == GlobalConstants.Image)
                                .OrderByDescending(x => x.Dislikes)
                                .Skip(page * count)
                                .Take(count)
@@ -81,11 +81,11 @@
 
         public IEnumerable<ImagePostViewModel> SearchByCamera(int page, string input, int count = GlobalConstants.Pages)
         {
-            var imageCount = this.postRepository.AllAsNoTracking().Where(x => x.Type.Name == "Image" && x.Camera.Model.ToLower().Contains(input.ToLower())).Count();
+            var imageCount = this.postRepository.AllAsNoTracking().Where(x => x.Type.Name == GlobalConstants.Image && x.Camera.Model.ToLower().Contains(input.ToLower())).Count();
             if (imageCount > (page * count) && imageCount < (page + 1) * count)
             {
                 return this.postRepository.AllAsNoTracking()
-                               .Where(x => x.Type.Name == "Image" && x.Camera.Model.ToLower().Contains(input.ToLower()))
+                               .Where(x => x.Type.Name == GlobalConstants.Image && x.Camera.Model.ToLower().Contains(input.ToLower()))
                                .OrderByDescending(x => x.Dislikes)
                                .Skip(page * count)
                                .Take(imageCount - (count * page))
@@ -107,7 +107,7 @@
             else if (imageCount >= (page + 1) * count)
             {
                 return this.postRepository.AllAsNoTracking()
-                               .Where(x => x.Type.Name == "Image" && x.Camera.Model.ToLower().Contains(input.ToLower()))
+                               .Where(x => x.Type.Name == GlobalConstants.Image && x.Camera.Model.ToLower().Contains(input.ToLower()))
                                .OrderByDescending(x => x.Dislikes)
                                .Skip(page * count)
                                .Take(count)
@@ -134,11 +134,11 @@
 
         public IEnumerable<ImagePostViewModel> SearchByCaption(int page, string input, int count = GlobalConstants.Pages)
         {
-            var imageCount = this.postRepository.AllAsNoTracking().Where(x => x.Type.Name == "Image" && x.Caption.ToLower().Contains(input.ToLower())).Count();
+            var imageCount = this.postRepository.AllAsNoTracking().Where(x => x.Type.Name == GlobalConstants.Image && x.Caption.ToLower().Contains(input.ToLower())).Count();
             if (imageCount > (page * count) && imageCount < (page + 1) * count)
             {
                 return this.postRepository.AllAsNoTracking()
-                               .Where(x => x.Type.Name == "Image" && x.Caption.ToLower().Contains(input.ToLower()))
+                               .Where(x => x.Type.Name == GlobalConstants.Image && x.Caption.ToLower().Contains(input.ToLower()))
                                .OrderByDescending(x => x.Dislikes)
                                .Skip(page * count)
                                .Take(imageCount - (count * page))
@@ -160,7 +160,7 @@
             else if (imageCount >= (page + 1) * count)
             {
                 return this.postRepository.AllAsNoTracking()
-                               .Where(x => x.Type.Name == "Image" && x.Caption.ToLower().Contains(input.ToLower()))
+                               .Where(x => x.Type.Name == GlobalConstants.Image && x.Caption.ToLower().Contains(input.ToLower()))
                                .OrderByDescending(x => x.Dislikes)
                                .Skip(page * count)
                                .Take(count)
@@ -187,11 +187,11 @@
 
         public IEnumerable<ImagePostViewModel> SearchByLocation(int page, string input, int count = GlobalConstants.Pages)
         {
-            var imageCount = this.postRepository.AllAsNoTracking().Where(x => x.Type.Name == "Image" && x.Location.Name.ToLower().Contains(input.ToLower())).Count();
+            var imageCount = this.postRepository.AllAsNoTracking().Where(x => x.Type.Name == GlobalConstants.Image && x.Location.Name.ToLower().Contains(input.ToLower())).Count();
             if (imageCount > (page * count) && imageCount < (page + 1) * count)
             {
                 return this.postRepository.AllAsNoTracking()
-                               .Where(x => x.Type.Name == "Image" && x.Location.Name.ToLower().Contains(input.ToLower()))
+                               .Where(x => x.Type.Name == GlobalConstants.Image && x.Location.Name.ToLower().Contains(input.ToLower()))
                                .OrderByDescending(x => x.Dislikes)
                                .Skip(page * count)
                                .Take(imageCount - (count * page))
@@ -213,7 +213,7 @@
             else if (imageCount >= (page + 1) * count)
             {
                 return this.postRepository.AllAsNoTracking()
-                               .Where(x => x.Type.Name == "Image" && x.Location.Name.ToLower().Contains(input.ToLower()))
+                               .Where(x => x.Type.Name == GlobalConstants.Image && x.Location.Name.ToLower().Contains(input.ToLower()))
                                .OrderByDescending(x => x.Dislikes)
                                .Skip(page * count)
                                .Take(count)
@@ -240,11 +240,11 @@
 
         public IEnumerable<ImagePostViewModel> SearchByTags(int page, string input, int count = GlobalConstants.Pages)
         {
-            var imageCount = this.postRepository.AllAsNoTracking().Where(x => x.Type.Name == "Image" && x.Tags.Select(x => x.Tag.Name).Contains(input)).Count();
+            var imageCount = this.postRepository.AllAsNoTracking().Where(x => x.Type.Name == GlobalConstants.Image && x.Tags.Select(x => x.Tag.Name).Contains(input)).Count();
             if (imageCount > (page * count) && imageCount < (page + 1) * count)
             {
                 return this.postRepository.AllAsNoTracking()
-                               .Where(x => x.Type.Name == "Image" && x.Tags.Select(x => x.Tag.Name).Contains(input))
+                               .Where(x => x.Type.Name == GlobalConstants.Image && x.Tags.Select(x => x.Tag.Name).Contains(input))
                                .OrderByDescending(x => x.Dislikes)
                                .Skip(page * count)
                                .Take(imageCount - (count * page))
@@ -266,7 +266,7 @@
             else if (imageCount >= (page + 1) * count)
             {
                 return this.postRepository.AllAsNoTracking()
-                               .Where(x => x.Type.Name == "Image" && x.Tags.Select(x => x.Tag.Name).Contains(input))
+                               .Where(x => x.Type.Name == GlobalConstants.Image && x.Tags.Select(x => x.Tag.Name).Contains(input))
                                .OrderByDescending(x => x.Dislikes)
                                .Skip(page * count)
                                .Take(count)
@@ -293,11 +293,11 @@
 
         public IEnumerable<ImagePostViewModel> SearchByUsername(int page, string input, int count = GlobalConstants.Pages)
         {
-            var imageCount = this.postRepository.AllAsNoTracking().Where(x => x.Type.Name == "Image" && x.AddedByUser.UserName.ToLower().Contains(input.ToLower())).Count();
+            var imageCount = this.postRepository.AllAsNoTracking().Where(x => x.Type.Name == GlobalConstants.Image && x.AddedByUser.UserName.ToLower().Contains(input.ToLower())).Count();
             if (imageCount > (page * count) && imageCount < (page + 1) * count)
             {
                 return this.postRepository.AllAsNoTracking()
-                               .Where(x => x.Type.Name == "Image" && x.AddedByUser.UserName.ToLower().Contains(input.ToLower()))
+                               .Where(x => x.Type.Name == GlobalConstants.Image && x.AddedByUser.UserName.ToLower().Contains(input.ToLower()))
                                .OrderByDescending(x => x.Dislikes)
                                .Skip(page * count)
                                .Take(imageCount - (count * page))
@@ -319,7 +319,7 @@
             else if (imageCount >= (page + 1) * count)
             {
                 return this.postRepository.AllAsNoTracking()
-                               .Where(x => x.Type.Name == "Image" && x.AddedByUser.UserName.ToLower().Contains(input.ToLower()))
+                               .Where(x => x.Type.Name == GlobalConstants.Image && x.AddedByUser.UserName.ToLower().Contains(input.ToLower()))
                                .OrderByDescending(x => x.Dislikes)
                                .Skip(page * count)
                                .Take(count)
@@ -346,11 +346,11 @@
 
         public IEnumerable<ImagePostViewModel> SearchByCommentedPosts(int page, string input, int count = GlobalConstants.Pages)
         {
-            var imageCount = this.postRepository.AllAsNoTracking().Where(x => x.Comments.Select(x => x.UserPosted.UserName).Contains(input) && x.Type.Name == "Image").Count();
+            var imageCount = this.postRepository.AllAsNoTracking().Where(x => x.Comments.Select(x => x.UserPosted.UserName).Contains(input) && x.Type.Name == GlobalConstants.Image).Count();
             if (imageCount > (page * count) && imageCount < (page + 1) * count)
             {
                 return this.postRepository.AllAsNoTracking()
-                               .Where(x => x.Comments.Select(x => x.UserPosted.UserName).Contains(input) && x.Type.Name == "Image")
+                               .Where(x => x.Comments.Select(x => x.UserPosted.UserName).Contains(input) && x.Type.Name == GlobalConstants.Image)
                                .OrderByDescending(x => x.Dislikes)
                                .Skip(page * count)
                                .Take(imageCount - (count * page))
@@ -372,7 +372,7 @@
             else if (imageCount >= (page + 1) * count)
             {
                 return this.postRepository.AllAsNoTracking()
-                               .Where(x => x.Comments.Select(x => x.UserPosted.UserName).Contains(input) && x.Type.Name == "Image")
+                               .Where(x => x.Comments.Select(x => x.UserPosted.UserName).Contains(input) && x.Type.Name == GlobalConstants.Image)
                                .OrderByDescending(x => x.Dislikes)
                                .Skip(page * count)
                                .Take(count)
@@ -399,11 +399,11 @@
 
         public IEnumerable<ImagePostViewModel> SearchByDislikedPosts(int page, string input, int count = GlobalConstants.Pages)
         {
-            var imageCount = this.reactRepository.AllAsNoTracking().Where(x => x.IsLiked == false && x.User.UserName.ToLower() == input.ToLower() && x.Post.Type.Name == "Image").Count();
+            var imageCount = this.reactRepository.AllAsNoTracking().Where(x => x.IsLiked == false && x.User.UserName.ToLower() == input.ToLower() && x.Post.Type.Name == GlobalConstants.Image).Count();
             if (imageCount > (page * count) && imageCount < (page + 1) * count)
             {
                 return this.reactRepository.AllAsNoTracking()
-                               .Where(x => x.IsLiked == false && x.User.UserName.ToLower() == input.ToLower() && x.Post.Type.Name == "Image")
+                               .Where(x => x.IsLiked == false && x.User.UserName.ToLower() == input.ToLower() && x.Post.Type.Name == GlobalConstants.Image)
                                .OrderByDescending(x => x.Post.Dislikes)
                                .Skip(page * count)
                                .Take(imageCount - (count * page))
@@ -411,7 +411,7 @@
                                {
                                    DatePosted = x.Post.CreatedOn.ToString(GlobalConstants.DateTime),
                                    ImageId = x.PostId,
-                                   Username = x.User.UserName,
+                                   Username = x.Post.AddedByUser.UserName,
                                    Tags = string.Join(' ', x.Post.Tags.Select(x => x.Tag.Name)),
                                    Caption = x.Post.Caption,
                                    Camera = x.Post.Camera.Model,
@@ -425,7 +425,7 @@
             else if (imageCount >= (page + 1) * count)
             {
                 return this.reactRepository.AllAsNoTracking()
-                               .Where(x => x.IsLiked == false && x.User.UserName.ToLower() == input.ToLower() && x.Post.Type.Name == "Image")
+                               .Where(x => x.IsLiked == false && x.User.UserName.ToLower() == input.ToLower() && x.Post.Type.Name == GlobalConstants.Image)
                                .OrderByDescending(x => x.Post.Dislikes)
                                .Skip(page * count)
                                .Take(count)
@@ -433,7 +433,7 @@
                                {
                                    DatePosted = x.Post.CreatedOn.ToString(GlobalConstants.DateTime),
                                    ImageId = x.PostId,
-                                   Username = x.User.UserName,
+                                   Username = x.Post.AddedByUser.UserName,
                                    Tags = string.Join(' ', x.Post.Tags.Select(x => x.Tag.Name)),
                                    Caption = x.Post.Caption,
                                    Camera = x.Post.Camera.Model,
@@ -452,11 +452,11 @@
 
         public IEnumerable<ImagePostViewModel> SearchByLikedPosts(int page, string input, int count = GlobalConstants.Pages)
         {
-            var imageCount = this.reactRepository.AllAsNoTracking().Where(x => x.IsLiked == true && x.User.UserName.ToLower() == input.ToLower() && x.Post.Type.Name == "Image").Count();
+            var imageCount = this.reactRepository.AllAsNoTracking().Where(x => x.IsLiked == true && x.User.UserName.ToLower() == input.ToLower() && x.Post.Type.Name == GlobalConstants.Image).Count();
             if (imageCount > (page * count) && imageCount < (page + 1) * count)
             {
                 return this.reactRepository.AllAsNoTracking()
-                               .Where(x => x.IsLiked == true && x.User.UserName.ToLower() == input.ToLower() && x.Post.Type.Name == "Image")
+                               .Where(x => x.IsLiked == true && x.User.UserName.ToLower() == input.ToLower() && x.Post.Type.Name == GlobalConstants.Image)
                                .OrderByDescending(x => x.Post.Dislikes)
                                .Skip(page * count)
                                .Take(imageCount - (count * page))
@@ -464,7 +464,7 @@
                                {
                                    DatePosted = x.Post.CreatedOn.ToString(GlobalConstants.DateTime),
                                    ImageId = x.PostId,
-                                   Username = x.User.UserName,
+                                   Username = x.Post.AddedByUser.UserName,
                                    Tags = string.Join(' ', x.Post.Tags.Select(x => x.Tag.Name)),
                                    Caption = x.Post.Caption,
                                    Camera = x.Post.Camera.Model,
@@ -478,7 +478,7 @@
             else if (imageCount >= (page + 1) * count)
             {
                 return this.reactRepository.AllAsNoTracking()
-                               .Where(x => x.IsLiked == true && x.User.UserName.ToLower() == input.ToLower() && x.Post.Type.Name == "Image")
+                               .Where(x => x.IsLiked == true && x.User.UserName.ToLower() == input.ToLower() && x.Post.Type.Name == GlobalConstants.Image)
                                .OrderByDescending(x => x.Post.Dislikes)
                                .Skip(page * count)
                                .Take(count)
@@ -486,7 +486,7 @@
                                {
                                    DatePosted = x.Post.CreatedOn.ToString(GlobalConstants.DateTime),
                                    ImageId = x.PostId,
-                                   Username = x.User.UserName,
+                                   Username = x.Post.AddedByUser.UserName,
                                    Tags = string.Join(' ', x.Post.Tags.Select(x => x.Tag.Name)),
                                    Caption = x.Post.Caption,
                                    Camera = x.Post.Camera.Model,

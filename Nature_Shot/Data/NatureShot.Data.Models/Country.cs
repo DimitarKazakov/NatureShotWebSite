@@ -4,6 +4,7 @@
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
 
+    using NatureShot.Common;
     using NatureShot.Data.Common.Models;
 
     public class Country : BaseDeletableModel<int>
@@ -15,7 +16,7 @@
         }
 
         [Required]
-        [MaxLength(60)]
+        [MaxLength(GlobalConstants.MaxLengthSixty)]
         public string Name { get; set; }
 
         public virtual ICollection<Location> Locations { get; set; }

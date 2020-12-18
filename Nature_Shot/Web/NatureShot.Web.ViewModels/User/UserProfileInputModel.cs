@@ -1,10 +1,12 @@
-﻿using System;
-using System.ComponentModel.DataAnnotations;
-using Microsoft.AspNetCore.Http;
-using NatureShot.Web.ViewModels.CustomAttributes;
-
-namespace NatureShot.Web.ViewModels.User
+﻿namespace NatureShot.Web.ViewModels.User
 {
+    using System;
+    using System.ComponentModel.DataAnnotations;
+
+    using Microsoft.AspNetCore.Http;
+    using NatureShot.Common;
+    using NatureShot.Web.ViewModels.CustomAttributes;
+
     public class UserProfileInputModel
     {
         public UserProfileInputModel()
@@ -20,24 +22,24 @@ namespace NatureShot.Web.ViewModels.User
 
         public string ProfilePictureUrl { get; set; }
 
-        [MinLength(6, ErrorMessage = "Name should be at least 6 characters long.")]
-        [MaxLength(25, ErrorMessage = "Name should be less than 25 characters")]
-        [RegularExpression(@"^[a-zA-Z0-9_\-. ]+$", ErrorMessage = "Name field can contain only letters, numbers and _-.")]
+        [MinLength(GlobalConstants.MinLengthSix, ErrorMessage = "Name should be at least 6 characters long.")]
+        [MaxLength(GlobalConstants.MaxLengthFifty, ErrorMessage = "Name should be less than 50 characters")]
+        [RegularExpression(@"^[a-zA-Z0-9_\-. ]+$", ErrorMessage = "Name field can contain only letters, numbers and _-. ")]
         public string Name { get; set; }
 
-        [MinLength(6, ErrorMessage = "Proffesion should be at least 6 characters long.")]
-        [MaxLength(25, ErrorMessage = "Proffesion should be less than 25 characters")]
-        [RegularExpression(@"^[a-zA-Z0-9_\-. #!]+$", ErrorMessage = "Proffesion field can contain only letters, numbers and _-.")]
+        [MinLength(GlobalConstants.MinLengthSix, ErrorMessage = "Proffesion should be at least 6 characters long.")]
+        [MaxLength(GlobalConstants.MaxLengthFifty, ErrorMessage = "Proffesion should be less than 50 characters")]
+        [RegularExpression(@"^[a-zA-Z0-9_\-. #!]+$", ErrorMessage = "Proffesion field can contain only letters, numbers and _-. #")]
         public string Proffesion { get; set; }
 
-        [MinLength(6, ErrorMessage = "Live in should be at least 6 characters long.")]
-        [MaxLength(25, ErrorMessage = "Live in should be less than 25 characters")]
-        [RegularExpression(@"^[a-zA-Z0-9_\-. ]+$", ErrorMessage = "Live in field can contain only letters, numbers and _-.")]
+        [MinLength(GlobalConstants.MinLengthSix, ErrorMessage = "Live in should be at least 6 characters long.")]
+        [MaxLength(GlobalConstants.MaxLengthFifty, ErrorMessage = "Live in should be less than 50 characters")]
+        [RegularExpression(@"^[a-zA-Z0-9_\-. /]+$", ErrorMessage = "Live in field can contain only letters, numbers and _-. /")]
         public string LivesIn { get; set; }
 
-        [MinLength(6, ErrorMessage = "Camera should be at least 6 characters long.")]
-        [MaxLength(25, ErrorMessage = "Camera should be less than 25 characters")]
-        [RegularExpression(@"^[a-zA-Z0-9_\-. /]+$", ErrorMessage = "Camera field can contain only letters, numbers and _-.")]
+        [MinLength(GlobalConstants.MinLengthSix, ErrorMessage = "Camera should be at least 6 characters long.")]
+        [MaxLength(GlobalConstants.MaxLengthFifty, ErrorMessage = "Camera should be less than 50 characters")]
+        [RegularExpression(@"^[a-zA-Z0-9_\-. /]+$", ErrorMessage = "Camera field can contain only letters, numbers and _-. /")]
         public string Camera { get; set; }
     }
 }

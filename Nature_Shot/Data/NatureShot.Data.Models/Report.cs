@@ -2,6 +2,8 @@
 {
     using System;
     using System.ComponentModel.DataAnnotations;
+
+    using NatureShot.Common;
     using NatureShot.Data.Common.Models;
 
     public class Report : BaseDeletableModel<int>
@@ -15,11 +17,11 @@
         public int PostId { get; set; }
 
         [Required]
-        [MaxLength(100)]
+        [MaxLength(GlobalConstants.MaxLengthOneHundred)]
         public string Subject { get; set; }
 
         [Required]
-        [MaxLength(500)]
+        [MaxLength(GlobalConstants.MaxLengthFiveHundred)]
         public string Content { get; set; }
     }
 }

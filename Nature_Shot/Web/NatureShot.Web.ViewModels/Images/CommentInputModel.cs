@@ -1,6 +1,10 @@
-﻿using System;
-namespace NatureShot.Web.ViewModels.Images
+﻿namespace NatureShot.Web.ViewModels.Images
 {
+    using System;
+    using System.ComponentModel.DataAnnotations;
+
+    using NatureShot.Common;
+
     public class CommentInputModel
     {
         public CommentInputModel()
@@ -9,6 +13,8 @@ namespace NatureShot.Web.ViewModels.Images
 
         public string Id { get; set; }
 
+        [MinLength(GlobalConstants.MinLengthThree)]
+        [MaxLength(GlobalConstants.MaxLengthThreeHundred)]
         public string Comment { get; set; }
     }
 }

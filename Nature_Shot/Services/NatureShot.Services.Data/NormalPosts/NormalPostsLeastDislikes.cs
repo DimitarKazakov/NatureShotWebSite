@@ -28,11 +28,11 @@
 
         public IEnumerable<NormalPostViewModel> GetNormalPostsLeastDislikes(int page, int count = GlobalConstants.Pages)
         {
-            var postCount = this.postRepository.AllAsNoTracking().Where(x => x.Type.Name == "Post").Count();
+            var postCount = this.postRepository.AllAsNoTracking().Where(x => x.Type.Name == GlobalConstants.Post).Count();
             if (postCount > (page * count) && postCount < (page + 1) * count)
             {
                 return this.postRepository.AllAsNoTracking()
-                               .Where(x => x.Type.Name == "Post")
+                               .Where(x => x.Type.Name == GlobalConstants.Post)
                                .OrderBy(x => x.Dislikes)
                                .Skip(page * count)
                                .Take(postCount - (count * page))
@@ -50,7 +50,7 @@
             else if (postCount >= (page + 1) * count)
             {
                 return this.postRepository.AllAsNoTracking()
-                               .Where(x => x.Type.Name == "Post")
+                               .Where(x => x.Type.Name == GlobalConstants.Post)
                                .OrderBy(x => x.Dislikes)
                                .Skip(page * count)
                                .Take(count)
@@ -73,11 +73,11 @@
 
         public IEnumerable<NormalPostViewModel> SearchByCaption(int page, string input, int count = GlobalConstants.Pages)
         {
-            var postCount = this.postRepository.AllAsNoTracking().Where(x => x.Type.Name == "Post" && x.Caption.ToLower().Contains(input.ToLower())).Count();
+            var postCount = this.postRepository.AllAsNoTracking().Where(x => x.Type.Name == GlobalConstants.Post && x.Caption.ToLower().Contains(input.ToLower())).Count();
             if (postCount > (page * count) && postCount < (page + 1) * count)
             {
                 return this.postRepository.AllAsNoTracking()
-                               .Where(x => x.Type.Name == "Post" && x.Caption.ToLower().Contains(input.ToLower()))
+                               .Where(x => x.Type.Name == GlobalConstants.Post && x.Caption.ToLower().Contains(input.ToLower()))
                                .OrderBy(x => x.Dislikes)
                                .Skip(page * count)
                                .Take(postCount - (count * page))
@@ -95,7 +95,7 @@
             else if (postCount >= (page + 1) * count)
             {
                 return this.postRepository.AllAsNoTracking()
-                               .Where(x => x.Type.Name == "Post" && x.Caption.ToLower().Contains(input.ToLower()))
+                               .Where(x => x.Type.Name == GlobalConstants.Post && x.Caption.ToLower().Contains(input.ToLower()))
                                .OrderBy(x => x.Dislikes)
                                .Skip(page * count)
                                .Take(count)
@@ -118,11 +118,11 @@
 
         public IEnumerable<NormalPostViewModel> SearchByTags(int page, string input, int count = GlobalConstants.Pages)
         {
-            var postCount = this.postRepository.AllAsNoTracking().Where(x => x.Type.Name == "Post" && x.Tags.Select(x => x.Tag.Name).Contains(input)).Count();
+            var postCount = this.postRepository.AllAsNoTracking().Where(x => x.Type.Name == GlobalConstants.Post && x.Tags.Select(x => x.Tag.Name).Contains(input)).Count();
             if (postCount > (page * count) && postCount < (page + 1) * count)
             {
                 return this.postRepository.AllAsNoTracking()
-                               .Where(x => x.Type.Name == "Post" && x.Tags.Select(x => x.Tag.Name).Contains(input))
+                               .Where(x => x.Type.Name == GlobalConstants.Post && x.Tags.Select(x => x.Tag.Name).Contains(input))
                                .OrderBy(x => x.Dislikes)
                                .Skip(page * count)
                                .Take(postCount - (count * page))
@@ -140,7 +140,7 @@
             else if (postCount >= (page + 1) * count)
             {
                 return this.postRepository.AllAsNoTracking()
-                               .Where(x => x.Type.Name == "Post" && x.Tags.Select(x => x.Tag.Name).Contains(input))
+                               .Where(x => x.Type.Name == GlobalConstants.Post && x.Tags.Select(x => x.Tag.Name).Contains(input))
                                .OrderBy(x => x.Dislikes)
                                .Skip(page * count)
                                .Take(count)
@@ -163,11 +163,11 @@
 
         public IEnumerable<NormalPostViewModel> SearchByUsername(int page, string input, int count = GlobalConstants.Pages)
         {
-            var postCount = this.postRepository.AllAsNoTracking().Where(x => x.Type.Name == "Post" && x.AddedByUser.UserName.ToLower().Contains(input.ToLower())).Count();
+            var postCount = this.postRepository.AllAsNoTracking().Where(x => x.Type.Name == GlobalConstants.Post && x.AddedByUser.UserName.ToLower().Contains(input.ToLower())).Count();
             if (postCount > (page * count) && postCount < (page + 1) * count)
             {
                 return this.postRepository.AllAsNoTracking()
-                               .Where(x => x.Type.Name == "Post" && x.AddedByUser.UserName.ToLower().Contains(input.ToLower()))
+                               .Where(x => x.Type.Name == GlobalConstants.Post && x.AddedByUser.UserName.ToLower().Contains(input.ToLower()))
                                .OrderBy(x => x.Dislikes)
                                .Skip(page * count)
                                .Take(postCount - (count * page))
@@ -185,7 +185,7 @@
             else if (postCount >= (page + 1) * count)
             {
                 return this.postRepository.AllAsNoTracking()
-                               .Where(x => x.Type.Name == "Post" && x.AddedByUser.UserName.ToLower().Contains(input.ToLower()))
+                               .Where(x => x.Type.Name == GlobalConstants.Post && x.AddedByUser.UserName.ToLower().Contains(input.ToLower()))
                                .OrderBy(x => x.Dislikes)
                                .Skip(page * count)
                                .Take(count)
@@ -208,11 +208,11 @@
 
         public IEnumerable<NormalPostViewModel> SearchByCommentedPosts(int page, string input, int count = GlobalConstants.Pages)
         {
-            var postCount = this.postRepository.AllAsNoTracking().Where(x => x.Comments.Select(x => x.UserPosted.UserName).Contains(input) && x.Type.Name == "Post").Count();
+            var postCount = this.postRepository.AllAsNoTracking().Where(x => x.Comments.Select(x => x.UserPosted.UserName).Contains(input) && x.Type.Name == GlobalConstants.Post).Count();
             if (postCount > (page * count) && postCount < (page + 1) * count)
             {
                 return this.postRepository.AllAsNoTracking()
-                               .Where(x => x.Comments.Select(x => x.UserPosted.UserName).Contains(input) && x.Type.Name == "Post")
+                               .Where(x => x.Comments.Select(x => x.UserPosted.UserName).Contains(input) && x.Type.Name == GlobalConstants.Post)
                                .OrderBy(x => x.Dislikes)
                                .Skip(page * count)
                                .Take(postCount - (count * page))
@@ -230,7 +230,7 @@
             else if (postCount >= (page + 1) * count)
             {
                 return this.postRepository.AllAsNoTracking()
-                               .Where(x => x.Comments.Select(x => x.UserPosted.UserName).Contains(input) && x.Type.Name == "Post")
+                               .Where(x => x.Comments.Select(x => x.UserPosted.UserName).Contains(input) && x.Type.Name == GlobalConstants.Post)
                                .OrderBy(x => x.Dislikes)
                                .Skip(page * count)
                                .Take(count)
@@ -253,11 +253,11 @@
 
         public IEnumerable<NormalPostViewModel> SearchByDislikedPosts(int page, string input, int count = GlobalConstants.Pages)
         {
-            var postCount = this.reactRepository.AllAsNoTracking().Where(x => x.IsLiked == false && x.User.UserName.ToLower() == input.ToLower() && x.Post.Type.Name == "Post").Count();
+            var postCount = this.reactRepository.AllAsNoTracking().Where(x => x.IsLiked == false && x.User.UserName.ToLower() == input.ToLower() && x.Post.Type.Name == GlobalConstants.Post).Count();
             if (postCount > (page * count) && postCount < (page + 1) * count)
             {
                 return this.reactRepository.AllAsNoTracking()
-                               .Where(x => x.IsLiked == false && x.User.UserName.ToLower() == input.ToLower() && x.Post.Type.Name == "Post")
+                               .Where(x => x.IsLiked == false && x.User.UserName.ToLower() == input.ToLower() && x.Post.Type.Name == GlobalConstants.Post)
                                .OrderBy(x => x.Post.Dislikes)
                                .Skip(page * count)
                                .Take(postCount - (count * page))
@@ -265,7 +265,7 @@
                                {
                                    DatePosted = x.Post.CreatedOn.ToString(GlobalConstants.DateTime),
                                    PostId = x.PostId.ToString(),
-                                   Username = x.User.UserName,
+                                   Username = x.Post.AddedByUser.UserName,
                                    Tags = string.Join(' ', x.Post.Tags.Select(x => x.Tag.Name)),
                                    Caption = x.Post.Caption,
                                    Likes = x.Post.Likes,
@@ -275,7 +275,7 @@
             else if (postCount >= (page + 1) * count)
             {
                 return this.reactRepository.AllAsNoTracking()
-                               .Where(x => x.IsLiked == false && x.User.UserName.ToLower() == input.ToLower() && x.Post.Type.Name == "Post")
+                               .Where(x => x.IsLiked == false && x.User.UserName.ToLower() == input.ToLower() && x.Post.Type.Name == GlobalConstants.Post)
                                .OrderBy(x => x.Post.Dislikes)
                                .Skip(page * count)
                                .Take(count)
@@ -283,7 +283,7 @@
                                {
                                    DatePosted = x.Post.CreatedOn.ToString(GlobalConstants.DateTime),
                                    PostId = x.PostId.ToString(),
-                                   Username = x.User.UserName,
+                                   Username = x.Post.AddedByUser.UserName,
                                    Tags = string.Join(' ', x.Post.Tags.Select(x => x.Tag.Name)),
                                    Caption = x.Post.Caption,
                                    Likes = x.Post.Likes,
@@ -298,11 +298,11 @@
 
         public IEnumerable<NormalPostViewModel> SearchByLikedPosts(int page, string input, int count = GlobalConstants.Pages)
         {
-            var postCount = this.reactRepository.AllAsNoTracking().Where(x => x.IsLiked == true && x.User.UserName.ToLower() == input.ToLower() && x.Post.Type.Name == "Post").Count();
+            var postCount = this.reactRepository.AllAsNoTracking().Where(x => x.IsLiked == true && x.User.UserName.ToLower() == input.ToLower() && x.Post.Type.Name == GlobalConstants.Post).Count();
             if (postCount > (page * count) && postCount < (page + 1) * count)
             {
                 return this.reactRepository.AllAsNoTracking()
-                               .Where(x => x.IsLiked == true && x.User.UserName.ToLower() == input.ToLower() && x.Post.Type.Name == "Post")
+                               .Where(x => x.IsLiked == true && x.User.UserName.ToLower() == input.ToLower() && x.Post.Type.Name == GlobalConstants.Post)
                                .OrderBy(x => x.Post.Dislikes)
                                .Skip(page * count)
                                .Take(postCount - (count * page))
@@ -310,7 +310,7 @@
                                {
                                    DatePosted = x.Post.CreatedOn.ToString(GlobalConstants.DateTime),
                                    PostId = x.PostId.ToString(),
-                                   Username = x.User.UserName,
+                                   Username = x.Post.AddedByUser.UserName,
                                    Tags = string.Join(' ', x.Post.Tags.Select(x => x.Tag.Name)),
                                    Caption = x.Post.Caption,
                                    Likes = x.Post.Likes,
@@ -320,7 +320,7 @@
             else if (postCount >= (page + 1) * count)
             {
                 return this.reactRepository.AllAsNoTracking()
-                               .Where(x => x.IsLiked == true && x.User.UserName.ToLower() == input.ToLower() && x.Post.Type.Name == "Post")
+                               .Where(x => x.IsLiked == true && x.User.UserName.ToLower() == input.ToLower() && x.Post.Type.Name == GlobalConstants.Post)
                                .OrderBy(x => x.Post.Dislikes)
                                .Skip(page * count)
                                .Take(count)
@@ -328,7 +328,7 @@
                                {
                                    DatePosted = x.Post.CreatedOn.ToString(GlobalConstants.DateTime),
                                    PostId = x.PostId.ToString(),
-                                   Username = x.User.UserName,
+                                   Username = x.Post.AddedByUser.UserName,
                                    Tags = string.Join(' ', x.Post.Tags.Select(x => x.Tag.Name)),
                                    Caption = x.Post.Caption,
                                    Likes = x.Post.Likes,

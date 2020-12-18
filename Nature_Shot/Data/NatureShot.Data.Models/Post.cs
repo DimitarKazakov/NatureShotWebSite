@@ -3,6 +3,7 @@
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
 
+    using NatureShot.Common;
     using NatureShot.Data.Common.Models;
 
     public class Post : BaseDeletableModel<int>
@@ -26,7 +27,7 @@
         public int Dislikes { get; set; }
 
         [Required]
-        [MaxLength(300)]
+        [MaxLength(GlobalConstants.MaxLengthThreeHundred)]
         public string Caption { get; set; }
 
         public int PostTypeId { get; set; }

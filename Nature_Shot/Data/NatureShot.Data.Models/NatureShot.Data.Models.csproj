@@ -21,6 +21,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\NatureShot.Data.Common\NatureShot.Data.Common.csproj" />
+    <ProjectReference Include="..\..\NatureShot.Common\NatureShot.Common.csproj" />
   </ItemGroup>
   
 </Project>

@@ -223,6 +223,7 @@
                     post.UsersOwnPhoto = true;
                 }
 
+                post.Tags = this.encoder.Encode(post.Tags);
                 post.Caption = this.encoder.Encode(post.Caption);
             }
 

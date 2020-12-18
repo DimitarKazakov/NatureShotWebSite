@@ -22,6 +22,7 @@
   <ItemGroup>
     <ProjectReference Include="..\..\Data\NatureShot.Data.Models\NatureShot.Data.Models.csproj" />
     <ProjectReference Include="..\..\Services\NatureShot.Services.Mapping\NatureShot.Services.Mapping.csproj" />
+    <ProjectReference Include="..\..\NatureShot.Common\NatureShot.Common.csproj" />
   </ItemGroup>
 
   <ItemGroup>

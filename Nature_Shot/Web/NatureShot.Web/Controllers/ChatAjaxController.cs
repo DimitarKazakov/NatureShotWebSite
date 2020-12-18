@@ -8,8 +8,8 @@
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
     using NatureShot.Services.Data;
-    using NatureShot.Web.ViewModels.SignalR.Chat;
     using NatureShot.Services.Data.Contracts;
+    using NatureShot.Web.ViewModels.SignalR.Chat;
 
     [Route("api/[controller]")]
     [ApiController]

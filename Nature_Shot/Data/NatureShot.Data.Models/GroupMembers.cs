@@ -2,6 +2,7 @@
 {
     using System;
     using System.ComponentModel.DataAnnotations;
+
     using NatureShot.Data.Common.Models;
 
     public class GroupMembers : BaseDeletableModel<int>

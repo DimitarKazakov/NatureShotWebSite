@@ -28,11 +28,11 @@
 
         public IEnumerable<VideoPostViewModel> GetVideoPostsLeastLikes(int page, int count = GlobalConstants.Pages)
         {
-            var videoCount = this.postRepository.AllAsNoTracking().Where(x => x.Type.Name == "Video").Count();
+            var videoCount = this.postRepository.AllAsNoTracking().Where(x => x.Type.Name == GlobalConstants.Video).Count();
             if (videoCount > (page * count) && videoCount < (page + 1) * count)
             {
                 return this.postRepository.AllAsNoTracking()
-                               .Where(x => x.Type.Name == "Video")
+                               .Where(x => x.Type.Name == GlobalConstants.Video)
                                .OrderBy(x => x.Likes)
                                .Skip(page * count)
                                .Take(videoCount - (count * page))
@@ -48,13 +48,13 @@
                                    Likes = x.Likes,
                                    Dislikes = x.Dislikes,
                                    Location = x.Location.Name,
-                                   Length = x.Video.Length.ToString("c"),
+                                   Length = x.Video.Length.ToString(GlobalConstants.TimeSpan),
                                }).ToList();
             }
             else if (videoCount >= (page + 1) * count)
             {
                 return this.postRepository.AllAsNoTracking()
-                               .Where(x => x.Type.Name == "Video")
+                               .Where(x => x.Type.Name == GlobalConstants.Video)
                                .OrderBy(x => x.Likes)
                                .Skip(page * count)
                                .Take(count)
@@ -70,7 +70,7 @@
                                    Likes = x.Likes,
                                    Dislikes = x.Dislikes,
                                    Location = x.Location.Name,
-                                   Length = x.Video.Length.ToString("c"),
+                                   Length = x.Video.Length.ToString(GlobalConstants.TimeSpan),
                                }).ToList();
             }
             else
@@ -81,11 +81,11 @@
 
         public IEnumerable<VideoPostViewModel> SearchByCamera(int page, string input, int count = GlobalConstants.Pages)
         {
-            var videoCount = this.postRepository.AllAsNoTracking().Where(x => x.Type.Name == "Video" && x.Camera.Model.ToLower().Contains(input.ToLower())).Count();
+            var videoCount = this.postRepository.AllAsNoTracking().Where(x => x.Type.Name == GlobalConstants.Video && x.Camera.Model.ToLower().Contains(input.ToLower())).Count();
             if (videoCount > (page * count) && videoCount < (page + 1) * count)
             {
                 return this.postRepository.AllAsNoTracking()
-                               .Where(x => x.Type.Name == "Video" && x.Camera.Model.ToLower().Contains(input.ToLower()))
+                               .Where(x => x.Type.Name == GlobalConstants.Video && x.Camera.Model.ToLower().Contains(input.ToLower()))
                                .OrderBy(x => x.Likes)
                                .Skip(page * count)
                                .Take(videoCount - (count * page))
@@ -101,13 +101,13 @@
                                    Likes = x.Likes,
                                    Dislikes = x.Dislikes,
                                    Location = x.Location.Name,
-                                   Length = x.Video.Length.ToString("c"),
+                                   Length = x.Video.Length.ToString(GlobalConstants.TimeSpan),
                                }).ToList();
             }
             else if (videoCount >= (page + 1) * count)
             {
                 return this.postRepository.AllAsNoTracking()
-                               .Where(x => x.Type.Name == "Video" && x.Camera.Model.ToLower().Contains(input.ToLower()))
+                               .Where(x => x.Type.Name == GlobalConstants.Video && x.Camera.Model.ToLower().Contains(input.ToLower()))
                                .OrderBy(x => x.Likes)
                                .Skip(page * count)
                                .Take(count)
@@ -123,7 +123,7 @@
                                    Likes = x.Likes,
                                    Dislikes = x.Dislikes,
                                    Location = x.Location.Name,
-                                   Length = x.Video.Length.ToString("c"),
+                                   Length = x.Video.Length.ToString(GlobalConstants.TimeSpan),
                                }).ToList();
             }
             else
@@ -134,11 +134,11 @@
 
         public IEnumerable<VideoPostViewModel> SearchByCaption(int page, string input, int count = GlobalConstants.Pages)
         {
-            var videoCount = this.postRepository.AllAsNoTracking().Where(x => x.Type.Name == "Video" && x.Caption.ToLower().Contains(input.ToLower())).Count();
+            var videoCount = this.postRepository.AllAsNoTracking().Where(x => x.Type.Name == GlobalConstants.Video && x.Caption.ToLower().Contains(input.ToLower())).Count();
             if (videoCount > (page * count) && videoCount < (page + 1) * count)
             {
                 return this.postRepository.AllAsNoTracking()
-                               .Where(x => x.Type.Name == "Video" && x.Caption.ToLower().Contains(input.ToLower()))
+                               .Where(x => x.Type.Name == GlobalConstants.Video && x.Caption.ToLower().Contains(input.ToLower()))
                                .OrderBy(x => x.Likes)
                                .Skip(page * count)
                                .Take(videoCount - (count * page))
@@ -154,13 +154,13 @@
                                    Likes = x.Likes,
                                    Dislikes = x.Dislikes,
                                    Location = x.Location.Name,
-                                   Length = x.Video.Length.ToString("c"),
+                                   Length = x.Video.Length.ToString(GlobalConstants.TimeSpan),
                                }).ToList();
             }
             else if (videoCount >= (page + 1) * count)
             {
                 return this.postRepository.AllAsNoTracking()
-                               .Where(x => x.Type.Name == "Video" && x.Caption.ToLower().Contains(input.ToLower()))
+                               .Where(x => x.Type.Name == GlobalConstants.Video && x.Caption.ToLower().Contains(input.ToLower()))
                                .OrderBy(x => x.Likes)
                                .Skip(page * count)
                                .Take(count)
@@ -176,7 +176,7 @@
                                    Likes = x.Likes,
                                    Dislikes = x.Dislikes,
                                    Location = x.Location.Name,
-                                   Length = x.Video.Length.ToString("c"),
+                                   Length = x.Video.Length.ToString(GlobalConstants.TimeSpan),
                                }).ToList();
             }
             else
@@ -187,11 +187,11 @@
 
         public IEnumerable<VideoPostViewModel> SearchByLocation(int page, string input, int count = GlobalConstants.Pages)
         {
-            var videoCount = this.postRepository.AllAsNoTracking().Where(x => x.Type.Name == "Video" && x.Location.Name.ToLower().Contains(input.ToLower())).Count();
+            var videoCount = this.postRepository.AllAsNoTracking().Where(x => x.Type.Name == GlobalConstants.Video && x.Location.Name.ToLower().Contains(input.ToLower())).Count();
             if (videoCount > (page * count) && videoCount < (page + 1) * count)
             {
                 return this.postRepository.AllAsNoTracking()
-                               .Where(x => x.Type.Name == "Video" && x.Location.Name.ToLower().Contains(input.ToLower()))
+                               .Where(x => x.Type.Name == GlobalConstants.Video && x.Location.Name.ToLower().Contains(input.ToLower()))
                                .OrderBy(x => x.Likes)
                                .Skip(page * count)
                                .Take(videoCount - (count * page))
@@ -207,13 +207,13 @@
                                    Likes = x.Likes,
                                    Dislikes = x.Dislikes,
                                    Location = x.Location.Name,
-                                   Length = x.Video.Length.ToString("c"),
+                                   Length = x.Video.Length.ToString(GlobalConstants.TimeSpan),
                                }).ToList();
             }
             else if (videoCount >= (page + 1) * count)
             {
                 return this.postRepository.AllAsNoTracking()
-                               .Where(x => x.Type.Name == "Video" && x.Location.Name.ToLower().Contains(input.ToLower()))
+                               .Where(x => x.Type.Name == GlobalConstants.Video && x.Location.Name.ToLower().Contains(input.ToLower()))
                                .OrderBy(x => x.Likes)
                                .Skip(page * count)
                                .Take(count)
@@ -229,7 +229,7 @@
                                    Likes = x.Likes,
                                    Dislikes = x.Dislikes,
                                    Location = x.Location.Name,
-                                   Length = x.Video.Length.ToString("c"),
+                                   Length = x.Video.Length.ToString(GlobalConstants.TimeSpan),
                                }).ToList();
             }
             else
@@ -240,11 +240,11 @@
 
         public IEnumerable<VideoPostViewModel> SearchByTags(int page, string input, int count = GlobalConstants.Pages)
         {
-            var videoCount = this.postRepository.AllAsNoTracking().Where(x => x.Type.Name == "Video" && x.Tags.Select(x => x.Tag.Name).Contains(input)).Count();
+            var videoCount = this.postRepository.AllAsNoTracking().Where(x => x.Type.Name == GlobalConstants.Video && x.Tags.Select(x => x.Tag.Name).Contains(input)).Count();
             if (videoCount > (page * count) && videoCount < (page + 1) * count)
             {
                 return this.postRepository.AllAsNoTracking()
-                               .Where(x => x.Type.Name == "Video" && x.Tags.Select(x => x.Tag.Name).Contains(input))
+                               .Where(x => x.Type.Name == GlobalConstants.Video && x.Tags.Select(x => x.Tag.Name).Contains(input))
                                .OrderBy(x => x.Likes)
                                .Skip(page * count)
                                .Take(videoCount - (count * page))
@@ -260,13 +260,13 @@
                                    Likes = x.Likes,
                                    Dislikes = x.Dislikes,
                                    Location = x.Location.Name,
-                                   Length = x.Video.Length.ToString("c"),
+                                   Length = x.Video.Length.ToString(GlobalConstants.TimeSpan),
                                }).ToList();
             }
             else if (videoCount >= (page + 1) * count)
             {
                 return this.postRepository.AllAsNoTracking()
-                               .Where(x => x.Type.Name == "Video" && x.Tags.Select(x => x.Tag.Name).Contains(input))
+                               .Where(x => x.Type.Name == GlobalConstants.Video && x.Tags.Select(x => x.Tag.Name).Contains(input))
                                .OrderBy(x => x.Likes)
                                .Skip(page * count)
                                .Take(count)
@@ -282,7 +282,7 @@
                                    Likes = x.Likes,
                                    Dislikes = x.Dislikes,
                                    Location = x.Location.Name,
-                                   Length = x.Video.Length.ToString("c"),
+                                   Length = x.Video.Length.ToString(GlobalConstants.TimeSpan),
                                }).ToList();
             }
             else
@@ -293,11 +293,11 @@
 
         public IEnumerable<VideoPostViewModel> SearchByUsername(int page, string input, int count = GlobalConstants.Pages)
         {
-            var videoCount = this.postRepository.AllAsNoTracking().Where(x => x.Type.Name == "Video" && x.AddedByUser.UserName.ToLower().Contains(input.ToLower())).Count();
+            var videoCount = this.postRepository.AllAsNoTracking().Where(x => x.Type.Name == GlobalConstants.Video && x.AddedByUser.UserName.ToLower().Contains(input.ToLower())).Count();
             if (videoCount > (page * count) && videoCount < (page + 1) * count)
             {
                 return this.postRepository.AllAsNoTracking()
-                               .Where(x => x.Type.Name == "Video" && x.AddedByUser.UserName.ToLower().Contains(input.ToLower()))
+                               .Where(x => x.Type.Name == GlobalConstants.Video && x.AddedByUser.UserName.ToLower().Contains(input.ToLower()))
                                .OrderBy(x => x.Likes)
                                .Skip(page * count)
                                .Take(videoCount - (count * page))
@@ -313,13 +313,13 @@
                                    Likes = x.Likes,
                                    Dislikes = x.Dislikes,
                                    Location = x.Location.Name,
-                                   Length = x.Video.Length.ToString("c"),
+                                   Length = x.Video.Length.ToString(GlobalConstants.TimeSpan),
                                }).ToList();
             }
             else if (videoCount >= (page + 1) * count)
             {
                 return this.postRepository.AllAsNoTracking()
-                               .Where(x => x.Type.Name == "Video" && x.AddedByUser.UserName.ToLower().Contains(input.ToLower()))
+                               .Where(x => x.Type.Name == GlobalConstants.Video && x.AddedByUser.UserName.ToLower().Contains(input.ToLower()))
                                .OrderBy(x => x.Likes)
                                .Skip(page * count)
                                .Take(count)
@@ -335,7 +335,7 @@
                                    Likes = x.Likes,
                                    Dislikes = x.Dislikes,
                                    Location = x.Location.Name,
-                                   Length = x.Video.Length.ToString("c"),
+                                   Length = x.Video.Length.ToString(GlobalConstants.TimeSpan),
                                }).ToList();
             }
             else
@@ -346,11 +346,11 @@
 
         public IEnumerable<VideoPostViewModel> SearchByCommentedPosts(int page, string input, int count = GlobalConstants.Pages)
         {
-            var imageCount = this.postRepository.AllAsNoTracking().Where(x => x.Comments.Select(x => x.UserPosted.UserName).Contains(input) && x.Type.Name == "Video").Count();
+            var imageCount = this.postRepository.AllAsNoTracking().Where(x => x.Comments.Select(x => x.UserPosted.UserName).Contains(input) && x.Type.Name == GlobalConstants.Video).Count();
             if (imageCount > (page * count) && imageCount < (page + 1) * count)
             {
                 return this.postRepository.AllAsNoTracking()
-                               .Where(x => x.Comments.Select(x => x.UserPosted.UserName).Contains(input) && x.Type.Name == "Video")
+                               .Where(x => x.Comments.Select(x => x.UserPosted.UserName).Contains(input) && x.Type.Name == GlobalConstants.Video)
                                .OrderBy(x => x.Likes)
                                .Skip(page * count)
                                .Take(imageCount - (count * page))
@@ -366,13 +366,13 @@
                                    Likes = x.Likes,
                                    Dislikes = x.Dislikes,
                                    Location = x.Location.Name,
-                                   Length = x.Video.Length.ToString("c"),
+                                   Length = x.Video.Length.ToString(GlobalConstants.TimeSpan),
                                }).ToList();
             }
             else if (imageCount >= (page + 1) * count)
             {
                 return this.postRepository.AllAsNoTracking()
-                               .Where(x => x.Comments.Select(x => x.UserPosted.UserName).Contains(input) && x.Type.Name == "Video")
+                               .Where(x => x.Comments.Select(x => x.UserPosted.UserName).Contains(input) && x.Type.Name == GlobalConstants.Video)
                                .OrderBy(x => x.Likes)
                                .Skip(page * count)
                                .Take(count)
@@ -388,7 +388,7 @@
                                    Likes = x.Likes,
                                    Dislikes = x.Dislikes,
                                    Location = x.Location.Name,
-                                   Length = x.Video.Length.ToString("c"),
+                                   Length = x.Video.Length.ToString(GlobalConstants.TimeSpan),
                                }).ToList();
             }
             else
@@ -399,11 +399,11 @@
 
         public IEnumerable<VideoPostViewModel> SearchByDislikedPosts(int page, string input, int count = GlobalConstants.Pages)
         {
-            var imageCount = this.reactRepository.AllAsNoTracking().Where(x => x.IsLiked == false && x.User.UserName.ToLower() == input.ToLower() && x.Post.Type.Name == "Video").Count();
+            var imageCount = this.reactRepository.AllAsNoTracking().Where(x => x.IsLiked == false && x.User.UserName.ToLower() == input.ToLower() && x.Post.Type.Name == GlobalConstants.Video).Count();
             if (imageCount > (page * count) && imageCount < (page + 1) * count)
             {
                 return this.reactRepository.AllAsNoTracking()
-                               .Where(x => x.IsLiked == false && x.User.UserName.ToLower() == input.ToLower() && x.Post.Type.Name == "Video")
+                               .Where(x => x.IsLiked == false && x.User.UserName.ToLower() == input.ToLower() && x.Post.Type.Name == GlobalConstants.Video)
                                .OrderBy(x => x.Post.Likes)
                                .Skip(page * count)
                                .Take(imageCount - (count * page))
@@ -411,7 +411,7 @@
                                {
                                    DatePosted = x.Post.CreatedOn.ToString(GlobalConstants.DateTime),
                                    VideoId = x.PostId,
-                                   Username = x.User.UserName,
+                                   Username = x.Post.AddedByUser.UserName,
                                    Tags = string.Join(' ', x.Post.Tags.Select(x => x.Tag.Name)),
                                    Caption = x.Post.Caption,
                                    Camera = x.Post.Camera.Model,
@@ -419,13 +419,13 @@
                                    Likes = x.Post.Likes,
                                    Dislikes = x.Post.Dislikes,
                                    Location = x.Post.Location.Name,
-                                   Length = x.Post.Video.Length.ToString("c"),
+                                   Length = x.Post.Video.Length.ToString(GlobalConstants.TimeSpan),
                                }).ToList();
             }
             else if (imageCount >= (page + 1) * count)
             {
                 return this.reactRepository.AllAsNoTracking()
-                               .Where(x => x.IsLiked == false && x.User.UserName.ToLower() == input.ToLower() && x.Post.Type.Name == "Video")
+                               .Where(x => x.IsLiked == false && x.User.UserName.ToLower() == input.ToLower() && x.Post.Type.Name == GlobalConstants.Video)
                                .OrderBy(x => x.Post.Likes)
                                .Skip(page * count)
                                .Take(count)
@@ -433,7 +433,7 @@
                                {
                                    DatePosted = x.Post.CreatedOn.ToString(GlobalConstants.DateTime),
                                    VideoId = x.PostId,
-                                   Username = x.User.UserName,
+                                   Username = x.Post.AddedByUser.UserName,
                                    Tags = string.Join(' ', x.Post.Tags.Select(x => x.Tag.Name)),
                                    Caption = x.Post.Caption,
                                    Camera = x.Post.Camera.Model,
@@ -441,7 +441,7 @@
                                    Likes = x.Post.Likes,
                                    Dislikes = x.Post.Dislikes,
                                    Location = x.Post.Location.Name,
-                                   Length = x.Post.Video.Length.ToString("c"),
+                                   Length = x.Post.Video.Length.ToString(GlobalConstants.TimeSpan),
                                }).ToList();
             }
             else
@@ -452,11 +452,11 @@
 
         public IEnumerable<VideoPostViewModel> SearchByLikedPosts(int page, string input, int count = GlobalConstants.Pages)
         {
-            var imageCount = this.reactRepository.AllAsNoTracking().Where(x => x.IsLiked == true && x.User.UserName.ToLower() == input.ToLower() && x.Post.Type.Name == "Video").Count();
+            var imageCount = this.reactRepository.AllAsNoTracking().Where(x => x.IsLiked == true && x.User.UserName.ToLower() == input.ToLower() && x.Post.Type.Name == GlobalConstants.Video).Count();
             if (imageCount > (page * count) && imageCount < (page + 1) * count)
             {
                 return this.reactRepository.AllAsNoTracking()
-                               .Where(x => x.IsLiked == true && x.User.UserName.ToLower() == input.ToLower() && x.Post.Type.Name == "Video")
+                               .Where(x => x.IsLiked == true && x.User.UserName.ToLower() == input.ToLower() && x.Post.Type.Name == GlobalConstants.Video)
                                .OrderBy(x => x.Post.Likes)
                                .Skip(page * count)
                                .Take(imageCount - (count * page))
@@ -464,7 +464,7 @@
                                {
                                    DatePosted = x.Post.CreatedOn.ToString(GlobalConstants.DateTime),
                                    VideoId = x.PostId,
-                                   Username = x.User.UserName,
+                                   Username = x.Post.AddedByUser.UserName,
                                    Tags = string.Join(' ', x.Post.Tags.Select(x => x.Tag.Name)),
                                    Caption = x.Post.Caption,
                                    Camera = x.Post.Camera.Model,
@@ -472,13 +472,13 @@
                                    Likes = x.Post.Likes,
                                    Dislikes = x.Post.Dislikes,
                                    Location = x.Post.Location.Name,
-                                   Length = x.Post.Video.Length.ToString("c"),
+                                   Length = x.Post.Video.Length.ToString(GlobalConstants.TimeSpan),
                                }).ToList();
             }
             else if (imageCount >= (page + 1) * count)
             {
                 return this.reactRepository.AllAsNoTracking()
-                               .Where(x => x.IsLiked == true && x.User.UserName.ToLower() == input.ToLower() && x.Post.Type.Name == "Video")
+                               .Where(x => x.IsLiked == true && x.User.UserName.ToLower() == input.ToLower() && x.Post.Type.Name == GlobalConstants.Video)
                                .OrderBy(x => x.Post.Likes)
                                .Skip(page * count)
                                .Take(count)
@@ -486,7 +486,7 @@
                                {
                                    DatePosted = x.Post.CreatedOn.ToString(GlobalConstants.DateTime),
                                    VideoId = x.PostId,
-                                   Username = x.User.UserName,
+                                   Username = x.Post.AddedByUser.UserName,
                                    Tags = string.Join(' ', x.Post.Tags.Select(x => x.Tag.Name)),
                                    Caption = x.Post.Caption,
                                    Camera = x.Post.Camera.Model,
@@ -494,7 +494,7 @@
                                    Likes = x.Post.Likes,
                                    Dislikes = x.Post.Dislikes,
                                    Location = x.Post.Location.Name,
-                                   Length = x.Post.Video.Length.ToString("c"),
+                                   Length = x.Post.Video.Length.ToString(GlobalConstants.TimeSpan),
                                }).ToList();
             }
             else

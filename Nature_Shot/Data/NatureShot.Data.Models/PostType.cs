@@ -2,6 +2,8 @@
 {
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
+
+    using NatureShot.Common;
     using NatureShot.Data.Common.Models;
 
     public class PostType : BaseDeletableModel<int>
@@ -12,7 +14,7 @@
         }
 
         [Required]
-        [MaxLength(10)]
+        [MaxLength(GlobalConstants.MinLengthTen)]
         public string Name { get; set; }
 
         public virtual ICollection<Post> Posts { get; set; }

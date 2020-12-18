@@ -3,6 +3,8 @@
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
+
+    using NatureShot.Common;
     using NatureShot.Data.Common.Models;
 
     public class ChatGroup : BaseDeletableModel<string>
@@ -15,7 +17,7 @@
         }
 
         [Required]
-        [MaxLength(50)]
+        [MaxLength(GlobalConstants.MaxLengthFifty)]
         public string Name { get; set; }
 
         public virtual ICollection<Message> Messages { get; set; }

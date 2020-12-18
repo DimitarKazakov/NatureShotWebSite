@@ -3,6 +3,7 @@
     using System;
     using System.ComponentModel.DataAnnotations;
 
+    using NatureShot.Common;
     using NatureShot.Data.Common.Models;
 
     public class Message : BaseDeletableModel<int>
@@ -12,11 +13,11 @@
         }
 
         [Required]
-        [MaxLength(300)]
+        [MaxLength(GlobalConstants.MaxLengthThreeHundred)]
         public string Content { get; set; }
 
         [Required]
-        [MaxLength(30)]
+        [MaxLength(GlobalConstants.MaxLengthTwentyFive)]
         public string SendByUsername { get; set; }
 
         public bool HasBeenRead { get; set; }
