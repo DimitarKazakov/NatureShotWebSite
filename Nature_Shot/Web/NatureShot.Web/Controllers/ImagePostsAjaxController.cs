@@ -111,13 +111,13 @@
                             imageList = this.photoNewestService.SearchByCaption(page, searchInput).ToList();
                             break;
                         case "Liked":
-                            imageList = this.photoNewestService.SearchByLikedPosts(0, searchInput).ToList();
+                            imageList = this.photoNewestService.SearchByLikedPosts(page, searchInput).ToList();
                             break;
                         case "Disliked":
-                            imageList = this.photoNewestService.SearchByDislikedPosts(0, searchInput).ToList();
+                            imageList = this.photoNewestService.SearchByDislikedPosts(page, searchInput).ToList();
                             break;
                         case "Commented":
-                            imageList = this.photoNewestService.SearchByCommentedPosts(0, searchInput).ToList();
+                            imageList = this.photoNewestService.SearchByCommentedPosts(page, searchInput).ToList();
                             break;
                         default:
                             imageList = this.photoNewestService.GetImagePostsNewest(page).ToList();
@@ -144,13 +144,13 @@
                             imageList = this.photoOldestService.SearchByCaption(page, searchInput).ToList();
                             break;
                         case "Liked":
-                            imageList = this.photoOldestService.SearchByLikedPosts(0, searchInput).ToList();
+                            imageList = this.photoOldestService.SearchByLikedPosts(page, searchInput).ToList();
                             break;
                         case "Disliked":
-                            imageList = this.photoOldestService.SearchByDislikedPosts(0, searchInput).ToList();
+                            imageList = this.photoOldestService.SearchByDislikedPosts(page, searchInput).ToList();
                             break;
                         case "Commented":
-                            imageList = this.photoOldestService.SearchByCommentedPosts(0, searchInput).ToList();
+                            imageList = this.photoOldestService.SearchByCommentedPosts(page, searchInput).ToList();
                             break;
                         default:
                             imageList = this.photoOldestService.GetImagePostsOldest(page).ToList();
@@ -177,13 +177,13 @@
                             imageList = this.photoMostLikesService.SearchByCaption(page, searchInput).ToList();
                             break;
                         case "Liked":
-                            imageList = this.photoMostLikesService.SearchByLikedPosts(0, searchInput).ToList();
+                            imageList = this.photoMostLikesService.SearchByLikedPosts(page, searchInput).ToList();
                             break;
                         case "Disliked":
-                            imageList = this.photoMostLikesService.SearchByDislikedPosts(0, searchInput).ToList();
+                            imageList = this.photoMostLikesService.SearchByDislikedPosts(page, searchInput).ToList();
                             break;
                         case "Commented":
-                            imageList = this.photoMostLikesService.SearchByCommentedPosts(0, searchInput).ToList();
+                            imageList = this.photoMostLikesService.SearchByCommentedPosts(page, searchInput).ToList();
                             break;
                         default:
                             imageList = this.photoMostLikesService.GetImagePostsMostLikes(page).ToList();
@@ -210,13 +210,13 @@
                             imageList = this.photoLeastLikesService.SearchByCaption(page, searchInput).ToList();
                             break;
                         case "Liked":
-                            imageList = this.photoLeastLikesService.SearchByLikedPosts(0, searchInput).ToList();
+                            imageList = this.photoLeastLikesService.SearchByLikedPosts(page, searchInput).ToList();
                             break;
                         case "Disliked":
-                            imageList = this.photoLeastLikesService.SearchByDislikedPosts(0, searchInput).ToList();
+                            imageList = this.photoLeastLikesService.SearchByDislikedPosts(page, searchInput).ToList();
                             break;
                         case "Commented":
-                            imageList = this.photoLeastLikesService.SearchByCommentedPosts(0, searchInput).ToList();
+                            imageList = this.photoLeastLikesService.SearchByCommentedPosts(page, searchInput).ToList();
                             break;
                         default:
                             imageList = this.photoLeastLikesService.GetImagePostsLeastLikes(page).ToList();
@@ -243,13 +243,13 @@
                             imageList = this.photoMostDislikesService.SearchByCaption(page, searchInput).ToList();
                             break;
                         case "Liked":
-                            imageList = this.photoMostDislikesService.SearchByLikedPosts(0, searchInput).ToList();
+                            imageList = this.photoMostDislikesService.SearchByLikedPosts(page, searchInput).ToList();
                             break;
                         case "Disliked":
-                            imageList = this.photoMostDislikesService.SearchByDislikedPosts(0, searchInput).ToList();
+                            imageList = this.photoMostDislikesService.SearchByDislikedPosts(page, searchInput).ToList();
                             break;
                         case "Commented":
-                            imageList = this.photoMostDislikesService.SearchByCommentedPosts(0, searchInput).ToList();
+                            imageList = this.photoMostDislikesService.SearchByCommentedPosts(page, searchInput).ToList();
                             break;
                         default:
                             imageList = this.photoMostDislikesService.GetImagePostsMostDislikes(page).ToList();
@@ -276,13 +276,13 @@
                             imageList = this.photoLeastDislikesService.SearchByCaption(page, searchInput).ToList();
                             break;
                         case "Liked":
-                            imageList = this.photoLeastDislikesService.SearchByLikedPosts(0, searchInput).ToList();
+                            imageList = this.photoLeastDislikesService.SearchByLikedPosts(page, searchInput).ToList();
                             break;
                         case "Disliked":
-                            imageList = this.photoLeastDislikesService.SearchByDislikedPosts(0, searchInput).ToList();
+                            imageList = this.photoLeastDislikesService.SearchByDislikedPosts(page, searchInput).ToList();
                             break;
                         case "Commented":
-                            imageList = this.photoLeastDislikesService.SearchByCommentedPosts(0, searchInput).ToList();
+                            imageList = this.photoLeastDislikesService.SearchByCommentedPosts(page, searchInput).ToList();
                             break;
                         default:
                             imageList = this.photoLeastDislikesService.GetImagePostsLeastDislikes(page).ToList();

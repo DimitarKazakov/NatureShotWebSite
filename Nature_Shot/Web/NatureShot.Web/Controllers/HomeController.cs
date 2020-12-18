@@ -33,7 +33,7 @@
             this.userService = userService;
             this.userManager = userManager;
             this.cloudinary = cloudinary;
-            signInManager = SignInManager;
+            this.signInManager = SignInManager;
         }
 
         public IActionResult Index()
@@ -43,11 +43,6 @@
                 return this.RedirectToAction(nameof(this.Profile), new { username = this.User.Identity.Name });
             }
 
-            return this.View();
-        }
-
-        public IActionResult Privacy()
-        {
             return this.View();
         }
 

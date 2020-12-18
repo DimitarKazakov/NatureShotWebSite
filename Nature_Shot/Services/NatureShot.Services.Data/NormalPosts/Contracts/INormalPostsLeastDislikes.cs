@@ -2,23 +2,23 @@
 {
     using System;
     using System.Collections.Generic;
-
+    using NatureShot.Common;
     using NatureShot.Web.ViewModels.NormalPosts;
 
     public interface INormalPostsLeastDislikes
     {
-        IEnumerable<NormalPostViewModel> GetNormalPostsLeastDislikes(int page, int count = 4);
+        IEnumerable<NormalPostViewModel> GetNormalPostsLeastDislikes(int page, int count = GlobalConstants.Pages);
 
-        IEnumerable<NormalPostViewModel> SearchByCaption(int page, string input, int count = 4);
+        IEnumerable<NormalPostViewModel> SearchByCaption(int page, string input, int count = GlobalConstants.Pages);
 
-        IEnumerable<NormalPostViewModel> SearchByUsername(int page, string input, int count = 4);
+        IEnumerable<NormalPostViewModel> SearchByUsername(int page, string input, int count = GlobalConstants.Pages);
 
-        IEnumerable<NormalPostViewModel> SearchByTags(int page, string input, int count = 4);
+        IEnumerable<NormalPostViewModel> SearchByTags(int page, string input, int count = GlobalConstants.Pages);
 
-        IEnumerable<NormalPostViewModel> SearchByLikedPosts(int page, string input, int count = 4);
+        IEnumerable<NormalPostViewModel> SearchByLikedPosts(int page, string input, int count = GlobalConstants.Pages);
 
-        IEnumerable<NormalPostViewModel> SearchByDislikedPosts(int page, string input, int count = 4);
+        IEnumerable<NormalPostViewModel> SearchByDislikedPosts(int page, string input, int count = GlobalConstants.Pages);
 
-        IEnumerable<NormalPostViewModel> SearchByCommentedPosts(int page, string input, int count = 4);
+        IEnumerable<NormalPostViewModel> SearchByCommentedPosts(int page, string input, int count = GlobalConstants.Pages);
     }
 }

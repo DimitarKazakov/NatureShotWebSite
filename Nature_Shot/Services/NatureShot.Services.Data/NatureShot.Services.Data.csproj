@@ -24,6 +24,7 @@
     <ProjectReference Include="..\..\Data\NatureShot.Data.Models\NatureShot.Data.Models.csproj" />
     <ProjectReference Include="..\NatureShot.Services.Mapping\NatureShot.Services.Mapping.csproj" />
     <ProjectReference Include="..\..\Web\NatureShot.Web.ViewModels\NatureShot.Web.ViewModels.csproj" />
+    <ProjectReference Include="..\..\NatureShot.Common\NatureShot.Common.csproj" />
   </ItemGroup>
 
   <ItemGroup>

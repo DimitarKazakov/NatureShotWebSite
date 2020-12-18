@@ -63,13 +63,13 @@
                             postList = this.normalPostNewestService.SearchByCaption(page, searchInput).ToList();
                             break;
                         case "Liked":
-                            postList = this.normalPostNewestService.SearchByLikedPosts(0, searchInput).ToList();
+                            postList = this.normalPostNewestService.SearchByLikedPosts(page, searchInput).ToList();
                             break;
                         case "Disliked":
-                            postList = this.normalPostNewestService.SearchByDislikedPosts(0, searchInput).ToList();
+                            postList = this.normalPostNewestService.SearchByDislikedPosts(page, searchInput).ToList();
                             break;
                         case "Commented":
-                            postList = this.normalPostNewestService.SearchByCommentedPosts(0, searchInput).ToList();
+                            postList = this.normalPostNewestService.SearchByCommentedPosts(page, searchInput).ToList();
                             break;
                         default:
                             postList = this.normalPostNewestService.GetNormalPostsNewest(page).ToList();
@@ -90,13 +90,13 @@
                             postList = this.normalPostOldestService.SearchByCaption(page, searchInput).ToList();
                             break;
                         case "Liked":
-                            postList = this.normalPostOldestService.SearchByLikedPosts(0, searchInput).ToList();
+                            postList = this.normalPostOldestService.SearchByLikedPosts(page, searchInput).ToList();
                             break;
                         case "Disliked":
-                            postList = this.normalPostOldestService.SearchByDislikedPosts(0, searchInput).ToList();
+                            postList = this.normalPostOldestService.SearchByDislikedPosts(page, searchInput).ToList();
                             break;
                         case "Commented":
-                            postList = this.normalPostOldestService.SearchByCommentedPosts(0, searchInput).ToList();
+                            postList = this.normalPostOldestService.SearchByCommentedPosts(page, searchInput).ToList();
                             break;
                         default:
                             postList = this.normalPostOldestService.GetNormalPostsOldest(page).ToList();
@@ -117,13 +117,13 @@
                             postList = this.normalPostMostLikesService.SearchByCaption(page, searchInput).ToList();
                             break;
                         case "Liked":
-                            postList = this.normalPostMostLikesService.SearchByLikedPosts(0, searchInput).ToList();
+                            postList = this.normalPostMostLikesService.SearchByLikedPosts(page, searchInput).ToList();
                             break;
                         case "Disliked":
-                            postList = this.normalPostMostLikesService.SearchByDislikedPosts(0, searchInput).ToList();
+                            postList = this.normalPostMostLikesService.SearchByDislikedPosts(page, searchInput).ToList();
                             break;
                         case "Commented":
-                            postList = this.normalPostMostLikesService.SearchByCommentedPosts(0, searchInput).ToList();
+                            postList = this.normalPostMostLikesService.SearchByCommentedPosts(page, searchInput).ToList();
                             break;
                         default:
                             postList = this.normalPostMostLikesService.GetNormalPostsMostLikes(page).ToList();
@@ -144,13 +144,13 @@
                             postList = this.normalPostLeastLikesService.SearchByCaption(page, searchInput).ToList();
                             break;
                         case "Liked":
-                            postList = this.normalPostLeastLikesService.SearchByLikedPosts(0, searchInput).ToList();
+                            postList = this.normalPostLeastLikesService.SearchByLikedPosts(page, searchInput).ToList();
                             break;
                         case "Disliked":
-                            postList = this.normalPostLeastLikesService.SearchByDislikedPosts(0, searchInput).ToList();
+                            postList = this.normalPostLeastLikesService.SearchByDislikedPosts(page, searchInput).ToList();
                             break;
                         case "Commented":
-                            postList = this.normalPostLeastLikesService.SearchByCommentedPosts(0, searchInput).ToList();
+                            postList = this.normalPostLeastLikesService.SearchByCommentedPosts(page, searchInput).ToList();
                             break;
                         default:
                             postList = this.normalPostLeastLikesService.GetNormalPostsLeastLikes(page).ToList();
@@ -171,13 +171,13 @@
                             postList = this.normalPostMostDislikesService.SearchByCaption(page, searchInput).ToList();
                             break;
                         case "Liked":
-                            postList = this.normalPostMostDislikesService.SearchByLikedPosts(0, searchInput).ToList();
+                            postList = this.normalPostMostDislikesService.SearchByLikedPosts(page, searchInput).ToList();
                             break;
                         case "Disliked":
-                            postList = this.normalPostMostDislikesService.SearchByDislikedPosts(0, searchInput).ToList();
+                            postList = this.normalPostMostDislikesService.SearchByDislikedPosts(page, searchInput).ToList();
                             break;
                         case "Commented":
-                            postList = this.normalPostMostDislikesService.SearchByCommentedPosts(0, searchInput).ToList();
+                            postList = this.normalPostMostDislikesService.SearchByCommentedPosts(page, searchInput).ToList();
                             break;
                         default:
                             postList = this.normalPostMostDislikesService.GetNormalPostsMostDislikes(page).ToList();
@@ -198,13 +198,13 @@
                             postList = this.normalPostLeastDislikesService.SearchByCaption(page, searchInput).ToList();
                             break;
                         case "Liked":
-                            postList = this.normalPostLeastDislikesService.SearchByLikedPosts(0, searchInput).ToList();
+                            postList = this.normalPostLeastDislikesService.SearchByLikedPosts(page, searchInput).ToList();
                             break;
                         case "Disliked":
-                            postList = this.normalPostLeastDislikesService.SearchByDislikedPosts(0, searchInput).ToList();
+                            postList = this.normalPostLeastDislikesService.SearchByDislikedPosts(page, searchInput).ToList();
                             break;
                         case "Commented":
-                            postList = this.normalPostLeastDislikesService.SearchByCommentedPosts(0, searchInput).ToList();
+                            postList = this.normalPostLeastDislikesService.SearchByCommentedPosts(page, searchInput).ToList();
                             break;
                         default:
                             postList = this.normalPostLeastDislikesService.GetNormalPostsLeastDislikes(page).ToList();

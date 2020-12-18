@@ -8,6 +8,7 @@
     using NatureShot.Data.Models;
     using NatureShot.Web.ViewModels.NormalPosts;
     using NatureShot.Services.Data.NormalPosts.Contracts;
+    using NatureShot.Common;
 
     public class NormalPostsMostDislikes : INormalPostsMostDislikes
     {
@@ -20,7 +21,12 @@
             this.reactRepository = reactRepository;
         }
 
-        public IEnumerable<NormalPostViewModel> GetNormalPostsMostDislikes(int page, int count = 4)
+        public NormalPostsMostDislikes(IDeletableEntityRepository<Post> postRepository)
+        {
+            this.postRepository = postRepository;
+        }
+
+        public IEnumerable<NormalPostViewModel> GetNormalPostsMostDislikes(int page, int count = GlobalConstants.Pages)
         {
             var postCount = this.postRepository.AllAsNoTracking().Where(x => x.Type.Name == "Post").Count();
             if (postCount > (page * count) && postCount < (page + 1) * count)
@@ -32,7 +38,7 @@
                                .Take(postCount - (count * page))
                                .Select(x => new NormalPostViewModel
                                {
-                                   DatePosted = x.CreatedOn.ToString("dddd, dd MMMM yyyy"),
+                                   DatePosted = x.CreatedOn.ToString(GlobalConstants.DateTime),
                                    PostId = x.Id.ToString(),
                                    Username = x.AddedByUser.UserName,
                                    Tags = string.Join(' ', x.Tags.Select(x => x.Tag.Name)),
@@ -50,7 +56,7 @@
                                .Take(count)
                                .Select(x => new NormalPostViewModel
                                {
-                                   DatePosted = x.CreatedOn.ToString("dddd, dd MMMM yyyy"),
+                                   DatePosted = x.CreatedOn.ToString(GlobalConstants.DateTime),
                                    PostId = x.Id.ToString(),
                                    Username = x.AddedByUser.UserName,
                                    Tags = string.Join(' ', x.Tags.Select(x => x.Tag.Name)),
@@ -65,7 +71,7 @@
             }
         }
 
-        public IEnumerable<NormalPostViewModel> SearchByCaption(int page, string input, int count = 4)
+        public IEnumerable<NormalPostViewModel> SearchByCaption(int page, string input, int count = GlobalConstants.Pages)
         {
             var postCount = this.postRepository.AllAsNoTracking().Where(x => x.Type.Name == "Post" && x.Caption.ToLower().Contains(input.ToLower())).Count();
             if (postCount > (page * count) && postCount < (page + 1) * count)
@@ -77,7 +83,7 @@
                                .Take(postCount - (count * page))
                                .Select(x => new NormalPostViewModel
                                {
-                                   DatePosted = x.CreatedOn.ToString("dddd, dd MMMM yyyy"),
+                                   DatePosted = x.CreatedOn.ToString(GlobalConstants.DateTime),
                                    PostId = x.Id.ToString(),
                                    Username = x.AddedByUser.UserName,
                                    Tags = string.Join(' ', x.Tags.Select(x => x.Tag.Name)),
@@ -95,7 +101,7 @@
                                .Take(count)
                                .Select(x => new NormalPostViewModel
                                {
-                                   DatePosted = x.CreatedOn.ToString("dddd, dd MMMM yyyy"),
+                                   DatePosted = x.CreatedOn.ToString(GlobalConstants.DateTime),
                                    PostId = x.Id.ToString(),
                                    Username = x.AddedByUser.UserName,
                                    Tags = string.Join(' ', x.Tags.Select(x => x.Tag.Name)),
@@ -110,7 +116,7 @@
             }
         }
 
-        public IEnumerable<NormalPostViewModel> SearchByTags(int page, string input, int count = 4)
+        public IEnumerable<NormalPostViewModel> SearchByTags(int page, string input, int count = GlobalConstants.Pages)
         {
             var postCount = this.postRepository.AllAsNoTracking().Where(x => x.Type.Name == "Post" && x.Tags.Select(x => x.Tag.Name).Contains(input)).Count();
             if (postCount > (page * count) && postCount < (page + 1) * count)
@@ -122,7 +128,7 @@
                                .Take(postCount - (count * page))
                                .Select(x => new NormalPostViewModel
                                {
-                                   DatePosted = x.CreatedOn.ToString("dddd, dd MMMM yyyy"),
+                                   DatePosted = x.CreatedOn.ToString(GlobalConstants.DateTime),
                                    PostId = x.Id.ToString(),
                                    Username = x.AddedByUser.UserName,
                                    Tags = string.Join(' ', x.Tags.Select(x => x.Tag.Name)),
@@ -140,7 +146,7 @@
                                .Take(count)
                                .Select(x => new NormalPostViewModel
                                {
-                                   DatePosted = x.CreatedOn.ToString("dddd, dd MMMM yyyy"),
+                                   DatePosted = x.CreatedOn.ToString(GlobalConstants.DateTime),
                                    PostId = x.Id.ToString(),
                                    Username = x.AddedByUser.UserName,
                                    Tags = string.Join(' ', x.Tags.Select(x => x.Tag.Name)),
@@ -155,7 +161,7 @@
             }
         }
 
-        public IEnumerable<NormalPostViewModel> SearchByUsername(int page, string input, int count = 4)
+        public IEnumerable<NormalPostViewModel> SearchByUsername(int page, string input, int count = GlobalConstants.Pages)
         {
             var postCount = this.postRepository.AllAsNoTracking().Where(x => x.Type.Name == "Post" && x.AddedByUser.UserName.ToLower().Contains(input.ToLower())).Count();
             if (postCount > (page * count) && postCount < (page + 1) * count)
@@ -167,7 +173,7 @@
                                .Take(postCount - (count * page))
                                .Select(x => new NormalPostViewModel
                                {
-                                   DatePosted = x.CreatedOn.ToString("dddd, dd MMMM yyyy"),
+                                   DatePosted = x.CreatedOn.ToString(GlobalConstants.DateTime),
                                    PostId = x.Id.ToString(),
                                    Username = x.AddedByUser.UserName,
                                    Tags = string.Join(' ', x.Tags.Select(x => x.Tag.Name)),
@@ -185,7 +191,7 @@
                                .Take(count)
                                .Select(x => new NormalPostViewModel
                                {
-                                   DatePosted = x.CreatedOn.ToString("dddd, dd MMMM yyyy"),
+                                   DatePosted = x.CreatedOn.ToString(GlobalConstants.DateTime),
                                    PostId = x.Id.ToString(),
                                    Username = x.AddedByUser.UserName,
                                    Tags = string.Join(' ', x.Tags.Select(x => x.Tag.Name)),
@@ -200,7 +206,7 @@
             }
         }
 
-        public IEnumerable<NormalPostViewModel> SearchByCommentedPosts(int page, string input, int count = 4)
+        public IEnumerable<NormalPostViewModel> SearchByCommentedPosts(int page, string input, int count = GlobalConstants.Pages)
         {
             var postCount = this.postRepository.AllAsNoTracking().Where(x => x.Comments.Select(x => x.UserPosted.UserName).Contains(input) && x.Type.Name == "Post").Count();
             if (postCount > (page * count) && postCount < (page + 1) * count)
@@ -212,7 +218,7 @@
                                .Take(postCount - (count * page))
                                .Select(x => new NormalPostViewModel
                                {
-                                   DatePosted = x.CreatedOn.ToString("dddd, dd MMMM yyyy"),
+                                   DatePosted = x.CreatedOn.ToString(GlobalConstants.DateTime),
                                    PostId = x.Id.ToString(),
                                    Username = x.AddedByUser.UserName,
                                    Tags = string.Join(' ', x.Tags.Select(x => x.Tag.Name)),
@@ -230,7 +236,7 @@
                                .Take(count)
                                .Select(x => new NormalPostViewModel
                                {
-                                   DatePosted = x.CreatedOn.ToString("dddd, dd MMMM yyyy"),
+                                   DatePosted = x.CreatedOn.ToString(GlobalConstants.DateTime),
                                    PostId = x.Id.ToString(),
                                    Username = x.AddedByUser.UserName,
                                    Tags = string.Join(' ', x.Tags.Select(x => x.Tag.Name)),
@@ -245,7 +251,7 @@
             }
         }
 
-        public IEnumerable<NormalPostViewModel> SearchByDislikedPosts(int page, string input, int count = 4)
+        public IEnumerable<NormalPostViewModel> SearchByDislikedPosts(int page, string input, int count = GlobalConstants.Pages)
         {
             var postCount = this.reactRepository.AllAsNoTracking().Where(x => x.IsLiked == false && x.User.UserName.ToLower() == input.ToLower() && x.Post.Type.Name == "Post").Count();
             if (postCount > (page * count) && postCount < (page + 1) * count)
@@ -257,7 +263,7 @@
                                .Take(postCount - (count * page))
                                .Select(x => new NormalPostViewModel
                                {
-                                   DatePosted = x.Post.CreatedOn.ToString("dddd, dd MMMM yyyy"),
+                                   DatePosted = x.Post.CreatedOn.ToString(GlobalConstants.DateTime),
                                    PostId = x.PostId.ToString(),
                                    Username = x.User.UserName,
                                    Tags = string.Join(' ', x.Post.Tags.Select(x => x.Tag.Name)),
@@ -275,7 +281,7 @@
                                .Take(count)
                                .Select(x => new NormalPostViewModel
                                {
-                                   DatePosted = x.Post.CreatedOn.ToString("dddd, dd MMMM yyyy"),
+                                   DatePosted = x.Post.CreatedOn.ToString(GlobalConstants.DateTime),
                                    PostId = x.PostId.ToString(),
                                    Username = x.User.UserName,
                                    Tags = string.Join(' ', x.Post.Tags.Select(x => x.Tag.Name)),
@@ -290,7 +296,7 @@
             }
         }
 
-        public IEnumerable<NormalPostViewModel> SearchByLikedPosts(int page, string input, int count = 4)
+        public IEnumerable<NormalPostViewModel> SearchByLikedPosts(int page, string input, int count = GlobalConstants.Pages)
         {
             var postCount = this.reactRepository.AllAsNoTracking().Where(x => x.IsLiked == true && x.User.UserName.ToLower() == input.ToLower() && x.Post.Type.Name == "Post").Count();
             if (postCount > (page * count) && postCount < (page + 1) * count)
@@ -302,7 +308,7 @@
                                .Take(postCount - (count * page))
                                .Select(x => new NormalPostViewModel
                                {
-                                   DatePosted = x.Post.CreatedOn.ToString("dddd, dd MMMM yyyy"),
+                                   DatePosted = x.Post.CreatedOn.ToString(GlobalConstants.DateTime),
                                    PostId = x.PostId.ToString(),
                                    Username = x.User.UserName,
                                    Tags = string.Join(' ', x.Post.Tags.Select(x => x.Tag.Name)),
@@ -320,7 +326,7 @@
                                .Take(count)
                                .Select(x => new NormalPostViewModel
                                {
-                                   DatePosted = x.Post.CreatedOn.ToString("dddd, dd MMMM yyyy"),
+                                   DatePosted = x.Post.CreatedOn.ToString(GlobalConstants.DateTime),
                                    PostId = x.PostId.ToString(),
                                    Username = x.User.UserName,
                                    Tags = string.Join(' ', x.Post.Tags.Select(x => x.Tag.Name)),

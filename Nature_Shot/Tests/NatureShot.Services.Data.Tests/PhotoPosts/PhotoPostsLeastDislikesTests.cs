@@ -11,6 +11,7 @@
     using NatureShot.Services.Data;
     using NatureShot.Services.Data.NormalPosts;
     using NatureShot.Services.Data.PhotoPosts;
+    using NatureShot.Services.Data.PhotoPosts.Contracts;
     using Xunit;
 
     public class PhotoPostsLeastDislikesTests

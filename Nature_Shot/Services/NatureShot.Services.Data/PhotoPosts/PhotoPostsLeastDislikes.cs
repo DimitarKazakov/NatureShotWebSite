@@ -3,7 +3,7 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
-
+    using NatureShot.Common;
     using NatureShot.Data.Common.Repositories;
     using NatureShot.Data.Models;
     using NatureShot.Services.Data.PhotoPosts.Contracts;
@@ -20,7 +20,12 @@
             this.reactRepository = reactRepository;
         }
 
-        public IEnumerable<ImagePostViewModel> GetImagePostsLeastDislikes(int page, int count = 4)
+        public PhotoPostsLeastDislikes(IDeletableEntityRepository<Post> postRepository)
+        {
+            this.postRepository = postRepository;
+        }
+
+        public IEnumerable<ImagePostViewModel> GetImagePostsLeastDislikes(int page, int count = GlobalConstants.Pages)
         {
             var imageCount = this.postRepository.AllAsNoTracking().Where(x => x.Type.Name == "Image").Count();
             if (imageCount > (page * count) && imageCount < (page + 1) * count)
@@ -32,7 +37,7 @@
                                .Take(imageCount - (count * page))
                                .Select(x => new ImagePostViewModel
                                {
-                                   DatePosted = x.CreatedOn.ToString("dddd, dd MMMM yyyy"),
+                                   DatePosted = x.CreatedOn.ToString(GlobalConstants.DateTime),
                                    ImageId = x.Id,
                                    Username = x.AddedByUser.UserName,
                                    Tags = string.Join(' ', x.Tags.Select(x => x.Tag.Name)),
@@ -54,7 +59,7 @@
                                .Take(count)
                                .Select(x => new ImagePostViewModel
                                {
-                                   DatePosted = x.CreatedOn.ToString("dddd, dd MMMM yyyy"),
+                                   DatePosted = x.CreatedOn.ToString(GlobalConstants.DateTime),
                                    ImageId = x.Id,
                                    Username = x.AddedByUser.UserName,
                                    Tags = string.Join(' ', x.Tags.Select(x => x.Tag.Name)),
@@ -73,7 +78,7 @@
             }
         }
 
-        public IEnumerable<ImagePostViewModel> SearchByCamera(int page, string input, int count = 4)
+        public IEnumerable<ImagePostViewModel> SearchByCamera(int page, string input, int count = GlobalConstants.Pages)
         {
             var imageCount = this.postRepository.AllAsNoTracking().Where(x => x.Type.Name == "Image" && x.Camera.Model.ToLower().Contains(input.ToLower())).Count();
             if (imageCount > (page * count) && imageCount < (page + 1) * count)
@@ -85,7 +90,7 @@
                                .Take(imageCount - (count * page))
                                .Select(x => new ImagePostViewModel
                                {
-                                   DatePosted = x.CreatedOn.ToString("dddd, dd MMMM yyyy"),
+                                   DatePosted = x.CreatedOn.ToString(GlobalConstants.DateTime),
                                    ImageId = x.Id,
                                    Username = x.AddedByUser.UserName,
                                    Tags = string.Join(' ', x.Tags.Select(x => x.Tag.Name)),
@@ -107,7 +112,7 @@
                                .Take(count)
                                .Select(x => new ImagePostViewModel
                                {
-                                   DatePosted = x.CreatedOn.ToString("dddd, dd MMMM yyyy"),
+                                   DatePosted = x.CreatedOn.ToString(GlobalConstants.DateTime),
                                    ImageId = x.Id,
                                    Username = x.AddedByUser.UserName,
                                    Tags = string.Join(' ', x.Tags.Select(x => x.Tag.Name)),
@@ -126,7 +131,7 @@
             }
         }
 
-        public IEnumerable<ImagePostViewModel> SearchByCaption(int page, string input, int count = 4)
+        public IEnumerable<ImagePostViewModel> SearchByCaption(int page, string input, int count = GlobalConstants.Pages)
         {
             var imageCount = this.postRepository.AllAsNoTracking().Where(x => x.Type.Name == "Image" && x.Caption.ToLower().Contains(input.ToLower())).Count();
             if (imageCount > (page * count) && imageCount < (page + 1) * count)
@@ -138,7 +143,7 @@
                                .Take(imageCount - (count * page))
                                .Select(x => new ImagePostViewModel
                                {
-                                   DatePosted = x.CreatedOn.ToString("dddd, dd MMMM yyyy"),
+                                   DatePosted = x.CreatedOn.ToString(GlobalConstants.DateTime),
                                    ImageId = x.Id,
                                    Username = x.AddedByUser.UserName,
                                    Tags = string.Join(' ', x.Tags.Select(x => x.Tag.Name)),
@@ -160,7 +165,7 @@
                                .Take(count)
                                .Select(x => new ImagePostViewModel
                                {
-                                   DatePosted = x.CreatedOn.ToString("dddd, dd MMMM yyyy"),
+                                   DatePosted = x.CreatedOn.ToString(GlobalConstants.DateTime),
                                    ImageId = x.Id,
                                    Username = x.AddedByUser.UserName,
                                    Tags = string.Join(' ', x.Tags.Select(x => x.Tag.Name)),
@@ -179,7 +184,7 @@
             }
         }
 
-        public IEnumerable<ImagePostViewModel> SearchByLocation(int page, string input, int count = 4)
+        public IEnumerable<ImagePostViewModel> SearchByLocation(int page, string input, int count = GlobalConstants.Pages)
         {
             var imageCount = this.postRepository.AllAsNoTracking().Where(x => x.Type.Name == "Image" && x.Location.Name.ToLower().Contains(input.ToLower())).Count();
             if (imageCount > (page * count) && imageCount < (page + 1) * count)
@@ -191,7 +196,7 @@
                                .Take(imageCount - (count * page))
                                .Select(x => new ImagePostViewModel
                                {
-                                   DatePosted = x.CreatedOn.ToString("dddd, dd MMMM yyyy"),
+                                   DatePosted = x.CreatedOn.ToString(GlobalConstants.DateTime),
                                    ImageId = x.Id,
                                    Username = x.AddedByUser.UserName,
                                    Tags = string.Join(' ', x.Tags.Select(x => x.Tag.Name)),
@@ -213,7 +218,7 @@
                                .Take(count)
                                .Select(x => new ImagePostViewModel
                                {
-                                   DatePosted = x.CreatedOn.ToString("dddd, dd MMMM yyyy"),
+                                   DatePosted = x.CreatedOn.ToString(GlobalConstants.DateTime),
                                    ImageId = x.Id,
                                    Username = x.AddedByUser.UserName,
                                    Tags = string.Join(' ', x.Tags.Select(x => x.Tag.Name)),
@@ -232,7 +237,7 @@
             }
         }
 
-        public IEnumerable<ImagePostViewModel> SearchByTags(int page, string input, int count = 4)
+        public IEnumerable<ImagePostViewModel> SearchByTags(int page, string input, int count = GlobalConstants.Pages)
         {
             var imageCount = this.postRepository.AllAsNoTracking().Where(x => x.Type.Name == "Image" && x.Tags.Select(x => x.Tag.Name).Contains(input)).Count();
             if (imageCount > (page * count) && imageCount < (page + 1) * count)
@@ -244,7 +249,7 @@
                                .Take(imageCount - (count * page))
                                .Select(x => new ImagePostViewModel
                                {
-                                   DatePosted = x.CreatedOn.ToString("dddd, dd MMMM yyyy"),
+                                   DatePosted = x.CreatedOn.ToString(GlobalConstants.DateTime),
                                    ImageId = x.Id,
                                    Username = x.AddedByUser.UserName,
                                    Tags = string.Join(' ', x.Tags.Select(x => x.Tag.Name)),
@@ -266,7 +271,7 @@
                                .Take(count)
                                .Select(x => new ImagePostViewModel
                                {
-                                   DatePosted = x.CreatedOn.ToString("dddd, dd MMMM yyyy"),
+                                   DatePosted = x.CreatedOn.ToString(GlobalConstants.DateTime),
                                    ImageId = x.Id,
                                    Username = x.AddedByUser.UserName,
                                    Tags = string.Join(' ', x.Tags.Select(x => x.Tag.Name)),
@@ -285,7 +290,7 @@
             }
         }
 
-        public IEnumerable<ImagePostViewModel> SearchByUsername(int page, string input, int count = 4)
+        public IEnumerable<ImagePostViewModel> SearchByUsername(int page, string input, int count = GlobalConstants.Pages)
         {
             var imageCount = this.postRepository.AllAsNoTracking().Where(x => x.Type.Name == "Image" && x.AddedByUser.UserName.ToLower().Contains(input.ToLower())).Count();
             if (imageCount > (page * count) && imageCount < (page + 1) * count)
@@ -297,7 +302,7 @@
                                .Take(imageCount - (count * page))
                                .Select(x => new ImagePostViewModel
                                {
-                                   DatePosted = x.CreatedOn.ToString("dddd, dd MMMM yyyy"),
+                                   DatePosted = x.CreatedOn.ToString(GlobalConstants.DateTime),
                                    ImageId = x.Id,
                                    Username = x.AddedByUser.UserName,
                                    Tags = string.Join(' ', x.Tags.Select(x => x.Tag.Name)),
@@ -319,7 +324,7 @@
                                .Take(count)
                                .Select(x => new ImagePostViewModel
                                {
-                                   DatePosted = x.CreatedOn.ToString("dddd, dd MMMM yyyy"),
+                                   DatePosted = x.CreatedOn.ToString(GlobalConstants.DateTime),
                                    ImageId = x.Id,
                                    Username = x.AddedByUser.UserName,
                                    Tags = string.Join(' ', x.Tags.Select(x => x.Tag.Name)),
@@ -338,7 +343,7 @@
             }
         }
 
-        public IEnumerable<ImagePostViewModel> SearchByCommentedPosts(int page, string input, int count = 4)
+        public IEnumerable<ImagePostViewModel> SearchByCommentedPosts(int page, string input, int count = GlobalConstants.Pages)
         {
             var imageCount = this.postRepository.AllAsNoTracking().Where(x => x.Comments.Select(x => x.UserPosted.UserName).Contains(input) && x.Type.Name == "Image").Count();
             if (imageCount > (page * count) && imageCount < (page + 1) * count)
@@ -350,7 +355,7 @@
                                .Take(imageCount - (count * page))
                                .Select(x => new ImagePostViewModel
                                {
-                                   DatePosted = x.CreatedOn.ToString("dddd, dd MMMM yyyy"),
+                                   DatePosted = x.CreatedOn.ToString(GlobalConstants.DateTime),
                                    ImageId = x.Id,
                                    Username = x.AddedByUser.UserName,
                                    Tags = string.Join(' ', x.Tags.Select(x => x.Tag.Name)),
@@ -372,7 +377,7 @@
                                .Take(count)
                                .Select(x => new ImagePostViewModel
                                {
-                                   DatePosted = x.CreatedOn.ToString("dddd, dd MMMM yyyy"),
+                                   DatePosted = x.CreatedOn.ToString(GlobalConstants.DateTime),
                                    ImageId = x.Id,
                                    Username = x.AddedByUser.UserName,
                                    Tags = string.Join(' ', x.Tags.Select(x => x.Tag.Name)),
@@ -391,7 +396,7 @@
             }
         }
 
-        public IEnumerable<ImagePostViewModel> SearchByDislikedPosts(int page, string input, int count = 4)
+        public IEnumerable<ImagePostViewModel> SearchByDislikedPosts(int page, string input, int count = GlobalConstants.Pages)
         {
             var imageCount = this.reactRepository.AllAsNoTracking().Where(x => x.IsLiked == false && x.User.UserName.ToLower() == input.ToLower() && x.Post.Type.Name == "Image").Count();
             if (imageCount > (page * count) && imageCount < (page + 1) * count)
@@ -403,7 +408,7 @@
                                .Take(imageCount - (count * page))
                                .Select(x => new ImagePostViewModel
                                {
-                                   DatePosted = x.Post.CreatedOn.ToString("dddd, dd MMMM yyyy"),
+                                   DatePosted = x.Post.CreatedOn.ToString(GlobalConstants.DateTime),
                                    ImageId = x.PostId,
                                    Username = x.User.UserName,
                                    Tags = string.Join(' ', x.Post.Tags.Select(x => x.Tag.Name)),
@@ -425,7 +430,7 @@
                                .Take(count)
                                .Select(x => new ImagePostViewModel
                                {
-                                   DatePosted = x.Post.CreatedOn.ToString("dddd, dd MMMM yyyy"),
+                                   DatePosted = x.Post.CreatedOn.ToString(GlobalConstants.DateTime),
                                    ImageId = x.PostId,
                                    Username = x.User.UserName,
                                    Tags = string.Join(' ', x.Post.Tags.Select(x => x.Tag.Name)),
@@ -444,7 +449,7 @@
             }
         }
 
-        public IEnumerable<ImagePostViewModel> SearchByLikedPosts(int page, string input, int count = 4)
+        public IEnumerable<ImagePostViewModel> SearchByLikedPosts(int page, string input, int count = GlobalConstants.Pages)
         {
             var imageCount = this.reactRepository.AllAsNoTracking().Where(x => x.IsLiked == true && x.User.UserName.ToLower() == input.ToLower() && x.Post.Type.Name == "Image").Count();
             if (imageCount > (page * count) && imageCount < (page + 1) * count)
@@ -456,7 +461,7 @@
                                .Take(imageCount - (count * page))
                                .Select(x => new ImagePostViewModel
                                {
-                                   DatePosted = x.Post.CreatedOn.ToString("dddd, dd MMMM yyyy"),
+                                   DatePosted = x.Post.CreatedOn.ToString(GlobalConstants.DateTime),
                                    ImageId = x.PostId,
                                    Username = x.User.UserName,
                                    Tags = string.Join(' ', x.Post.Tags.Select(x => x.Tag.Name)),
@@ -478,7 +483,7 @@
                                .Take(count)
                                .Select(x => new ImagePostViewModel
                                {
-                                   DatePosted = x.Post.CreatedOn.ToString("dddd, dd MMMM yyyy"),
+                                   DatePosted = x.Post.CreatedOn.ToString(GlobalConstants.DateTime),
                                    ImageId = x.PostId,
                                    Username = x.User.UserName,
                                    Tags = string.Join(' ', x.Post.Tags.Select(x => x.Tag.Name)),
