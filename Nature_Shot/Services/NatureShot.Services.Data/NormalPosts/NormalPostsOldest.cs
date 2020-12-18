@@ -7,6 +7,7 @@
     using NatureShot.Data.Common.Repositories;
     using NatureShot.Data.Models;
     using NatureShot.Web.ViewModels.NormalPosts;
+    using NatureShot.Services.Data.NormalPosts.Contracts;
 
     public class NormalPostsOldest : INormalPostsOldest
     {

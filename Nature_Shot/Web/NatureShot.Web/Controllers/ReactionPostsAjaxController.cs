@@ -5,9 +5,11 @@
     using System.Linq;
     using System.Text.Encodings.Web;
     using System.Threading.Tasks;
+
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
     using NatureShot.Services.Data;
+    using NatureShot.Services.Data.Contracts;
     using NatureShot.Web.ViewModels;
     using NatureShot.Web.ViewModels.Report;
 

@@ -55,8 +55,6 @@
 
         public DbSet<Video> Videos { get; set; }
 
-        public DbSet<Setting> Settings { get; set; }
-
         public DbSet<Report> Reports { get; set; }
 
         public DbSet<Message> Messages { get; set; }

@@ -6,8 +6,7 @@
 
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
-    using NatureShot.Services.Data;
-    using NatureShot.Web.ViewModels.SignalR.Chat;
+    using NatureShot.Services.Data.Contracts;
 
     public class ChatController : Controller
     {
@@ -24,12 +23,21 @@
             return this.View();
         }
 
+        [Authorize]
         public IActionResult MyChats()
         {
-            var chats = new List<UserChats>();
+            var chats = this.chatService.GetUserChats(this.User.Identity.Name);
             return this.View(chats);
         }
 
+        [Authorize]
+        public IActionResult SearchByUsername(string searchInput)
+        {
+            var chats = this.chatService.SearchByUsername(this.User.Identity.Name, searchInput);
+            return this.View(nameof(this.MyChats), chats);
+        }
+
+        [Authorize]
         public async Task<IActionResult> OpenChat(string username)
         {
             var firstUsername = this.User.Identity.Name;

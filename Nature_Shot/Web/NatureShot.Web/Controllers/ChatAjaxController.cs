@@ -9,6 +9,7 @@
     using Microsoft.AspNetCore.Mvc;
     using NatureShot.Services.Data;
     using NatureShot.Web.ViewModels.SignalR.Chat;
+    using NatureShot.Services.Data.Contracts;
 
     [Route("api/[controller]")]
     [ApiController]

@@ -5,12 +5,14 @@
     using System.Threading.Tasks;
 
     using CloudinaryDotNet;
+    using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Mvc;
     using NatureShot.Data;
     using NatureShot.Data.Common.Repositories;
     using NatureShot.Data.Models;
     using NatureShot.Services.Data;
+    using NatureShot.Services.Data.Contracts;
     using NatureShot.Web.CloudinaryHelper;
     using NatureShot.Web.ViewModels;
     using NatureShot.Web.ViewModels.Home;
@@ -21,18 +23,26 @@
         private readonly IUserService userService;
         private readonly UserManager<ApplicationUser> userManager;
         private readonly Cloudinary cloudinary;
+        private readonly SignInManager<ApplicationUser> signInManager;
 
         public HomeController(IUserService userService,
                               UserManager<ApplicationUser> userManager,
-                              Cloudinary cloudinary)
+                              Cloudinary cloudinary,
+                              SignInManager<ApplicationUser> SignInManager)
         {
             this.userService = userService;
             this.userManager = userManager;
             this.cloudinary = cloudinary;
+            signInManager = SignInManager;
         }
 
         public IActionResult Index()
         {
+            if (this.signInManager.IsSignedIn(this.User))
+            {
+                return this.RedirectToAction(nameof(this.Profile), new { username = this.User.Identity.Name });
+            }
+
             return this.View();
         }
 
@@ -41,6 +51,7 @@
             return this.View();
         }
 
+        [Authorize]
         [HttpGet("{username}")]
         public async Task<IActionResult> Profile(string username)
         {
@@ -59,6 +70,7 @@
             return this.View(model);
         }
 
+        [Authorize]
         public async Task<IActionResult> OtherProfile([FromQuery] string username)
         {
             if (username != null)
@@ -76,6 +88,7 @@
             return this.View(nameof(this.Profile), model);
         }
 
+        [Authorize]
         public async Task<IActionResult> UpdateProfile()
         {
             var user = await this.userManager.GetUserAsync(this.User);
@@ -84,6 +97,7 @@
         }
 
         [HttpPost]
+        [Authorize]
         public async Task<IActionResult> UpdateProfile(UserProfileInputModel input)
         {
             if (!this.ModelState.IsValid)

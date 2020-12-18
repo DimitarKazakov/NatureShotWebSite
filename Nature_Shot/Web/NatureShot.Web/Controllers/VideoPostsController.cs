@@ -9,6 +9,8 @@
     using NatureShot.Services.Data;
     using NatureShot.Services.Data.VideoPosts;
     using NatureShot.Web.ViewModels.Videos;
+    using NatureShot.Services.Data.Contracts;
+    using NatureShot.Services.Data.VideoPosts.Contracts;
 
     public class VideoPostsController : Controller
     {

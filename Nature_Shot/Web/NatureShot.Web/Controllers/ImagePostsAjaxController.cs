@@ -15,6 +15,8 @@
     using NatureShot.Services.Data.PhotoPosts;
     using NatureShot.Web.ViewModels;
     using NatureShot.Web.ViewModels.Images;
+    using NatureShot.Services.Data.Contracts;
+    using NatureShot.Services.Data.PhotoPosts.Contracts;
 
     [Route("api/[controller]")]
     [ApiController]

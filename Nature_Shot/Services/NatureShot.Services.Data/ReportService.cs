@@ -6,6 +6,7 @@
     using NatureShot.Data.Common.Repositories;
     using NatureShot.Data.Models;
     using NatureShot.Web.ViewModels.Report;
+    using NatureShot.Services.Data.Contracts;
 
     public class ReportService : IReportService
     {

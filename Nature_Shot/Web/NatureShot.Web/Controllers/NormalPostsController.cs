@@ -12,6 +12,8 @@
     using NatureShot.Services.Data;
     using NatureShot.Services.Data.NormalPosts;
     using NatureShot.Web.ViewModels.NormalPosts;
+    using NatureShot.Services.Data.Contracts;
+    using NatureShot.Services.Data.NormalPosts.Contracts;
 
     public class NormalPostsController : Controller
     {

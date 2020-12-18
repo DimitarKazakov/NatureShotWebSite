@@ -7,6 +7,7 @@
     using NatureShot.Data.Common.Repositories;
     using NatureShot.Data.Models;
     using NatureShot.Web.ViewModels.Videos;
+    using NatureShot.Services.Data.VideoPosts.Contracts;
 
     public class VideoPostsShortest : IVideoPostsShortest
     {

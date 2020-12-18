@@ -1,7 +1,7 @@
 ﻿namespace NatureShot.Web
 {
+    using System;
     using System.Reflection;
-    using System.Web.Http.Cors;
 
     using CloudinaryDotNet;
     using Microsoft.AspNetCore.Builder;
@@ -20,15 +20,18 @@
     using NatureShot.Data.Seeding;
     using NatureShot.Services;
     using NatureShot.Services.Data;
+    using NatureShot.Services.Data.Contracts;
     using NatureShot.Services.Data.NormalPosts;
+    using NatureShot.Services.Data.NormalPosts.Contracts;
     using NatureShot.Services.Data.PhotoPosts;
+    using NatureShot.Services.Data.PhotoPosts.Contracts;
     using NatureShot.Services.Data.VideoPosts;
+    using NatureShot.Services.Data.VideoPosts.Contracts;
     using NatureShot.Services.Mapping;
     using NatureShot.Services.Messaging;
-    using NatureShot.Web.ViewModels.Recaptcha;
-    using NatureShot.Web.ViewModels;
-    using System;
     using NatureShot.Web.Hubs;
+    using NatureShot.Web.ViewModels;
+    using NatureShot.Web.ViewModels.Recaptcha;
 
     public class Startup
     {
@@ -121,7 +124,6 @@
 
             // Application services
             services.AddTransient<IEmailSender>(x => new SendGridEmailSender(this.configuration["SendGrid:ApiKey"]));
-            services.AddTransient<ISettingsService, SettingsService>();
             services.AddTransient<IGoogleRecapchaService, GoogleRecapchaService>();
 
             services.AddTransient<IPostsService, PostsService>();

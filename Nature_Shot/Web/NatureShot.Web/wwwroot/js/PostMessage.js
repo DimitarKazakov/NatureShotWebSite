@@ -20,7 +20,7 @@
                 },
                 success: function (data) {
                     document.querySelector('#messageInput').value = '';
-                    document.querySelector('#messagesList').innerHTML += "<li class=\"text-right offset-1 col-11 mb-4\"><p>" + data.username + "<br><span class=\"d-inline-block p-2 pl-3 pr-3 rounded-pill border border-primary bg-primary text-white\">" + data.message + "</span><br><small>" + data.timePosted + "</small></p></li>";
+                    document.querySelector('#messagesList').innerHTML += "<li class=\"text-right offset-1 col-11 mb-4\"><p>" + data.username + "<br><span class=\"d-inline-block p-2 pl-3 pr-3 rounded border border-primary bg-primary text-white\">" + data.message + "</span><br><small>" + data.timePosted + "</small></p></li>";
                 },
                 contentType: 'application/json',
             });

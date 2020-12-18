@@ -9,6 +9,7 @@
     using NatureShot.Data.Common.Repositories;
     using NatureShot.Data.Models;
     using NatureShot.Web.ViewModels;
+    using NatureShot.Services.Data.Contracts;
 
     public class ReactionService : IReactionService
     {

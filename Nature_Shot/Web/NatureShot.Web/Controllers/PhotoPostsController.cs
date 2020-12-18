@@ -14,6 +14,8 @@
     using NatureShot.Services.Data;
     using NatureShot.Services.Data.PhotoPosts;
     using NatureShot.Web.ViewModels.Images;
+    using NatureShot.Services.Data.Contracts;
+    using NatureShot.Services.Data.PhotoPosts.Contracts;
 
     public class PhotoPostsController : Controller
     {

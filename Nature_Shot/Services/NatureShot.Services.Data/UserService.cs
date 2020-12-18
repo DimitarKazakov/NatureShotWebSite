@@ -4,10 +4,12 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
+
     using CloudinaryDotNet.Actions;
     using NatureShot.Data.Common.Repositories;
     using NatureShot.Data.Models;
     using NatureShot.Web.ViewModels.User;
+    using NatureShot.Services.Data.Contracts;
 
     public class UserService : IUserService
     {

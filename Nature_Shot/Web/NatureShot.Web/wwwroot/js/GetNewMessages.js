@@ -17,7 +17,7 @@
 
                     for (let i = 0; i < messages.length; i++) {
                         let message = messages[i];
-                        document.querySelector('#messagesList').innerHTML += "<li class=\"text-left col-11 mb-4\"><p>" + message.username + "<br><span class=\"d-inline-block p-2 pl-3 pr-3 rounded-pill border border-secondary bg-secondary text-white\">" + message.message + "</span><br><small>" + message.timePosted + "</small></p></li>";
+                        document.querySelector('#messagesList').innerHTML += "<li class=\"text-left col-11 mb-4\"><p>" + message.username + "<br><span class=\"d-inline-block p-2 pl-3 pr-3 rounded border border-secondary bg-secondary text-white\">" + message.message + "</span><br><small>" + message.timePosted + "</small></p></li>";
                     }
 
                     window.scroll(scrollWidth, scrollHeight);

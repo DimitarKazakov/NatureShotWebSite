@@ -7,6 +7,7 @@
     using NatureShot.Data.Common.Repositories;
     using NatureShot.Data.Models;
     using NatureShot.Web.ViewModels.Images;
+    using NatureShot.Services.Data.PhotoPosts.Contracts;
 
     public class PhotoPostsLeastLikes : IPhotoPostsLeastLikes
     {

@@ -7,6 +7,7 @@
 
     using NatureShot.Data.Common.Repositories;
     using NatureShot.Data.Models;
+    using NatureShot.Services.Data.Contracts;
 
     public class LocationsService : ILocationsService
     {

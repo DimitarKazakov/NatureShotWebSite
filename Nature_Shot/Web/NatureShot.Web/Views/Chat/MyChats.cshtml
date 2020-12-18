@@ -1,30 +1,37 @@
-﻿@model IEnumerable<NatureShot.Web.ViewModels.SignalR.Chat.UserChats>
+﻿@model List<NatureShot.Web.ViewModels.SignalR.Chat.UserChats>
+@{
+    this.ViewBag.Title = "My Chats";
+}
 
+<h1>@this.ViewBag.Title</h1>
 
-    <div class="input-group input-group-lg md-form form-sm form-1 pl-0 mb-5 border-primary ml-md-5">
-        <div class="input-group-prepend">
-            <span class="input-group-text bg-primary border-primary" id="basic-text1">
-                <a href="javascript:void(0)" class="text-decoration-none">
-                    <i class="fas fa-search text-white"
-                       aria-hidden="true"></i>
-                    <span class="text-white">Search By Username</span>
-                </a>
-            </span>
-        </div>
-        <form id="searchForm" class="col-md-8 ml-0 pl-0 pr-0 mr-0" method="get" asp-controller="PhotoPosts" asp-action="SearchByLeastLikes">
-            <input id="searchByInputHidden" type="hidden" name="searchBy" value="Name" />
-            <input class="form-control p-4 input-lg my-0 py-1 searchBorder rounded-0" name="searchInput" type="text" placeholder="Search . . ." aria-label="Search">
-        </form>
+<div class="input-group input-group-lg md-form form-sm form-1 pl-0 mb-5 border-primary ml-md-5">
+    <div class="input-group-prepend">
+        <span class="input-group-text bg-primary border-primary" id="basic-text1">
+            <a href="javascript:void(0)" class="text-decoration-none">
+                <i class="fas fa-search text-white"
+                   aria-hidden="true"></i>
+                <span class="text-white">Search By Username</span>
+            </a>
+        </span>
     </div>
+    <form id="searchForm" class="col-md-8 ml-0 pl-0 pr-0 mr-0" method="get" asp-controller="Chat" asp-action="SearchByUsername">
+        <input id="searchByInputHidden" type="hidden" name="searchBy" value="Name" />
+        <input class="form-control p-4 input-lg my-0 py-1 searchBorder rounded-0" name="searchInput" type="text" placeholder="Search for chat . . ." aria-label="Search">
+    </form>
+</div>
 
-    @if (Model.Any())
-    {
+@if (Model.Any())
+{
+    <div class="list-group offset-lg-3 col-lg-6">
+
         @foreach (var userChat in Model)
         {
-            <h1>@userChat.Username</h1>
+            <a href="/Chat/OpenChat?username=@userChat.Username" class="list-group-item list-group-item-action border-primary"><strong>@userChat.Username</strong></a>
         }
-    }
-    else
-    {
-        <h1>You dont have previous chats</h1>
-    }
+    </div>
+}
+else
+{
+    <h1>You don't have previous chats</h1>
+}

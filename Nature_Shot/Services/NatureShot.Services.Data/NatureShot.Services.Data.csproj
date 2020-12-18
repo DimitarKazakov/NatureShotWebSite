@@ -31,5 +31,9 @@
     <Folder Include="PhotoPosts\" />
     <Folder Include="NormalPosts\" />
     <Folder Include="VideoPosts\" />
+    <Folder Include="Contracts\" />
+    <Folder Include="VideoPosts\Contracts\" />
+    <Folder Include="PhotoPosts\Contracts\" />
+    <Folder Include="NormalPosts\Contracts\" />
   </ItemGroup>
 </Project>

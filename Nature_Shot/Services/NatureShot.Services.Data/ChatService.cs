@@ -4,8 +4,10 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
+
     using NatureShot.Data.Common.Repositories;
     using NatureShot.Data.Models;
+    using NatureShot.Services.Data.Contracts;
     using NatureShot.Web.ViewModels.SignalR.Chat;
 
     public class ChatService : IChatService
@@ -26,9 +28,8 @@
         public string CheckGroupExists(string firstUsername, string secondUsername)
         {
             var chatName = this.chatRepository.AllAsNoTracking()
-                                              .FirstOrDefault(x =>
-                                                    x.Members.Select(x => x.User.UserName).Contains(firstUsername) &&
-                                                    x.Members.Select(x => x.User.UserName).Contains(firstUsername));
+                                              .FirstOrDefault(x => x.Name == firstUsername + secondUsername ||
+                                                                    x.Name == secondUsername + firstUsername);
 
             return chatName?.Name;
         }
@@ -125,6 +126,28 @@
                 TimePosted = input.TimePosted.ToString("dddd, dd MMMM yyyy"),
                 Username = input.Sender,
             };
+        }
+
+        public List<UserChats> GetUserChats(string username)
+        {
+            return this.chatRepository.AllAsNoTracking()
+                .Where(x => x.Name.Contains(username))
+                .OrderByDescending(x => x.CreatedOn)
+                .Select(x => new UserChats
+                {
+                    Username = x.Name.Replace(username, string.Empty),
+                }).ToList();
+        }
+
+        public List<UserChats> SearchByUsername(string username, string search)
+        {
+            return this.chatRepository.AllAsNoTracking()
+                .Where(x => x.Name.Contains(username) && x.Name.Contains(search))
+                .OrderByDescending(x => x.CreatedOn)
+                .Select(x => new UserChats
+                {
+                    Username = x.Name.Replace(username, string.Empty),
+                }).ToList();
         }
     }
 }

@@ -11,6 +11,7 @@
     using NatureShot.Web.ViewModels.Images;
     using NatureShot.Web.ViewModels.NormalPosts;
     using NatureShot.Web.ViewModels.Videos;
+    using NatureShot.Services.Data.Contracts;
 
     public class PostsService : IPostsService
     {
