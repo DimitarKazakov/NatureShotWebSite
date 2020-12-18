@@ -1,7 +1,7 @@
-# About this Web-Project
+# :earth_americas: About this Web-Project
 **Nature Shot Website** is my defense project for **ASP.NET Core** course at [SoftUni](https://softuni.bg/ "SoftUni") (September-December 2020). The project is **Multi Page Application** with a decent amount of **AJAX**.
 
-# Overview
+# :evergreen_tree: Overview
 **Nature Shot Website** is a website like social platform mainly focusing photographers. Users can share photos, posts and videos they made and add caption, tags, location where the photo, video was taken and a camera with which the photo, video was taken. They can chat privately one-to-one or join a chat room with every user in it and chat to each other. They can access theirs and other users profiles. They can see what certain user liked, disliked and commented. Also they can see user's photos, posts and videos. If they want they have search bar (by username, by tag, by caption, by location, by camera) for the photos, posts and videos and they can order them in different ways (by date, by likes, by dislikes or by length for videos only). If they see something inapropriate they can report it and an Admin can see the report.
 
 # :hammer: Built With
