@@ -9,5 +9,9 @@
         public string Username { get; set; }
 
         public bool NewMessages { get; set; }
+
+        public string TimePosted { get; set; }
+
+        public string Message { get; set; }
     }
 }

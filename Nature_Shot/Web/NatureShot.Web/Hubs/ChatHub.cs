@@ -5,20 +5,30 @@
 
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.SignalR;
+    using NatureShot.Services.Data;
     using NatureShot.Web.ViewModels.SignalR.Chat;
 
     [Authorize]
     public class ChatHub : Hub
     {
-        public ChatHub()
+        private readonly IChatService chatService;
+
+        public ChatHub(IChatService chatService)
         {
+            this.chatService = chatService;
         }
 
-        public async Task Send(string message)
+        public async Task Send(string message, string groupName = "chat1")
         {
-            await this.Clients.All.SendAsync(
+            await this.Groups.AddToGroupAsync(this.Context.ConnectionId, groupName);
+            await this.Clients.Group(groupName).SendAsync(
                 "NewMessage",
                 new Message { User = this.Context.User.Identity.Name, Text = message, });
+        }
+
+        public async Task CreateGroup(string firstUsername, string secondUsername)
+        {
+
         }
     }
 }

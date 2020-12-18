@@ -10508,6 +10508,11 @@ button.bg-black:focus {
     font-weight: 300 !important;
 }
 
+.scrollable-list {
+    max-height: 10px;
+    overflow-y: auto;
+}
+
 .font-weight-lighter {
     font-weight: lighter !important;
 }
@@ -10755,33 +10760,39 @@ body {
     background-color: #fff;
 }
 
-    #mainNav .navbar-toggler {
-        font-size: 80%;
-        padding: 0.75rem;
-        color: #64a19d;
-        border: 1px solid #64a19d;
-    }
+.vertical-scrollable {
+    max-height: 300px;
+    margin-bottom: 10px;
+    overflow: scroll;
+}
 
-        #mainNav .navbar-toggler:focus {
-            outline: none;
-        }
+#mainNav .navbar-toggler {
+    font-size: 80%;
+    padding: 0.75rem;
+    color: #64a19d;
+    border: 1px solid #64a19d;
+}
 
-    #mainNav .navbar-brand {
-        color: #000000;
-        font-weight: 700;
-        padding: 0.9rem 0;
-    }
-
-    #mainNav .navbar-nav .nav-item:hover {
-        color: fade(#fff, 80%);
+    #mainNav .navbar-toggler:focus {
         outline: none;
-        background-color: transparent;
     }
 
-    #mainNav .navbar-nav .nav-item:active, #mainNav .navbar-nav .nav-item:focus {
-        outline: none;
-        background-color: transparent;
-    }
+#mainNav .navbar-brand {
+    color: #000000;
+    font-weight: 700;
+    padding: 0.9rem 0;
+}
+
+#mainNav .navbar-nav .nav-item:hover {
+    color: fade(#fff, 80%);
+    outline: none;
+    background-color: transparent;
+}
+
+#mainNav .navbar-nav .nav-item:active, #mainNav .navbar-nav .nav-item:focus {
+    outline: none;
+    background-color: transparent;
+}
 
 @media (min-width: 992px) {
     #mainNav {

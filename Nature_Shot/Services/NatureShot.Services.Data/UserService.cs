@@ -107,5 +107,10 @@
 
             await this.userRepository.SaveChangesAsync();
         }
+
+        public ApplicationUser GetUser(string usename)
+        {
+            return this.userRepository.All().FirstOrDefault(x => x.UserName == usename);
+        }
     }
 }

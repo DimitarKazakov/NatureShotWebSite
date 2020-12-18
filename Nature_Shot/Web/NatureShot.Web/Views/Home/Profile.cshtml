@@ -40,14 +40,14 @@
             else
             {
                 <div class="col-lg-2 order-lg-3 order-2 mt-3 mb-3 mt-lg-0 mb-lg-0">
-                    <a class="btn btn-outline-primary border border-primary" asp-area="" asp-controller="Home" asp-action="Index">Chat</a>
+                    <a class="btn btn-outline-primary border border-primary" href="/Chat/OpenChat?username=@Model.Username">Chat</a>
                 </div>
             }
         </div>
         <div class="row">
             <div class="col-md-8">
                 <div class="tab-content profile-tab" id="myTabContent">
-                    <div class="tab-pane fade show active mt-3" id="home" role="tabpanel" aria-labelledby="home-tab">
+                    <div class="tab-pane fade show active mt-3 bg-white" id="home" role="tabpanel" aria-labelledby="home-tab">
                         <div class="row">
                             <div class="col-md-6">
                                 <label>Username:</label>
@@ -103,7 +103,7 @@
                         </div>
                         <hr />
                     </div>
-                    <div class="tab-pane fade mt-3" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                    <div class="tab-pane fade mt-3 bg-white" id="profile" role="tabpanel" aria-labelledby="profile-tab">
                         <div class="row">
                             <div class="col-md-6">
                                 <label>Total Posts:</label>

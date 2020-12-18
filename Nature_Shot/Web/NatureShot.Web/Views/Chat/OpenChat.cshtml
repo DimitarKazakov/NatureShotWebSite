@@ -1,0 +1,33 @@
+﻿@model List<NatureShot.Web.ViewModels.SignalR.Chat.MessagesForChatViewModel>
+@{
+    this.ViewBag.Title = "Messenger";
+}
+<ul class="list-unstyled" id="messagesList">
+    @foreach (var message in Model)
+    {
+        if (this.User.Identity.Name == message.Username)
+        {
+            <li class="text-right offset-1 col-11 mb-4">
+                <p>@message.Username<br><span class="d-inline-block p-2 pl-3 pr-3 rounded-pill border border-primary bg-primary text-white">@message.Message</span><br><small>@message.TimePosted</small></p>
+            </li>
+        }
+        else
+        {
+            <li class="text-left col-11 mb-4">
+                <p>@message.Username<br><span class="d-inline-block p-2 pl-3 pr-3 rounded-pill border border-secondary bg-secondary text-white">@message.Message</span><br><small>@message.TimePosted</small></p>
+            </li>
+        }
+    }
+</ul>
+<hr />
+<div id="message-holder" class="mt-3 d-flex justify-content-start">
+    <form method="post" class="form-inline" id="messageForm">
+    </form>
+    <input id="messageInput" class="d-inline w-75 ml-4 pl-3 input-lg" type="text" placeholder="Send Message..." />
+    <button type="button" id="sendButton" class="d-inline ml-4 btn btn-primary btn-lg text-white">Send</button>
+</div>
+
+@section Scripts {
+    <script src="~/js/PostMessage.js"></script>
+    <script src="~/js/GetNewMessages.js"></script>
+}
