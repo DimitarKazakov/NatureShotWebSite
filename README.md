@@ -19,6 +19,12 @@
 - Google+ for developers
 - Google reCaptcha v3
 - Moq
+- xUnit.net
 
 # :wrench: DB Diagram
 ![](https://res.cloudinary.com/drw0gj3qi/image/upload/v1608311150/Screenshot_2020-12-18_at_15.13.14_ytykck.png)
+
+# :clipboard: Testing
+**60%** of the business logic tested with unit tests
+**570 Tests** written
+![](https://res.cloudinary.com/drw0gj3qi/image/upload/v1608313330/Screenshot_2020-12-18_at_19.41.09_r4o71d.png)
