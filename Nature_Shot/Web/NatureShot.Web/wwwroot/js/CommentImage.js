@@ -12,7 +12,7 @@
             const commentInput = inputDiv.querySelector('#commentInput').value;
             if (commentInput != '' && commentInput.length <= 300) {
                 const imageInfo = inputDiv.parentElement;
-                const antiForgeryToken = imageInfo.querySelector('#reaction').querySelector('input[name=__RequestVerificationToken]').getAttribute('value');
+                const antiForgeryToken = document.querySelector('input[name=__RequestVerificationToken]').getAttribute('value');
                 const imageId = imageInfo.querySelector('#id').textContent;
 
                 $.ajax({

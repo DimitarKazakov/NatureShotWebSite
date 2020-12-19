@@ -8,11 +8,14 @@
 
             const typeBtn = e.target.getAttribute('value');
             const id = e.target.parentElement.parentElement.querySelector('#id').textContent;
-            const antiForgeryToken = e.target.parentElement.querySelector('input[name=__RequestVerificationToken]').getAttribute('value');
+            const antiForgeryToken = document.querySelector('input[name=__RequestVerificationToken]').getAttribute('value');
             const post = e.target.parentElement.parentElement;
+
             const likeParag = post.querySelector('#likeSpan');
             const dislikeParag = post.querySelector('#dislikeSpan');
 
+            console.log(id);
+            console.log(typeBtn);
             $.ajax({
                 type: "Put",
                 url: "/api/ImagePostsAjax",
